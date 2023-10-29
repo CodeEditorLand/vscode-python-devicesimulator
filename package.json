@@ -1,27 +1,12 @@
 {
   "name": "__EXTENSIONNAME__",
   "displayName": "__DISPLAYNAME__",
-  "description": "__DESCRIPTION__",
   "version": "0.0.1",
-  "publisher": "__PUBLISHER__",
-  "instrumentationKey": "__AIKEY__",
-  "icon": "assets/icon.png",
-  "engines": {
-    "vscode": "1.43.0"
-  },
+  "private": "false",
+  "description": "__DESCRIPTION__",
   "categories": [
     "Other"
   ],
-  "preview": true,
-  "license": "MIT",
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-  },
   "keywords": [
     "python",
     "CircuitPython",
@@ -29,19 +14,77 @@
     "microbit",
     "MicroPython"
   ],
-  "activationEvents": [
-    "onCommand:deviceSimulatorExpress.common.installDependencies",
-    "onCommand:deviceSimulatorExpress.common.openSerialMonitor",
-    "onCommand:deviceSimulatorExpress.common.runSimulator",
-    "onCommand:deviceSimulatorExpress.common.selectSerialPort",
-    "onCommand:deviceSimulatorExpress.common.gettingStarted",
-    "onCommand:deviceSimulatorExpress.common.deployToDevice",
-    "onCommand:deviceSimulatorExpress.common.newFile",
-    "onCommand:deviceSimulatorExpress.common.openSimulator",
-    "onDebug"
-  ],
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Nikola Hristov",
+    "email": "nikola@nikolahristov.tech",
+    "url": "https://nikolahristov.tech"
+  },
+  "publisher": "playform",
+  "type": "module",
   "main": "./out/extension.js",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "vscode:prepublish": "npm run compile",
+    "build": "gulp build",
+    "clean": "gulp clean",
+    "compile": "npm-run-all compile:*",
+    "compile:extension": "gulp compile",
+    "compile:views": "webpack --mode development",
+    "watch": "npm-run-all -p watch:*",
+    "watch:extension": "tsc --watch",
+    "watch:views": "webpack --watch --mode development",
+    "pretest": "npm run compile",
+    "test": "npm-run-all test:*",
+    "test:extension-tests": "node ./out/test/runTest.js",
+    "test:ts": "jest",
+    "test:api-tests": "pytest src",
+    "lint": "npm-run-all lint:*",
+    "lint:ts": "tslint -c tslint.json src/**/*.{ts,tsx}",
+    "lint:python": "pylint src",
+    "format": "npm-run-all format:*",
+    "format:ts": "prettier --config .prettierrc.yaml --write src/**/*.{css,ts,tsx}",
+    "format:python": "black src",
+    "check": "npm-run-all check:*",
+    "check:ts": "prettier --config .prettierrc.yaml --check src/**/*.{css,ts,tsx}",
+    "check:python": "black src --check",
+    "package": "vsce package",
+    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts"
+  },
   "contributes": {
+    "breakpoints": [
+      {
+        "language": "python"
+      }
+    ],
+    "colors": [
+      {
+        "id": "highContrastButtonBorderOverride.color",
+        "description": "Color for the high contrast border updated",
+        "defaults": {
+          "dark": "debugToolBar.background",
+          "light": "debugToolBar.background",
+          "highContrast": "#6FC3DF"
+        }
+      },
+      {
+        "id": "badgeForegroundOverride",
+        "description": "Color that fixes the issue with midnight blue ",
+        "defaults": {
+          "dark": "#FFFFFF",
+          "light": "badge.foreground",
+          "highContrast": "#FFFFFF"
+        }
+      }
+    ],
     "commands": [
       {
         "command": "deviceSimulatorExpress.common.installDependencies",
@@ -94,26 +137,6 @@
         "category": "%deviceSimulatorExpressExtension.commands.common.label%"
       }
     ],
-    "colors": [
-      {
-        "id": "highContrastButtonBorderOverride.color",
-        "description": "Color for the high contrast border updated",
-        "defaults": {
-          "dark": "debugToolBar.background",
-          "light": "debugToolBar.background",
-          "highContrast": "#6FC3DF"
-        }
-      },
-      {
-        "id": "badgeForegroundOverride",
-        "description": "Color that fixes the issue with midnight blue ",
-        "defaults": {
-          "dark": "#FFFFFF",
-          "light": "badge.foreground",
-          "highContrast": "#FFFFFF"
-        }
-      }
-    ],
     "configuration": {
       "type": "object",
       "title": "%deviceSimulatorExpressExtension.configuration.title%",
@@ -147,11 +170,6 @@
         }
       }
     },
-    "breakpoints": [
-      {
-        "language": "python"
-      }
-    ],
     "debuggers": [
       {
         "type": "deviceSimulatorExpress",
@@ -225,33 +243,45 @@
       }
     ]
   },
-  "scripts": {
-    "start": "webpack-dev-server",
-    "vscode:prepublish": "npm run compile",
-    "build": "gulp build",
-    "clean": "gulp clean",
-    "compile": "npm-run-all compile:*",
-    "compile:extension": "gulp compile",
-    "compile:views": "webpack --mode development",
-    "watch": "npm-run-all -p watch:*",
-    "watch:extension": "tsc --watch",
-    "watch:views": "webpack --watch --mode development",
-    "pretest": "npm run compile",
-    "test": "npm-run-all test:*",
-    "test:extension-tests": "node ./out/test/runTest.js",
-    "test:ts": "jest",
-    "test:api-tests": "pytest src",
-    "lint": "npm-run-all lint:*",
-    "lint:ts": "tslint -c tslint.json src/**/*.{ts,tsx}",
-    "lint:python": "pylint src",
-    "format": "npm-run-all format:*",
-    "format:ts": "prettier --config .prettierrc.yaml --write src/**/*.{css,ts,tsx}",
-    "format:python": "black src",
-    "check": "npm-run-all check:*",
-    "check:ts": "prettier --config .prettierrc.yaml --check src/**/*.{css,ts,tsx}",
-    "check:python": "black src --check",
-    "package": "vsce package",
-    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts"
+  "activationEvents": [
+    "onCommand:deviceSimulatorExpress.common.installDependencies",
+    "onCommand:deviceSimulatorExpress.common.openSerialMonitor",
+    "onCommand:deviceSimulatorExpress.common.runSimulator",
+    "onCommand:deviceSimulatorExpress.common.selectSerialPort",
+    "onCommand:deviceSimulatorExpress.common.gettingStarted",
+    "onCommand:deviceSimulatorExpress.common.deployToDevice",
+    "onCommand:deviceSimulatorExpress.common.newFile",
+    "onCommand:deviceSimulatorExpress.common.openSimulator",
+    "onDebug"
+  ],
+  "dependencies": {
+    "@babel/preset-typescript": "7.23.2",
+    "@testing-library/jest-dom": "6.1.4",
+    "@testing-library/react": "14.0.0",
+    "@types/jest": "29.5.6",
+    "@types/open": "6.1.0",
+    "@types/react-test-renderer": "18.0.5",
+    "@types/socket.io": "3.0.1",
+    "babel-jest": "29.7.0",
+    "compare-versions": "6.1.0",
+    "eventemitter2": "6.4.9",
+    "glob": "10.3.10",
+    "jest": "29.7.0",
+    "jest-transform-css": "6.0.1",
+    "office-ui-fabric-react": "7.204.0",
+    "open": "9.1.0",
+    "os": "0.1.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-intl": "6.5.1",
+    "react-test-renderer": "18.2.0",
+    "socket.io": "4.7.2",
+    "svg-inline-react": "3.2.1",
+    "ts-jest": "29.1.1",
+    "usb-native": "6.0.0",
+    "util": "0.12.5",
+    "vscode-extension-telemetry": "0.1.1",
+    "vscode-nls": "5.2.0"
   },
   "devDependencies": {
     "@types/glob": "8.1.0",
@@ -282,55 +312,25 @@
     "tslint-react": "4.1.0",
     "tslint-react-hooks": "2.2.2",
     "typescript": "5.2.2",
+    "typescript-esbuild": "0.3.1",
     "typescript-react-intl": "0.4.1",
     "version-from-git": "1.1.1",
     "vsce": "1.47.0",
     "vscode-nls-dev": "4.0.4",
     "vscode-test": "1.0.0",
     "webpack": "5.89.0",
-    "webpack-cli": "5.1.4",
-    "typescript-esbuild": "0.3.1"
-  },
-  "dependencies": {
-    "@babel/preset-typescript": "7.23.2",
-    "@testing-library/jest-dom": "6.1.4",
-    "@testing-library/react": "14.0.0",
-    "@types/jest": "29.5.6",
-    "@types/open": "6.1.0",
-    "@types/react-test-renderer": "18.0.5",
-    "@types/socket.io": "3.0.1",
-    "babel-jest": "29.7.0",
-    "compare-versions": "6.1.0",
-    "eventemitter2": "6.4.9",
-    "glob": "10.3.10",
-    "jest": "29.7.0",
-    "jest-transform-css": "6.0.1",
-    "office-ui-fabric-react": "7.204.0",
-    "open": "9.1.0",
-    "os": "0.1.2",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-intl": "6.5.1",
-    "react-test-renderer": "18.2.0",
-    "socket.io": "4.7.2",
-    "svg-inline-react": "3.2.1",
-    "ts-jest": "29.1.1",
-    "usb-native": "6.0.0",
-    "util": "0.12.5",
-    "vscode-extension-telemetry": "0.1.1",
-    "vscode-nls": "5.2.0"
+    "webpack-cli": "5.1.4"
   },
   "extensionDependencies": [
     "ms-python.python"
   ],
-  "type": "module",
-  "private": "false",
+  "engines": {
+    "vscode": "1.43.0"
+  },
   "publishConfig": {
     "access": "public"
   },
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
-  }
+  "icon": "assets/icon.png",
+  "preview": true,
+  "instrumentationKey": "__AIKEY__"
 }
