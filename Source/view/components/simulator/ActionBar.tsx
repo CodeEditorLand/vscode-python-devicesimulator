@@ -7,42 +7,38 @@ import RefreshLogo from "../../svgs/refresh_svg";
 import Button from "../Button";
 
 interface IProps {
-    onTogglePlay: (event: React.MouseEvent<HTMLElement>) => void;
-    onToggleRefresh: (event: React.MouseEvent<HTMLElement>) => void;
-    playStopImage: JSX.Element;
-    playStopLabel: string;
+	onTogglePlay: (event: React.MouseEvent<HTMLElement>) => void;
+	onToggleRefresh: (event: React.MouseEvent<HTMLElement>) => void;
+	playStopImage: JSX.Element;
+	playStopLabel: string;
 }
 
 // Component including the actions done on the Simulator (play/stop, refresh)
 
 class ActionBar extends React.Component<IProps> {
-    public render() {
-        const {
-            onTogglePlay,
-            onToggleRefresh,
-            playStopImage,
-            playStopLabel,
-        } = this.props;
-        return (
-            <div className="buttons">
-                <Button
-                    onClick={onTogglePlay}
-                    focusable={true}
-                    image={playStopImage}
-                    styleLabel="play"
-                    label={playStopLabel}
-                    width={CONSTANTS.SIMULATOR_BUTTON_WIDTH}
-                />
-                <Button
-                    onClick={onToggleRefresh}
-                    focusable={true}
-                    image={RefreshLogo}
-                    styleLabel="refresh"
-                    label="refresh"
-                    width={CONSTANTS.SIMULATOR_BUTTON_WIDTH}
-                />
-            </div>
-        );
-    }
+	public render() {
+		const { onTogglePlay, onToggleRefresh, playStopImage, playStopLabel } =
+			this.props;
+		return (
+			<div className="buttons">
+				<Button
+					onClick={onTogglePlay}
+					focusable={true}
+					image={playStopImage}
+					styleLabel="play"
+					label={playStopLabel}
+					width={CONSTANTS.SIMULATOR_BUTTON_WIDTH}
+				/>
+				<Button
+					onClick={onToggleRefresh}
+					focusable={true}
+					image={RefreshLogo}
+					styleLabel="refresh"
+					label="refresh"
+					width={CONSTANTS.SIMULATOR_BUTTON_WIDTH}
+				/>
+			</div>
+		);
+	}
 }
 export default ActionBar;
