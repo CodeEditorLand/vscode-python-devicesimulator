@@ -4,38 +4,38 @@ import { ISensorProps, ISliderProps } from "../../viewUtils";
 import InputSlider from "./InputSlider";
 
 interface IProps {
-	axisProperties: ISensorProps;
-	axisValues: {
-		// key is accessed with axisLabel
-		[key: string]: number;
-	};
-	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void;
+    axisProperties: ISensorProps;
+    axisValues: {
+        // key is accessed with axisLabel
+        [key: string]: number;
+    };
+    onUpdateValue: (sensor: SENSOR_LIST, value: number) => void;
 }
-export const GenericSliderComponent: React.FC<IProps> = (props) => {
-	return (
-		<div className="generic-slider-component">
-			{props.axisProperties.sliderProps.map(
-				(sliderProperties: ISliderProps, index: number) => {
-					return (
-						<React.Fragment key={index}>
-							<InputSlider
-								minValue={sliderProperties.minValue}
-								maxValue={sliderProperties.maxValue}
-								type={sliderProperties.type}
-								minLabel={sliderProperties.minLabel}
-								maxLabel={sliderProperties.maxLabel}
-								axisLabel={sliderProperties.axisLabel}
-								onUpdateValue={props.onUpdateValue}
-								value={
-									props.axisValues[sliderProperties.axisLabel]
-								}
-								step={sliderProperties.step}
-							/>
-							<br />
-						</React.Fragment>
-					);
-				}
-			)}
-		</div>
-	);
+export const GenericSliderComponent: React.FC<IProps> = props => {
+    return (
+        <div className="generic-slider-component">
+            {props.axisProperties.sliderProps.map(
+                (sliderProperties: ISliderProps, index: number) => {
+                    return (
+                        <React.Fragment key={index}>
+                            <InputSlider
+                                minValue={sliderProperties.minValue}
+                                maxValue={sliderProperties.maxValue}
+                                type={sliderProperties.type}
+                                minLabel={sliderProperties.minLabel}
+                                maxLabel={sliderProperties.maxLabel}
+                                axisLabel={sliderProperties.axisLabel}
+                                onUpdateValue={props.onUpdateValue}
+                                value={
+                                    props.axisValues[sliderProperties.axisLabel]
+                                }
+                                step={sliderProperties.step}
+                            />
+                            <br />
+                        </React.Fragment>
+                    );
+                }
+            )}
+        </div>
+    );
 };
