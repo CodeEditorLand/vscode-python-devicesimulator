@@ -1,17 +1,21 @@
 # Device Simulator Express Telemetry
 
-The Device Simulator Express logs usage data and diagnostics telemetry through [Application Insights](https://azure.microsoft.com/en-us/services/monitor/).
+The Device Simulator Express logs usage data and diagnostics telemetry through
+[Application Insights](https://azure.microsoft.com/en-us/services/monitor/).
 
 ## Telemetry Gathered
 
 This extension collects basic diagnostics telemetry and usage data:
 
-- **Diagnostics telemetry**: performance of extension commands and success / error rate
-- **Usage telemetry**: user usage of extension commands and API calls
+-   **Diagnostics telemetry**: performance of extension commands and success /
+    error rate
+-   **Usage telemetry**: user usage of extension commands and API calls
 
 ## Usage Telemetry
 
-Through the Application Insights API, telemetry events are collected on The Device Simulator Express extension usage. The follow table describes the Telemetry events we collect:
+Through the Application Insights API, telemetry events are collected on The
+Device Simulator Express extension usage. The follow table describes the
+Telemetry events we collect:
 
 |      **Property**      | **Note**                                                                                      |
 | :--------------------: | --------------------------------------------------------------------------------------------- |
