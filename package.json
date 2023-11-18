@@ -280,7 +280,7 @@
 	},
 	"devDependencies": {
 		"@types/glob": "8.1.0",
-		"@types/node": "20.9.1",
+		"@types/node": "20.9.2",
 		"@types/react": "18.2.37",
 		"@types/react-dom": "18.2.15",
 		"@types/vscode": "1.84.1",
@@ -296,7 +296,6 @@
 		"less-loader": "11.1.3",
 		"mocha": "10.2.0",
 		"npm-run-all": "4.1.5",
-		"prettier": "3.1.0",
 		"react-scripts": "5.0.1",
 		"style-loader": "3.3.3",
 		"ts-import-plugin": "3.0.0",
