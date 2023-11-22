@@ -2,6 +2,7 @@
   "name": "__EXTENSIONNAME__",
   "displayName": "__DISPLAYNAME__",
   "version": "0.0.1",
+  "private": "false",
   "description": "__DESCRIPTION__",
   "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
   "bugs": {
@@ -12,7 +13,13 @@
     "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
   },
   "license": "MIT",
+  "author": {
+    "name": "Nikola Hristov",
+    "email": "nikola@nikolahristov.tech",
+    "url": "https://nikolahristov.tech"
+  },
   "publisher": "playform",
+  "type": "module",
   "main": "./out/extension.js",
   "scripts": {
     "start": "webpack-dev-server",
@@ -294,29 +301,22 @@
     "tslint-react": "4.1.0",
     "tslint-react-hooks": "2.2.2",
     "typescript": "5.3.2",
+    "typescript-esbuild": "0.3.1",
     "typescript-react-intl": "0.4.1",
     "version-from-git": "1.1.1",
     "vsce": "1.47.0",
     "vscode-nls-dev": "4.0.4",
     "vscode-test": "1.0.0",
     "webpack": "5.89.0",
-    "webpack-cli": "5.1.4",
-    "typescript-esbuild": "0.3.1"
+    "webpack-cli": "5.1.4"
   },
   "extensionDependencies": [
     "ms-python.python"
   ],
-  "icon": "assets/icon.png",
-  "preview": true,
-  "instrumentationKey": "__AIKEY__",
-  "type": "module",
-  "private": "false",
   "publishConfig": {
     "access": "public"
   },
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
-  }
+  "icon": "assets/icon.png",
+  "preview": true,
+  "instrumentationKey": "__AIKEY__"
 }
