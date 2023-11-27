@@ -132,8 +132,8 @@ export class SerialMonitor implements vscode.Disposable {
 						return a.label === b.label
 							? 0
 							: a.label > b.label
-							? 1
-							: -1;
+							  ? 1
+							  : -1;
 					}) as vscode.QuickPickItem[],
 				{ placeHolder: CONSTANTS.MISC.SELECT_PORT_PLACEHOLDER }
 			);
