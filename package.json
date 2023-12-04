@@ -275,7 +275,7 @@
 	},
 	"devDependencies": {
 		"@types/glob": "8.1.0",
-		"@types/node": "20.10.2",
+		"@types/node": "20.10.3",
 		"@types/react": "18.2.41",
 		"@types/react-dom": "18.2.17",
 		"@types/vscode": "1.84.2",
@@ -301,7 +301,7 @@
 		"tslint-react": "4.1.0",
 		"tslint-react-hooks": "2.2.2",
 		"typescript": "5.3.2",
-		"typescript-esbuild": "0.3.1",
+		"typescript-esbuild": "0.3.2",
 		"typescript-react-intl": "0.4.1",
 		"version-from-git": "1.1.1",
 		"vsce": "1.47.0",
