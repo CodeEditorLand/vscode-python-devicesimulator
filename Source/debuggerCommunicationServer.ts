@@ -8,133 +8,134 @@ import { SERVER_INFO } from "./constants";
 import { DeviceSelectionService } from "./service/deviceSelectionService";
 
 export const DEBUGGER_MESSAGES = {
-    EMITTER: {
-        INPUT_CHANGED: "input_changed",
-        RECEIVED_STATE: "received_state",
-        DISCONNECT: "process_disconnect",
-    },
-    LISTENER: {
-        UPDATE_STATE: "updateState",
-        RECEIVED_STATE: "receivedState",
-        DISCONNECT: "disconnect",
-    },
+	EMITTER: {
+		INPUT_CHANGED: "input_changed",
+		RECEIVED_STATE: "received_state",
+		DISCONNECT: "process_disconnect",
+	},
+	LISTENER: {
+		UPDATE_STATE: "updateState",
+		RECEIVED_STATE: "receivedState",
+		DISCONNECT: "disconnect",
+	},
 };
 
 export class DebuggerCommunicationServer {
-    private port: number;
-    private serverHttp: http.Server;
-    private serverIo: socketio.Server;
-    private simulatorWebview: WebviewPanel | undefined;
-    private deviceSelectionService: DeviceSelectionService;
-    private isPendingResponse = false;
-    private pendingCallbacks: Function[] = [];
+	private port: number;
+	private serverHttp: http.Server;
+	private serverIo: socketio.Server;
+	private simulatorWebview: WebviewPanel | undefined;
+	private deviceSelectionService: DeviceSelectionService;
+	private isPendingResponse = false;
+	private pendingCallbacks: Function[] = [];
 
-    constructor(
-        webviewPanel: WebviewPanel | undefined,
-        port = SERVER_INFO.DEFAULT_SERVER_PORT,
-        deviceSelectionService: DeviceSelectionService
-    ) {
-        this.port = port;
-        this.serverHttp = new http.Server();
-        this.initHttpServer();
+	constructor(
+		webviewPanel: WebviewPanel | undefined,
+		port = SERVER_INFO.DEFAULT_SERVER_PORT,
+		deviceSelectionService: DeviceSelectionService,
+	) {
+		this.port = port;
+		this.serverHttp = new http.Server();
+		this.initHttpServer();
 
-        this.serverIo = socketio(this.serverHttp);
-        this.simulatorWebview = webviewPanel;
-        this.initEventsHandlers();
-        console.info(`Server running on port ${this.port}`);
+		this.serverIo = socketio(this.serverHttp);
+		this.simulatorWebview = webviewPanel;
+		this.initEventsHandlers();
+		console.info(`Server running on port ${this.port}`);
 
-        this.deviceSelectionService = deviceSelectionService;
-    }
+		this.deviceSelectionService = deviceSelectionService;
+	}
 
-    // send the message to start closing the connection
-    public closeConnection(): void {
-        this.sendDisconnectEvent();
-    }
+	// send the message to start closing the connection
+	public closeConnection(): void {
+		this.sendDisconnectEvent();
+	}
 
-    public setWebview(webviewPanel: WebviewPanel | undefined) {
-        this.simulatorWebview = webviewPanel;
-    }
-    // Events are pushed when the previous processed event is over
-    public emitInputChanged(newState: string): void {
-        if (this.isPendingResponse) {
-            this.pendingCallbacks.push(() => {
-                this.serverIo.emit(
-                    DEBUGGER_MESSAGES.EMITTER.INPUT_CHANGED,
-                    newState
-                );
-            });
-        } else {
-            this.serverIo.emit(
-                DEBUGGER_MESSAGES.EMITTER.INPUT_CHANGED,
-                newState
-            );
-            this.isPendingResponse = true;
-        }
-    }
-    public disconnectFromPort() {
-        this.serverIo.close();
-        this.serverHttp.close();
-    }
-    private sendDisconnectEvent() {
-        this.serverIo.emit(DEBUGGER_MESSAGES.EMITTER.DISCONNECT, {});
-    }
+	public setWebview(webviewPanel: WebviewPanel | undefined) {
+		this.simulatorWebview = webviewPanel;
+	}
+	// Events are pushed when the previous processed event is over
+	public emitInputChanged(newState: string): void {
+		if (this.isPendingResponse) {
+			this.pendingCallbacks.push(() => {
+				this.serverIo.emit(
+					DEBUGGER_MESSAGES.EMITTER.INPUT_CHANGED,
+					newState,
+				);
+			});
+		} else {
+			this.serverIo.emit(
+				DEBUGGER_MESSAGES.EMITTER.INPUT_CHANGED,
+				newState,
+			);
+			this.isPendingResponse = true;
+		}
+	}
+	public disconnectFromPort() {
+		this.serverIo.close();
+		this.serverHttp.close();
+	}
+	private sendDisconnectEvent() {
+		this.serverIo.emit(DEBUGGER_MESSAGES.EMITTER.DISCONNECT, {});
+	}
 
-    private initHttpServer(): void {
-        this.serverHttp.listen(this.port);
-        if (!this.serverHttp.listening) {
-            throw new Error(SERVER_INFO.ERROR_CODE_INIT_SERVER);
-        }
-    }
+	private initHttpServer(): void {
+		this.serverHttp.listen(this.port);
+		if (!this.serverHttp.listening) {
+			throw new Error(SERVER_INFO.ERROR_CODE_INIT_SERVER);
+		}
+	}
 
-    private initEventsHandlers(): void {
-        this.serverIo.on("connection", (socket: any) => {
-            socket.on(DEBUGGER_MESSAGES.LISTENER.UPDATE_STATE, (data: any) => {
-                this.handleState(data);
-                this.serverIo.emit(
-                    DEBUGGER_MESSAGES.EMITTER.RECEIVED_STATE,
-                    {}
-                );
-            });
-            socket.on(DEBUGGER_MESSAGES.LISTENER.RECEIVED_STATE, () => {
-                if (this.pendingCallbacks.length > 0) {
-                    const currentCall = this.pendingCallbacks.shift();
-                    currentCall();
-                    this.isPendingResponse = true;
-                } else {
-                    this.isPendingResponse = false;
-                }
-            });
+	private initEventsHandlers(): void {
+		this.serverIo.on("connection", (socket: any) => {
+			socket.on(DEBUGGER_MESSAGES.LISTENER.UPDATE_STATE, (data: any) => {
+				this.handleState(data);
+				this.serverIo.emit(
+					DEBUGGER_MESSAGES.EMITTER.RECEIVED_STATE,
+					{},
+				);
+			});
+			socket.on(DEBUGGER_MESSAGES.LISTENER.RECEIVED_STATE, () => {
+				if (this.pendingCallbacks.length > 0) {
+					const currentCall = this.pendingCallbacks.shift();
+					currentCall();
+					this.isPendingResponse = true;
+				} else {
+					this.isPendingResponse = false;
+				}
+			});
 
-            socket.on(DEBUGGER_MESSAGES.LISTENER.DISCONNECT, () => {
-                this.serverIo.emit(DEBUGGER_MESSAGES.EMITTER.DISCONNECT, {});
-                if (this.simulatorWebview) {
-                    this.simulatorWebview.webview.postMessage({
-                        command: "reset-state",
-                    });
-                }
-            });
-        });
-    }
+			socket.on(DEBUGGER_MESSAGES.LISTENER.DISCONNECT, () => {
+				this.serverIo.emit(DEBUGGER_MESSAGES.EMITTER.DISCONNECT, {});
+				if (this.simulatorWebview) {
+					this.simulatorWebview.webview.postMessage({
+						command: "reset-state",
+					});
+				}
+			});
+		});
+	}
 
-    private handleState(data: any): void {
-        try {
-            const messageToWebview = JSON.parse(data);
-            if (messageToWebview.type === "state") {
-                const messageState = JSON.parse(messageToWebview.data);
-                if (
-                    this.simulatorWebview &&
-                    messageState.device_name ===
-                        this.deviceSelectionService.getCurrentActiveDevice()
-                ) {
-                    this.simulatorWebview.webview.postMessage({
-                        active_device: this.deviceSelectionService.getCurrentActiveDevice(),
-                        command: "set-state",
-                        state: messageState,
-                    });
-                }
-            }
-        } catch (err) {
-            console.error(`Error: Non-JSON output from the process :  ${data}`);
-        }
-    }
+	private handleState(data: any): void {
+		try {
+			const messageToWebview = JSON.parse(data);
+			if (messageToWebview.type === "state") {
+				const messageState = JSON.parse(messageToWebview.data);
+				if (
+					this.simulatorWebview &&
+					messageState.device_name ===
+						this.deviceSelectionService.getCurrentActiveDevice()
+				) {
+					this.simulatorWebview.webview.postMessage({
+						active_device:
+							this.deviceSelectionService.getCurrentActiveDevice(),
+						command: "set-state",
+						state: messageState,
+					});
+				}
+			}
+		} catch (err) {
+			console.error(`Error: Non-JSON output from the process :  ${data}`);
+		}
+	}
 }
