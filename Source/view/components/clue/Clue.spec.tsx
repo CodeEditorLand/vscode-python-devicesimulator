@@ -1,4 +1,3 @@
-import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { IntlProvider } from "react-intl";
 import * as testRenderer from "react-test-renderer";
@@ -10,7 +9,7 @@ describe("Clue component", () => {
 			.create(
 				<IntlProvider locale="en">
 					<Clue />
-				</IntlProvider>
+				</IntlProvider>,
 			)
 			.toJSON();
 		expect(component).toMatchSnapshot();
@@ -22,7 +21,7 @@ describe("Clue component", () => {
 			<IntlProvider locale="en">
 				<Clue />
 			</IntlProvider>,
-			div
+			div,
 		);
 		ReactDOM.unmountComponentAtNode(div);
 	});

@@ -1,4 +1,3 @@
-import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { IntlProvider } from "react-intl";
 import * as testRenderer from "react-test-renderer";
@@ -34,7 +33,7 @@ describe("Toolbar component ", () => {
 						onUpdateSensor={mockUpdateSensors}
 						sensorValues={mockInitialValues}
 					/>
-				</IntlProvider>
+				</IntlProvider>,
 			)
 			.toJSON();
 		expect(component).toMatchSnapshot();
@@ -50,7 +49,7 @@ describe("Toolbar component ", () => {
 					sensorValues={mockInitialValues}
 				/>
 			</IntlProvider>,
-			div
+			div,
 		);
 		ReactDOM.unmountComponentAtNode(div);
 	});

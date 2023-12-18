@@ -1,4 +1,3 @@
-import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { IntlProvider } from "react-intl";
 import * as testRenderer from "react-test-renderer";
@@ -10,7 +9,7 @@ describe("GettingStartedPage component ", () => {
 			.create(
 				<IntlProvider locale="en">
 					<GettingStartedPage />
-				</IntlProvider>
+				</IntlProvider>,
 			)
 			.toJSON();
 		expect(component).toMatchSnapshot();
@@ -22,7 +21,7 @@ describe("GettingStartedPage component ", () => {
 			<IntlProvider locale="en">
 				<GettingStartedPage />
 			</IntlProvider>,
-			div
+			div,
 		);
 		ReactDOM.unmountComponentAtNode(div);
 	});

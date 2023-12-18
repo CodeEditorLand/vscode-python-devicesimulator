@@ -29,7 +29,7 @@ gulp.task("clean", () => {
 			"package.nls.*.json",
 			"../../dist/*0.0.0-UNTRACKEDVERSION.vsix",
 		],
-		{ force: true }
+		{ force: true },
 	);
 });
 
@@ -84,7 +84,7 @@ gulp.task(
 	"compile",
 	gulp.series("clean", "internal-compile", "python-compile", (callback) => {
 		callback();
-	})
+	}),
 );
 
 gulp.task(
@@ -96,22 +96,22 @@ gulp.task(
 		"add-locales",
 		(callback) => {
 			callback();
-		}
-	)
+		},
+	),
 );
 
 gulp.task(
 	"publish",
 	gulp.series("compile", "vsce:publish", (callback) => {
 		callback();
-	})
+	}),
 );
 
 gulp.task(
 	"package",
 	gulp.series("compile", "vsce:package", (callback) => {
 		callback();
-	})
+	}),
 );
 
 //---- internal
@@ -125,7 +125,7 @@ function compile(buildNls) {
 		.pipe(
 			buildNls
 				? nls.createAdditionalLanguageFiles(languages, "locales", "out")
-				: es.through()
+				: es.through(),
 		);
 
 	if (inlineMap && inlineSource) {
@@ -137,7 +137,7 @@ function compile(buildNls) {
 				includeContent: inlineSource,
 				// Return relative source map root directories per file.
 				sourceRoot: "../src",
-			})
+			}),
 		);
 	}
 

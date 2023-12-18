@@ -6,16 +6,16 @@ import { IconButton } from "office-ui-fabric-react";
 import * as React from "react";
 import {
 	FormattedMessage,
-	injectIntl,
 	WrappedComponentProps,
+	injectIntl,
 } from "react-intl";
 import { SENSOR_LIST } from "../../constants";
 import "../../styles/ToolBar.css";
 import Button from "../Button";
 import {
 	DEFAULT_MODAL_CONTENT,
-	getModalContent,
 	IModalContent,
+	getModalContent,
 } from "./SensorModalUtils";
 
 interface IToolbarState {
@@ -65,17 +65,18 @@ class ToolBar extends React.Component<IProps, IToolbarState, any> {
 												/>
 											),
 										}}
-										key={index}>
+										key={index}
+									>
 										<Button
 											key={index}
 											label={currrentButton.label}
 											width={this.TOOLBAR_BUTTON_WIDTH}
 											onClick={(
-												e: React.MouseEvent<HTMLElement>
+												e: React.MouseEvent<HTMLElement>,
 											) => {
 												this.handleOnClick(
 													e,
-													currrentButton.label
+													currrentButton.label,
 												);
 											}}
 											image={currrentButton.image}
@@ -84,7 +85,7 @@ class ToolBar extends React.Component<IProps, IToolbarState, any> {
 										/>
 									</TooltipHost>
 								);
-							}
+							},
 						)}
 					</div>
 					{this.getIconModal()}
@@ -95,7 +96,7 @@ class ToolBar extends React.Component<IProps, IToolbarState, any> {
 
 	private handleOnClick = (
 		event: React.MouseEvent<HTMLElement>,
-		label: string
+		label: string,
 	) => {
 		if (
 			!this.state.showModal &&
@@ -155,7 +156,7 @@ class ToolBar extends React.Component<IProps, IToolbarState, any> {
 				this.props.onUpdateSensor,
 				this.props.sensorValues,
 				this.props.onSelectGesture,
-				this.props.sendGesture
+				this.props.sendGesture,
 			)
 		) {
 			return null;
@@ -166,7 +167,7 @@ class ToolBar extends React.Component<IProps, IToolbarState, any> {
 			this.props.onUpdateSensor,
 			this.props.sensorValues,
 			this.props.onSelectGesture,
-			this.props.sendGesture
+			this.props.sendGesture,
 		) as IModalContent;
 
 		const components = content
@@ -196,7 +197,8 @@ class ToolBar extends React.Component<IProps, IToolbarState, any> {
 						role="text"
 						target=".info-icon"
 						setInitialFocus={true}
-						onDismiss={this.onDescriptionDismiss}>
+						onDismiss={this.onDescriptionDismiss}
+					>
 						<div className="description">
 							<FormattedMessage id={content.descriptionText} />
 						</div>

@@ -20,7 +20,8 @@ export class Gesture extends React.Component<IProps> {
 					flexDirection: "column",
 					justifyContent: "space-between",
 					height: "75px",
-				}}>
+				}}
+			>
 				<Dropdown
 					name="gesture selection"
 					options={this.props.gestures}
@@ -57,7 +58,7 @@ export class Gesture extends React.Component<IProps> {
 
 	private handleOnKeyUp = (
 		e: React.KeyboardEvent,
-		onSendGesture?: (isActive: boolean) => void
+		onSendGesture?: (isActive: boolean) => void,
 	) => {
 		if (e.key === CONSTANTS.KEYBOARD_KEYS.ENTER) {
 			this.sensorButtonRef!.current!.setButtonClass(false);

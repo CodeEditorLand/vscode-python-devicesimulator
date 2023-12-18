@@ -31,27 +31,27 @@ export default class TelemetryAI {
 	public sendTelemetryIfEnabled(
 		eventName: string,
 		properties?: { [key: string]: string },
-		measurements?: { [key: string]: number }
+		measurements?: { [key: string]: number },
 	) {
 		if (TelemetryAI.enableTelemetry) {
 			TelemetryAI.telemetryReporter.sendTelemetryEvent(
 				eventName,
 				properties,
-				measurements
+				measurements,
 			);
 		}
 	}
 
 	public trackFeatureUsage(
 		eventName: string,
-		eventProperties?: { [key: string]: string }
+		eventProperties?: { [key: string]: string },
 	) {
 		this.sendTelemetryIfEnabled(eventName, eventProperties);
 	}
 
 	public runWithLatencyMeasure(
 		functionToRun: () => void,
-		eventName: string
+		eventName: string,
 	): void {
 		const numberOfNanosecondsInSecond: number = 1000000000;
 		const startTime: number = Number(process.hrtime.bigint());
@@ -64,14 +64,14 @@ export default class TelemetryAI {
 	}
 
 	private createTelemetryReporter(
-		context: vscode.ExtensionContext
+		context: vscode.ExtensionContext,
 	): TelemetryReporter {
 		const { extensionName, extensionVersion, instrumentationKey } =
 			getPackageInfo(context);
 		const reporter: TelemetryReporter = new TelemetryReporter(
 			extensionName,
 			extensionVersion,
-			instrumentationKey
+			instrumentationKey,
 		);
 		context.subscriptions.push(reporter);
 		return reporter;

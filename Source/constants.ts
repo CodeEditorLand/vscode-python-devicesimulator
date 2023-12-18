@@ -51,17 +51,17 @@ export const CONSTANTS = {
 			"Writing to COM port (GetOverlappedResult): Unknown error code 121",
 		CPX_FILE_ERROR: localize(
 			"error.cpxFileFormat",
-			"The cpx.json file format is not correct."
+			"The cpx.json file format is not correct.",
 		),
 		DEBUGGER_SERVER_INIT_FAILED: (port: number) => {
 			return localize(
 				"error.debuggerServerInitFailed",
-				`Warning : The Debugger Server cannot be opened. Please try to free the port ${port} if it's already in use or select another one in your Settings 'Device Simulator Express: Debugger Server Port' and start another debug session.\n You can still debug your code but you won't be able to use the Simulator.`
+				`Warning : The Debugger Server cannot be opened. Please try to free the port ${port} if it's already in use or select another one in your Settings 'Device Simulator Express: Debugger Server Port' and start another debug session.\n You can still debug your code but you won't be able to use the Simulator.`,
 			);
 		},
 		DEBUGGING_SESSION_IN_PROGESS: localize(
 			"error.debuggingSessionInProgress",
-			"[ERROR] A debugging session is currently in progress, please stop it before running your code. \n"
+			"[ERROR] A debugging session is currently in progress, please stop it before running your code. \n",
 		),
 		DEPENDENCY_DOWNLOAD_ERROR:
 			"Dependency download could not be completed. Functionality may be limited. Please review the installation docs.",
@@ -69,66 +69,66 @@ export const CONSTANTS = {
 		FAILED_TO_OPEN_SERIAL_PORT: (port: string): string => {
 			return localize(
 				"error.failedToOpenSerialPort",
-				`[ERROR] Failed to open serial port ${port}.`
+				`[ERROR] Failed to open serial port ${port}.`,
 			);
 		},
 		FAILED_TO_OPEN_SERIAL_PORT_DUE_TO: (port: string, error: any) => {
 			return localize(
 				"error.failedToOpenSerialPortDueTo",
-				`[ERROR] Failed to open serial port ${port} due to error: ${error}. \n`
+				`[ERROR] Failed to open serial port ${port} due to error: ${error}. \n`,
 			);
 		},
 		INSTALLATION_ERROR: localize(
 			"error.installationError",
-			"Installation Error"
+			"Installation Error",
 		),
 
 		INVALID_FILE_EXTENSION_DEBUG: localize(
 			"error.invalidFileExtensionDebug",
-			"The file you tried to run isn't a Python file."
+			"The file you tried to run isn't a Python file.",
 		),
 		INVALID_PYTHON_PATH: localize(
 			"error.invalidPythonPath",
-			'We found that your selected Python interpreter version is too low to run the extension. Please upgrade to version 3.7+ or select a different interpreter (CTRL+SHIFT+P and type "python.selectInterpreter") and restart the application.'
+			'We found that your selected Python interpreter version is too low to run the extension. Please upgrade to version 3.7+ or select a different interpreter (CTRL+SHIFT+P and type "python.selectInterpreter") and restart the application.',
 		),
 		LOW_PYTHON_VERSION_FOR_MICROBIT_DEPLOYMENT: localize(
 			"error.lowPythonVersionForMicrobitDeployment",
-			"To deploy your code to the micro:bit, you must be using Python 3.3+"
+			"To deploy your code to the micro:bit, you must be using Python 3.3+",
 		),
 		NO_DEVICE: localize(
 			"error.noDevice",
-			"The device is not detected. Please double check if your board is connected and/or properly formatted"
+			"The device is not detected. Please double check if your board is connected and/or properly formatted",
 		),
 		NO_FILE_TO_RUN: localize(
 			"error.noFileToRun",
-			'[ERROR] We can\'t find a Python file to run. Please make sure you select or open a new ".py" code file, or use the "New File" command to get started and see useful links.\n'
+			'[ERROR] We can\'t find a Python file to run. Please make sure you select or open a new ".py" code file, or use the "New File" command to get started and see useful links.\n',
 		),
 		NO_FILE_TO_DEPLOY: localize(
 			"error.noFileToDeploy",
-			"[ERROR] We can't find a Python file to deploy to your device.\n"
+			"[ERROR] We can't find a Python file to deploy to your device.\n",
 		),
 		NO_FOLDER_OPENED: localize(
 			"error.noFolderCreated",
-			"In order to use the Serial Monitor, you need to open a folder and reload VS Code."
+			"In order to use the Serial Monitor, you need to open a folder and reload VS Code.",
 		),
 		NO_PROGRAM_FOUND_DEBUG: localize(
 			"error.noProgramFoundDebug",
-			"Cannot find a program to debug."
+			"Cannot find a program to debug.",
 		),
 		NO_PYTHON_PATH: localize(
 			"error.noPythonPath",
-			"We found that you don't have Python 3 installed on your computer, please install the latest version, add it to your PATH and try again."
+			"We found that you don't have Python 3 installed on your computer, please install the latest version, add it to your PATH and try again.",
 		),
 		RECONNECT_DEVICE: localize(
 			"error.reconnectDevice",
-			"Please disconnect your Circuit Playground Express and try again."
+			"Please disconnect your Circuit Playground Express and try again.",
 		),
 		STDERR: (data: string) => {
 			return localize("error.stderr", `\n[ERROR] ${data} \n`);
 		},
 		UNEXPECTED_MESSAGE: localize(
 			"error.unexpectedMessage",
-			"Webview sent an unexpected message"
+			"Webview sent an unexpected message",
 		),
 	},
 	FILESYSTEM: {
@@ -141,124 +141,124 @@ export const CONSTANTS = {
 	INFO: {
 		ALREADY_SUCCESSFUL_INSTALL: localize(
 			"info.successfulInstall",
-			"Your current configuration is already successfully set up for the Device Simulator Expresss."
+			"Your current configuration is already successfully set up for the Device Simulator Expresss.",
 		),
 		ARE_YOU_SURE: localize(
 			"info.areYouSure",
-			"Are you sure you don't want to install the dependencies? The extension can't run without installing them."
+			"Are you sure you don't want to install the dependencies? The extension can't run without installing them.",
 		),
 		CLOSED_SERIAL_PORT: (port: string) => {
 			return localize(
 				"info.closedSerialPort",
-				`[DONE] Closed the serial port - ${port} \n`
+				`[DONE] Closed the serial port - ${port} \n`,
 			);
 		},
 		COMPLETED_MESSAGE: "Completed",
 		CPX_JSON_ALREADY_GENERATED: localize(
 			"info.cpxJsonAlreadyGenerated",
-			"cpx.json has already been generated."
+			"cpx.json has already been generated.",
 		),
 		DEPLOY_DEVICE: localize(
 			"info.deployDevice",
-			"\n[INFO] Deploying code to the device...\n"
+			"\n[INFO] Deploying code to the device...\n",
 		),
 		DEPLOY_SIMULATOR: localize(
 			"info.deploySimulator",
-			"\n[INFO] Deploying code to the simulator...\n"
+			"\n[INFO] Deploying code to the simulator...\n",
 		),
 		DEPLOY_SUCCESS: localize(
 			"info.deploySuccess",
-			"\n[INFO] Code successfully copied! Your device should be loading and ready to go shortly.\n"
+			"\n[INFO] Code successfully copied! Your device should be loading and ready to go shortly.\n",
 		),
 		EXTENSION_ACTIVATED: localize(
 			"info.extensionActivated",
-			"Congratulations, your extension Device Simulator Express is now active!"
+			"Congratulations, your extension Device Simulator Express is now active!",
 		),
 		FILE_SELECTED: (filePath: string) => {
 			return localize(
 				"info.fileSelected",
-				`[INFO] File selected : ${filePath} \n`
+				`[INFO] File selected : ${filePath} \n`,
 			);
 		},
 		FIRST_TIME_WEBVIEW: localize(
 			"info.firstTimeWebview",
-			'To reopen the simulator select the command "Open Simulator" from command palette.'
+			'To reopen the simulator select the command "Open Simulator" from command palette.',
 		),
 		INSTALLING_PYTHON_VENV: localize(
 			"info.installingPythonVenv",
-			"A virtual environment is currently being created. The required Python packages will be installed. You will be prompted a message telling you when the installation is done."
+			"A virtual environment is currently being created. The required Python packages will be installed. You will be prompted a message telling you when the installation is done.",
 		),
 		INSTALL_PYTHON_DEPS: localize(
 			"info.installPythonDependencies",
-			"Do you want us to try and install this extension's dependencies on your selected Python interpreter for you?"
+			"Do you want us to try and install this extension's dependencies on your selected Python interpreter for you?",
 		),
 		INSTALL_PYTHON_VENV: localize(
 			"info.installPythonVenv",
-			"Do you want us to try and install this extension's dependencies via virtual environment for you?"
+			"Do you want us to try and install this extension's dependencies via virtual environment for you?",
 		),
 		NEW_FILE: localize(
 			"info.newFile",
-			"New to Python or the Circuit Playground Express? We are here to help!"
+			"New to Python or the Circuit Playground Express? We are here to help!",
 		),
 		NO_DEVICE_CHOSEN_TO_DEPLOY_TO: localize(
 			"info.noDeviceChosenToDeployTo",
-			"\n[INFO] No device was selected to deploy to.\n"
+			"\n[INFO] No device was selected to deploy to.\n",
 		),
 		NO_DEVICE_CHOSEN_TO_SIMULATE_TO: localize(
 			"info.noDeviceChosenToSimulateTo",
-			"\n[INFO] No device was selected to simulate.\n"
+			"\n[INFO] No device was selected to simulate.\n",
 		),
 		NO_DEVICE_CHOSEN_FOR_NEW_FILE: localize(
 			"info.noDeviceChosenForNewFile",
-			"\n[INFO] No device was selected to open a template file for.\n"
+			"\n[INFO] No device was selected to open a template file for.\n",
 		),
 		OPENED_SERIAL_PORT: (port: string) => {
 			return localize(
 				"info.openedSerialPort",
-				`[INFO] Opened the serial port - ${port} \n`
+				`[INFO] Opened the serial port - ${port} \n`,
 			);
 		},
 		OPENING_SERIAL_PORT: (port: string) => {
 			return localize(
 				"info.openingSerialPort",
-				`[STARTING] Opening the serial port - ${port} \n`
+				`[STARTING] Opening the serial port - ${port} \n`,
 			);
 		},
 		PLEASE_OPEN_FOLDER: localize(
 			"info.pleaseOpenFolder",
-			"Please open a folder first."
+			"Please open a folder first.",
 		),
 		REDIRECT: localize("info.redirect", "You are being redirected."),
 		RUNNING_CODE: localize("info.runningCode", "Running user code"),
 		SUCCESSFUL_INSTALL: localize(
 			"info.successfulInstall",
-			"Successfully set up the Python environment."
+			"Successfully set up the Python environment.",
 		),
 		THIRD_PARTY_WEBSITE_ADAFRUIT: localize(
 			"info.thirdPartyWebsiteAdafruit",
-			'By clicking "Agree and Proceed" you will be redirected to adafruit.com, a third party website not managed by Microsoft. Please note that your activity on adafruit.com is subject to Adafruit\'s privacy policy'
+			'By clicking "Agree and Proceed" you will be redirected to adafruit.com, a third party website not managed by Microsoft. Please note that your activity on adafruit.com is subject to Adafruit\'s privacy policy',
 		),
 		THIRD_PARTY_WEBSITE_PIP: localize(
 			"info.thirdPartyWebsitePip",
-			'By clicking "Agree and Proceed" you will be redirected to pip.pypa.io, a third party website not managed by Microsoft. Please note that your activity on pip.pypa.io is subject to PyPA\'s privacy policy'
+			'By clicking "Agree and Proceed" you will be redirected to pip.pypa.io, a third party website not managed by Microsoft. Please note that your activity on pip.pypa.io is subject to PyPA\'s privacy policy',
 		),
 		THIRD_PARTY_WEBSITE_PYTHON: localize(
 			"info.thirdPartyWebsitePython",
-			'By clicking "Agree and Proceed" you will be redirected to python.org, a third party website not managed by Microsoft. Please note that your activity on python.org is subject to Python\'s privacy policy'
+			'By clicking "Agree and Proceed" you will be redirected to python.org, a third party website not managed by Microsoft. Please note that your activity on python.org is subject to Python\'s privacy policy',
 		),
 		UPDATED_TO_EXTENSION_VENV: localize(
 			"info.updatedToExtensionsVenv",
-			"Automatically updated interpreter to point to extension's virtual environment."
+			"Automatically updated interpreter to point to extension's virtual environment.",
 		),
 		WELCOME_OUTPUT_TAB: localize(
 			"info.welcomeOutputTab",
-			"Welcome to the Device Simulator Express output tab!\n\n"
+			"Welcome to the Device Simulator Express output tab!\n\n",
 		),
 	},
 	LABEL: {
 		WEBVIEW_PANEL: localize(
 			"label.webviewPanel",
-			"Device Simulator Express"
+			"Device Simulator Express",
 		),
 	},
 	LINKS: {
@@ -278,15 +278,15 @@ export const CONSTANTS = {
 	MISC: {
 		SELECT_PORT_PLACEHOLDER: localize(
 			"misc.selectPortPlaceholder",
-			"Select a serial port"
+			"Select a serial port",
 		),
 		SERIAL_MONITOR_NAME: localize(
 			"misc.serialMonitorName",
-			"Device Simulator Express Serial Monitor"
+			"Device Simulator Express Serial Monitor",
 		),
 		SERIAL_MONITOR_TEST_IF_OPEN: localize(
 			"misc.testIfPortOpen",
-			"Test if serial port is open"
+			"Test if serial port is open",
 		),
 	},
 	NAME: localize("name", "Device Simulator Express"),
@@ -298,33 +298,33 @@ export const CONSTANTS = {
 	WARNING: {
 		ACCEPT_AND_RUN: localize(
 			"warning.agreeAndRun",
-			"By selecting ‘Agree and Run’, you understand the extension executes Python code on your local computer, which may be a potential security risk."
+			"By selecting ‘Agree and Run’, you understand the extension executes Python code on your local computer, which may be a potential security risk.",
 		),
 		INVALID_BAUD_RATE: localize(
 			"warning.invalidBaudRate",
-			"Invalid baud rate, keep baud rate unchanged."
+			"Invalid baud rate, keep baud rate unchanged.",
 		),
 		NO_RATE_SELECTED: localize(
 			"warning.noRateSelected",
-			"No rate is selected, keep baud rate unchanged."
+			"No rate is selected, keep baud rate unchanged.",
 		),
 		NO_SERIAL_PORT_SELECTED: localize(
 			"warning.noSerialPortSelected",
-			"No serial port was selected, please select a serial port first"
+			"No serial port was selected, please select a serial port first",
 		),
 		SERIAL_MONITOR_ALREADY_OPENED: (port: string) => {
 			return localize(
 				"warning.serialMonitorAlreadyOpened",
-				`Serial monitor is already opened for ${port} \n`
+				`Serial monitor is already opened for ${port} \n`,
 			);
 		},
 		SERIAL_MONITOR_NOT_STARTED: localize(
 			"warning.serialMonitorNotStarted",
-			"Serial monitor has not been started."
+			"Serial monitor has not been started.",
 		),
 		SERIAL_PORT_NOT_STARTED: localize(
 			"warning.serialPortNotStarted",
-			"Serial port has not been started.\n"
+			"Serial port has not been started.\n",
 		),
 	},
 };
@@ -494,7 +494,7 @@ export namespace DialogResponses {
 	export const EXAMPLE_CODE: MessageItem = {
 		title: localize(
 			"dialogResponses.exampleCode",
-			"Example Code on GitHub"
+			"Example Code on GitHub",
 		),
 	};
 	export const MESSAGE_UNDERSTOOD: MessageItem = {
@@ -503,13 +503,13 @@ export namespace DialogResponses {
 	export const INSTALL_PIP: MessageItem = {
 		title: localize(
 			"dialogResponses.installPip",
-			"Install from Pip's webpage"
+			"Install from Pip's webpage",
 		),
 	};
 	export const INSTALL_PYTHON: MessageItem = {
 		title: localize(
 			"dialogResponses.installPython",
-			"Install from python.org"
+			"Install from python.org",
 		),
 	};
 	export const YES: MessageItem = {
@@ -518,7 +518,7 @@ export namespace DialogResponses {
 	export const READ_INSTALL_MD: MessageItem = {
 		title: localize(
 			"dialogResponses.readInstall",
-			"Read installation docs"
+			"Read installation docs",
 		),
 	};
 }

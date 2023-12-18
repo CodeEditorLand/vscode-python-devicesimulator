@@ -19,17 +19,17 @@ import { DeviceContext } from "../deviceContext";
 export const exec = util.promisify(cp.exec);
 
 const errorChannel = vscode.window.createOutputChannel(
-	CONSTANTS.ERROR.INSTALLATION_ERROR
+	CONSTANTS.ERROR.INSTALLATION_ERROR,
 );
 
 // tslint:disable-next-line: export-name
 export const getPathToScript = (
 	context: vscode.ExtensionContext,
 	folderName: string,
-	fileName: string = ""
+	fileName = "",
 ) => {
 	const onDiskPath = vscode.Uri.file(
-		path.join(context.extensionPath, folderName, fileName)
+		path.join(context.extensionPath, folderName, fileName),
 	);
 	const scriptPath = onDiskPath.with({ scheme: "vscode-resource" });
 	return scriptPath.fsPath;
@@ -37,13 +37,13 @@ export const getPathToScript = (
 
 export const showPrivacyModal = (
 	okAction: () => void,
-	thirdPartyDisclaimer: string
+	thirdPartyDisclaimer: string,
 ) => {
 	vscode.window
 		.showInformationMessage(
 			`${thirdPartyDisclaimer}: ${CONSTANTS.LINKS.PRIVACY}`,
 			DialogResponses.AGREE_AND_PROCEED,
-			DialogResponses.CANCEL
+			DialogResponses.CANCEL,
 		)
 		.then((privacySelection: vscode.MessageItem | undefined) => {
 			if (privacySelection === DialogResponses.AGREE_AND_PROCEED) {
@@ -57,7 +57,7 @@ export const showPrivacyModal = (
 export const logToOutputChannel = (
 	outChannel: vscode.OutputChannel | undefined,
 	message: string,
-	show: boolean = false
+	show = false,
 ): void => {
 	if (outChannel) {
 		if (show) {
@@ -117,13 +117,15 @@ export function directoryExistsSync(dirPath: string): boolean {
 export function padStart(
 	sourceString: string,
 	targetLength: number,
-	padString?: string
+	padString?: string,
 ): string {
 	if (!sourceString) {
 		return sourceString;
 	}
 
-	if (!(String.prototype as any).padStart) {
+	if ((String.prototype as any).padStart) {
+		return (sourceString as any).padStart(targetLength, padString);
+	} else {
 		// https://github.com/uxitten/polyfill/blob/master/string.polyfill.js
 		padString = String(padString || " ");
 		if (sourceString.length > targetLength) {
@@ -135,8 +137,6 @@ export function padStart(
 			}
 			return padString.slice(0, targetLength) + sourceString;
 		}
-	} else {
-		return (sourceString as any).padStart(targetLength, padString);
 	}
 }
 
@@ -151,7 +151,7 @@ export function generateCPXConfig(): void {
 	};
 	const cpxConfigFilePath: string = path.join(
 		CPXWorkspace.rootPath,
-		CPX_CONFIG_FILE
+		CPX_CONFIG_FILE,
 	);
 	mkdirRecursivelySync(path.dirname(cpxConfigFilePath));
 	fs.writeFileSync(cpxConfigFilePath, JSON.stringify(cpxJson, null, 4));
@@ -159,10 +159,10 @@ export function generateCPXConfig(): void {
 
 export const addVisibleTextEditorCallback = (
 	currentPanel: vscode.WebviewPanel,
-	context: vscode.ExtensionContext
+	context: vscode.ExtensionContext,
 ): vscode.Disposable => {
 	const initialPythonEditors = filterForPythonFiles(
-		vscode.window.visibleTextEditors
+		vscode.window.visibleTextEditors,
 	);
 	currentPanel.webview.postMessage({
 		command: "visible-editors",
@@ -177,23 +177,23 @@ export const addVisibleTextEditorCallback = (
 			});
 		},
 		{},
-		context.subscriptions
+		context.subscriptions,
 	);
 };
 
 export const filterForPythonFiles = (textEditors: vscode.TextEditor[]) => {
 	return textEditors
 		.filter(
-			(editor) => editor.document.languageId === GLOBAL_ENV_VARS.PYTHON
+			(editor) => editor.document.languageId === GLOBAL_ENV_VARS.PYTHON,
 		)
 		.map((editor) => editor.document.fileName);
 };
 
 export const getActiveEditorFromPath = (
-	filePath: string
+	filePath: string,
 ): vscode.TextDocument => {
 	const activeEditor = vscode.window.visibleTextEditors.find(
-		(editor: vscode.TextEditor) => editor.document.fileName === filePath
+		(editor: vscode.TextEditor) => editor.document.fileName === filePath,
 	);
 	return activeEditor ? activeEditor.document : undefined;
 };

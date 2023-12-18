@@ -14,7 +14,7 @@ export class CPXWorkspace {
 			const cpxConfigPath = path.join(
 				workspaceFolderPath,
 				".vscode",
-				"cpx.json"
+				"cpx.json",
 			);
 			if (fs.existsSync(cpxConfigPath)) {
 				return workspaceFolderPath;

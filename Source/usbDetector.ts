@@ -36,7 +36,7 @@ export class UsbDetector {
 	public async startListening() {
 		const workspaceConfig = vscode.workspace.getConfiguration();
 		const enableUSBDetection = workspaceConfig.get(
-			CONFIG_KEYS.ENABLE_USB_DETECTION
+			CONFIG_KEYS.ENABLE_USB_DETECTION,
 		);
 
 		if (os.platform() === "linux" || !enableUSBDetection) {
@@ -57,7 +57,7 @@ export class UsbDetector {
 				const deviceDescriptor = this.getUsbDeviceDescriptor(
 					utils.convertToHex(device.vendorId, 4),
 					utils.convertToHex(device.productId, 4),
-					this._extensionRoot
+					this._extensionRoot,
 				);
 
 				// Not supported device for discovery
@@ -83,13 +83,13 @@ export class UsbDetector {
 	private getUsbDeviceDescriptor(
 		vendorId: string,
 		productId: string,
-		extensionRoot: string
+		extensionRoot: string,
 	): any {
 		if (!this._boardDescriptors) {
 			this._boardDescriptors = [];
 			const fileContent = fs.readFileSync(
 				path.join(extensionRoot, "misc", "usbmapping.json"),
-				"utf8"
+				"utf8",
 			);
 			const boardIndexes: [] = JSON.parse(fileContent);
 			boardIndexes.forEach((boardIndex: any) => {
@@ -97,7 +97,7 @@ export class UsbDetector {
 					board.indexFile = boardIndex.index_file;
 				});
 				this._boardDescriptors = this._boardDescriptors.concat(
-					boardIndex.boards
+					boardIndex.boards,
 				);
 			});
 		}

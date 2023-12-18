@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { IntlProvider } from "react-intl";
 import App from "./App";
@@ -18,5 +17,5 @@ ReactDOM.render(
 	<IntlProvider locale={locale} messages={message[locale]}>
 		<App />
 	</IntlProvider>,
-	document.getElementById("root")
+	document.getElementById("root"),
 );

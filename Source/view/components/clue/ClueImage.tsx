@@ -46,7 +46,7 @@ export class ClueImage extends React.Component<IProps, {}> {
 		} else if (this.context === VIEW_STATE.RUNNING && this.svgRef.current) {
 			setupAllButtons(
 				this.props.eventTriggers,
-				this.svgRef.current.getButtons()
+				this.svgRef.current.getButtons(),
 			);
 		}
 	}
@@ -55,7 +55,11 @@ export class ClueImage extends React.Component<IProps, {}> {
 		window.document.removeEventListener("keyup", this.handleKeyUp);
 	}
 	setupKeyPresses = (
-		onKeyEvent: (event: KeyboardEvent, active: boolean, key: string) => void
+		onKeyEvent: (
+			event: KeyboardEvent,
+			active: boolean,
+			key: string,
+		) => void,
 	) => {
 		window.document.addEventListener("keydown", this.handleKeyDown);
 		window.document.addEventListener("keyup", this.handleKeyUp);
@@ -92,12 +96,12 @@ export class ClueImage extends React.Component<IProps, {}> {
 			if (isActive) {
 				button.children[0].setAttribute(
 					"class",
-					BUTTON_STYLING_CLASSES.KEYPRESSED
+					BUTTON_STYLING_CLASSES.KEYPRESSED,
 				);
 			} else {
 				button.children[0].setAttribute(
 					"class",
-					BUTTON_STYLING_CLASSES.DEFAULT
+					BUTTON_STYLING_CLASSES.DEFAULT,
 				);
 			}
 			button.setAttribute("pressed", `${isActive}`);
@@ -110,7 +114,7 @@ ClueImage.contextType = ViewStateContext;
 const setupButton = (
 	buttonElement: SVGRectElement,
 	eventTriggers: EventTriggers,
-	key: string
+	key: string,
 ) => {
 	buttonElement.setAttribute("class", BUTTON_CLASSNAME.ACTIVE);
 	buttonElement.onmousedown = (e) => {
@@ -134,7 +138,7 @@ const setupButton = (
 };
 const setupAllButtons = (
 	eventTriggers: EventTriggers,
-	buttonRefs: IRefObject
+	buttonRefs: IRefObject,
 ) => {
 	for (const [key, ref] of Object.entries(buttonRefs)) {
 		if (ref.current) {

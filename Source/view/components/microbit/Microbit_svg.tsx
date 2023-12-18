@@ -55,14 +55,16 @@ export class MicrobitSvg extends React.Component {
 					y="0px"
 					width="100%"
 					height="100%"
-					fill="rgba(0,0,0,0)">
+					fill="rgba(0,0,0,0)"
+				>
 					<defs>
 						<filter
 							id="ledglow"
 							x="-75%"
 							y="-75%"
 							width="300%"
-							height="300%">
+							height="300%"
+						>
 							<feMorphology
 								operator="dilate"
 								radius={4}
@@ -94,7 +96,8 @@ export class MicrobitSvg extends React.Component {
 							x="-5%"
 							y="-5%"
 							width="120%"
-							height="120%">
+							height="120%"
+						>
 							<feGaussianBlur stdDeviation={5} result="glow" />
 							<feMerge>
 								<feMergeNode in="glow" />
@@ -107,7 +110,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -130,7 +134,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -153,7 +158,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -176,7 +182,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -199,7 +206,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -222,7 +230,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -245,7 +254,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -268,7 +278,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -291,7 +302,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -314,7 +326,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -337,7 +350,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -360,7 +374,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -383,7 +398,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -406,7 +422,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -429,7 +446,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -452,7 +470,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -475,7 +494,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -498,7 +518,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -521,7 +542,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -544,7 +566,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -567,7 +590,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -590,7 +614,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -613,7 +638,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -636,7 +662,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -659,7 +686,8 @@ export class MicrobitSvg extends React.Component {
 							x1="0%"
 							y1="0%"
 							x2="0%"
-							y2="100%">
+							y2="100%"
+						>
 							<stop
 								offset="0%"
 								style={{ stopColor: "rgb(212, 175, 55)" }}
@@ -738,7 +766,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(0,0)</title>
 						</rect>
 						<rect
@@ -764,7 +793,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(1,0)</title>
 						</rect>
 						<rect
@@ -790,7 +820,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(2,0)</title>
 						</rect>
 						<rect
@@ -816,7 +847,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(3,0)</title>
 						</rect>
 						<rect
@@ -842,7 +874,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(4,0)</title>
 						</rect>
 						<rect
@@ -868,7 +901,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(0,1)</title>
 						</rect>
 						<rect
@@ -894,7 +928,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(1,1)</title>
 						</rect>
 						<rect
@@ -920,7 +955,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(2,1)</title>
 						</rect>
 						<rect
@@ -946,7 +982,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(3,1)</title>
 						</rect>
 						<rect
@@ -972,7 +1009,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(4,1)</title>
 						</rect>
 						<rect
@@ -998,7 +1036,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(0,2)</title>
 						</rect>
 						<rect
@@ -1024,7 +1063,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(1,2)</title>
 						</rect>
 						<rect
@@ -1050,7 +1090,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(2,2)</title>
 						</rect>
 						<rect
@@ -1076,7 +1117,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(3,2)</title>
 						</rect>
 						<rect
@@ -1102,7 +1144,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(4,2)</title>
 						</rect>
 						<rect
@@ -1128,7 +1171,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(0,3)</title>
 						</rect>
 						<rect
@@ -1154,7 +1198,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(1,3)</title>
 						</rect>
 						<rect
@@ -1180,7 +1225,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(2,3)</title>
 						</rect>
 						<rect
@@ -1206,7 +1252,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(3,3)</title>
 						</rect>
 						<rect
@@ -1232,7 +1279,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(4,3)</title>
 						</rect>
 						<rect
@@ -1258,7 +1306,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(0,4)</title>
 						</rect>
 						<rect
@@ -1284,7 +1333,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(1,4)</title>
 						</rect>
 						<rect
@@ -1310,7 +1360,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(2,4)</title>
 						</rect>
 						<rect
@@ -1336,7 +1387,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(3,4)</title>
 						</rect>
 						<rect
@@ -1362,7 +1414,8 @@ export class MicrobitSvg extends React.Component {
 								filter: 'url("#ledglow")',
 								fill: "rgb(255, 127, 127)",
 								opacity: 0,
-							}}>
+							}}
+						>
 							<title>(4,4)</title>
 						</rect>
 						<g className="sim-head no-drag">
@@ -1392,25 +1445,29 @@ export class MicrobitSvg extends React.Component {
 						<path
 							className="sim-pin sim-pin-touch"
 							d="M16.5,341.2c0,0.4-0.1,0.9-0.1,1.3v60.7c4.1,1.7,8.6,2.7,12.9,2.7h34.4v-64.7h0.3c0,0,0-0.1,0-0.1c0-13-10.6-23.6-23.7-23.6C27.2,317.6,16.5,328.1,16.5,341.2z M21.2,341.6c0-10.7,8.7-19.3,19.3-19.3c10.7,0,19.3,8.7,19.3,19.3c0,10.7-8.6,19.3-19.3,19.3C29.9,360.9,21.2,352.2,21.2,341.6z"
-							fill="url(#gradient-pin-0)">
+							fill="url(#gradient-pin-0)"
+						>
 							<title>P0, ANALOG IN</title>
 						</path>
 						<path
 							className="sim-pin sim-pin-touch"
 							d="M139.1,317.3c-12.8,0-22.1,10.3-23.1,23.1V406h46.2v-65.6C162.2,327.7,151.9,317.3,139.1,317.3zM139.3,360.1c-10.7,0-19.3-8.6-19.3-19.3c0-10.7,8.6-19.3,19.3-19.3c10.7,0,19.3,8.7,19.3,19.3C158.6,351.5,150,360.1,139.3,360.1z"
-							fill="url(#gradient-pin-1)">
+							fill="url(#gradient-pin-1)"
+						>
 							<title>P1, ANALOG IN</title>
 						</path>
 						<path
 							className="sim-pin sim-pin-touch"
 							d="M249,317.3c-12.8,0-22.1,10.3-23.1,23.1V406h46.2v-65.6C272.1,327.7,261.8,317.3,249,317.3z M249.4,360.1c-10.7,0-19.3-8.6-19.3-19.3c0-10.7,8.6-19.3,19.3-19.3c10.7,0,19.3,8.7,19.3,19.3C268.7,351.5,260.1,360.1,249.4,360.1z"
-							fill="url(#gradient-pin-2)">
+							fill="url(#gradient-pin-2)"
+						>
 							<title>P2, ANALOG IN</title>
 						</path>
 						<path
 							className="sim-pin"
 							d="M0,357.7v19.2c0,10.8,6.2,20.2,14.4,25.2v-44.4H0z"
-							fill="url(#gradient-pin-3)">
+							fill="url(#gradient-pin-3)"
+						>
 							<title>P3, ANALOG IN, LED Col 1</title>
 						</path>
 						<rect
@@ -1419,7 +1476,8 @@ export class MicrobitSvg extends React.Component {
 							width={10}
 							height={50}
 							className="sim-pin"
-							fill="url(#gradient-pin-4)">
+							fill="url(#gradient-pin-4)"
+						>
 							<title>P4, ANALOG IN, LED Col 2</title>
 						</rect>
 						<rect
@@ -1428,7 +1486,8 @@ export class MicrobitSvg extends React.Component {
 							width={10}
 							height={50}
 							className="sim-pin"
-							fill="url(#gradient-pin-5)">
+							fill="url(#gradient-pin-5)"
+						>
 							<title>P5, BUTTON A</title>
 						</rect>
 						<rect
@@ -1437,7 +1496,8 @@ export class MicrobitSvg extends React.Component {
 							width={10}
 							height={50}
 							className="sim-pin"
-							fill="url(#gradient-pin-6)">
+							fill="url(#gradient-pin-6)"
+						>
 							<title>P6, LED Col 9</title>
 						</rect>
 						<rect
@@ -1446,7 +1506,8 @@ export class MicrobitSvg extends React.Component {
 							width={10}
 							height={50}
 							className="sim-pin"
-							fill="url(#gradient-pin-7)">
+							fill="url(#gradient-pin-7)"
+						>
 							<title>P7, LED Col 8</title>
 						</rect>
 						<rect
@@ -1455,7 +1516,8 @@ export class MicrobitSvg extends React.Component {
 							width={10}
 							height={50}
 							className="sim-pin"
-							fill="url(#gradient-pin-8)">
+							fill="url(#gradient-pin-8)"
+						>
 							<title>P8</title>
 						</rect>
 						<rect
@@ -1464,7 +1526,8 @@ export class MicrobitSvg extends React.Component {
 							width={10}
 							height={50}
 							className="sim-pin"
-							fill="url(#gradient-pin-9)">
+							fill="url(#gradient-pin-9)"
+						>
 							<title>P9, LED Col 7</title>
 						</rect>
 						<rect
@@ -1473,7 +1536,8 @@ export class MicrobitSvg extends React.Component {
 							width={10}
 							height={50}
 							className="sim-pin"
-							fill="url(#gradient-pin-10)">
+							fill="url(#gradient-pin-10)"
+						>
 							<title>P10, ANALOG IN, LED Col 3</title>
 						</rect>
 						<rect
@@ -1482,7 +1546,8 @@ export class MicrobitSvg extends React.Component {
 							width={10}
 							height={50}
 							className="sim-pin"
-							fill="url(#gradient-pin-11)">
+							fill="url(#gradient-pin-11)"
+						>
 							<title>P11, BUTTON B</title>
 						</rect>
 						<rect
@@ -1491,7 +1556,8 @@ export class MicrobitSvg extends React.Component {
 							width={10}
 							height={50}
 							className="sim-pin"
-							fill="url(#gradient-pin-12)">
+							fill="url(#gradient-pin-12)"
+						>
 							<title>P12, RESERVED ACCESSIBILITY</title>
 						</rect>
 						<rect
@@ -1500,7 +1566,8 @@ export class MicrobitSvg extends React.Component {
 							width={10}
 							height={50}
 							className="sim-pin"
-							fill="url(#gradient-pin-13)">
+							fill="url(#gradient-pin-13)"
+						>
 							<title>P13, SPI - SCK</title>
 						</rect>
 						<rect
@@ -1509,7 +1576,8 @@ export class MicrobitSvg extends React.Component {
 							width={10}
 							height={50}
 							className="sim-pin"
-							fill="url(#gradient-pin-14)">
+							fill="url(#gradient-pin-14)"
+						>
 							<title>P14, SPI - MISO</title>
 						</rect>
 						<rect
@@ -1518,7 +1586,8 @@ export class MicrobitSvg extends React.Component {
 							width={10}
 							height={50}
 							className="sim-pin"
-							fill="url(#gradient-pin-15)">
+							fill="url(#gradient-pin-15)"
+						>
 							<title>P15, SPI - MOSI</title>
 						</rect>
 						<rect
@@ -1527,7 +1596,8 @@ export class MicrobitSvg extends React.Component {
 							width={10}
 							height={50}
 							className="sim-pin"
-							fill="url(#gradient-pin-16)">
+							fill="url(#gradient-pin-16)"
+						>
 							<title>P16, SPI - Chip Select</title>
 						</rect>
 						<rect
@@ -1536,7 +1606,8 @@ export class MicrobitSvg extends React.Component {
 							width={10}
 							height={50}
 							className="sim-pin"
-							fill="url(#gradient-pin-17)">
+							fill="url(#gradient-pin-17)"
+						>
 							<title>P17, +3v3</title>
 						</rect>
 						<rect
@@ -1545,7 +1616,8 @@ export class MicrobitSvg extends React.Component {
 							width={10}
 							height={50}
 							className="sim-pin"
-							fill="url(#gradient-pin-18)">
+							fill="url(#gradient-pin-18)"
+						>
 							<title>P18, +3v3</title>
 						</rect>
 						<rect
@@ -1554,7 +1626,8 @@ export class MicrobitSvg extends React.Component {
 							width={10}
 							height={50}
 							className="sim-pin"
-							fill="url(#gradient-pin-19)">
+							fill="url(#gradient-pin-19)"
+						>
 							<title>P19, I2C - SCL</title>
 						</rect>
 						<rect
@@ -1563,7 +1636,8 @@ export class MicrobitSvg extends React.Component {
 							width={10}
 							height={50}
 							className="sim-pin"
-							fill="url(#gradient-pin-20)">
+							fill="url(#gradient-pin-20)"
+						>
 							<title>P20, I2C - SDA</title>
 						</rect>
 						<rect
@@ -1572,25 +1646,29 @@ export class MicrobitSvg extends React.Component {
 							width={10}
 							height={50}
 							className="sim-pin"
-							fill="url(#gradient-pin-21)">
+							fill="url(#gradient-pin-21)"
+						>
 							<title>GND</title>
 						</rect>
 						<path
 							className="sim-pin"
 							d="M483.6,402c8.2-5,14.4-14.4,14.4-25.1v-19.2h-14.4V402z"
-							fill="url(#gradient-pin-22)">
+							fill="url(#gradient-pin-22)"
+						>
 							<title>GND</title>
 						</path>
 						<path
 							className="sim-pin"
 							d="M359.9,317.3c-12.8,0-22.1,10.3-23.1,23.1V406H383v-65.6C383,327.7,372.7,317.3,359.9,317.3z M360,360.1c-10.7,0-19.3-8.6-19.3-19.3c0-10.7,8.6-19.3,19.3-19.3c10.7,0,19.3,8.7,19.3,19.3C379.3,351.5,370.7,360.1,360,360.1z"
-							fill="url(#gradient-pin-23)">
+							fill="url(#gradient-pin-23)"
+						>
 							<title>+3v3</title>
 						</path>
 						<path
 							className="sim-pin"
 							d="M458,317.6c-13,0-23.6,10.6-23.6,23.6c0,0,0,0.1,0,0.1h0V406H469c4.3,0,8.4-1,12.6-2.7v-60.7c0-0.4,0-0.9,0-1.3C481.6,328.1,471,317.6,458,317.6z M457.8,360.9c-10.7,0-19.3-8.6-19.3-19.3c0-10.7,8.6-19.3,19.3-19.3c10.7,0,19.3,8.7,19.3,19.3C477.1,352.2,468.4,360.9,457.8,360.9z"
-							fill="url(#gradient-pin-24)">
+							fill="url(#gradient-pin-24)"
+						>
 							<title>GND</title>
 						</path>
 						<text className="sim-text-pin" x={67} y={345} />
@@ -1603,7 +1681,8 @@ export class MicrobitSvg extends React.Component {
 							role="button"
 							aria-label="a"
 							style={{ fill: "rgb(151, 151, 151)" }}
-							ref={this.buttonRefs.BTN_A}>
+							ref={this.buttonRefs.BTN_A}
+						>
 							<rect
 								className="sim-button-outer"
 								x="25.9"
@@ -1655,7 +1734,8 @@ export class MicrobitSvg extends React.Component {
 							role="button"
 							aria-label="b"
 							style={{ fill: "rgb(151, 151, 151)" }}
-							ref={this.buttonRefs.BTN_B}>
+							ref={this.buttonRefs.BTN_B}
+						>
 							<rect
 								className="sim-button-outer"
 								x="418.1"
@@ -1710,7 +1790,8 @@ export class MicrobitSvg extends React.Component {
 							role="button"
 							aria-label="a+b"
 							style={{ fill: "rgb(151, 151, 151)" }}
-							ref={this.buttonRefs.BTN_AB}>
+							ref={this.buttonRefs.BTN_AB}
+						>
 							<rect
 								className="sim-button-outer"
 								x={520}

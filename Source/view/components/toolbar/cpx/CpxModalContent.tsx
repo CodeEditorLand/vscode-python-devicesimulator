@@ -1,4 +1,3 @@
-import * as React from "react";
 import { SENSOR_LIST } from "../../../constants";
 import { TAG_INPUT_SVG } from "../../../svgs/tag_input_svg";
 import { TAG_OUTPUT_SVG } from "../../../svgs/tag_output_svg";
@@ -12,7 +11,7 @@ import * as SENSOR_PROPERTIES from "./CpxSensorProperties";
 
 export const GPIO_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number }
+	sensorValues: { [key: string]: number },
 ): IModalContent => {
 	return {
 		descriptionTitle: "toolbar-gpio.title",
@@ -27,7 +26,7 @@ export const GPIO_CONTENT = (
 
 export const IR_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number }
+	sensorValues: { [key: string]: number },
 ): IModalContent => {
 	return {
 		descriptionTitle: "toolbar-ir-sensor.title",
@@ -41,7 +40,7 @@ export const IR_CONTENT = (
 };
 export const LIGHT_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number }
+	sensorValues: { [key: string]: number },
 ): IModalContent => {
 	const lightSensorValues = {
 		L: sensorValues[SENSOR_LIST.LIGHT],
@@ -64,7 +63,7 @@ export const LIGHT_CONTENT = (
 };
 export const MOTION_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number }
+	sensorValues: { [key: string]: number },
 ): IModalContent => {
 	const motionSensorValues = {
 		X: sensorValues[SENSOR_LIST.MOTION_X],
@@ -91,7 +90,7 @@ export const MOTION_CONTENT = (
 };
 export const NEOP_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number }
+	sensorValues: { [key: string]: number },
 ): IModalContent => {
 	return {
 		descriptionTitle: "toolbar-neo-pixels.title",
@@ -105,7 +104,7 @@ export const NEOP_CONTENT = (
 };
 export const PUSHB_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number }
+	sensorValues: { [key: string]: number },
 ): IModalContent => {
 	return {
 		descriptionTitle: "toolbar-a-b-push.title",
@@ -119,7 +118,7 @@ export const PUSHB_CONTENT = (
 };
 export const RED_LED_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number }
+	sensorValues: { [key: string]: number },
 ): IModalContent => {
 	return {
 		descriptionTitle: "toolbar-red-led.title",
@@ -133,7 +132,7 @@ export const RED_LED_CONTENT = (
 };
 export const SOUND_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number }
+	sensorValues: { [key: string]: number },
 ): IModalContent => {
 	return {
 		descriptionTitle: "toolbar-sound-sensor.title",
@@ -147,7 +146,7 @@ export const SOUND_CONTENT = (
 };
 export const SWITCH_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number }
+	sensorValues: { [key: string]: number },
 ): IModalContent => {
 	return {
 		descriptionTitle: "toolbar-slider-switch.title",
@@ -161,7 +160,7 @@ export const SWITCH_CONTENT = (
 };
 export const SPEAKER_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number }
+	sensorValues: { [key: string]: number },
 ): IModalContent => {
 	return {
 		descriptionTitle: "toolbar-speaker.title",
@@ -175,7 +174,7 @@ export const SPEAKER_CONTENT = (
 };
 export const TEMPERATURE_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number }
+	sensorValues: { [key: string]: number },
 ): IModalContent => {
 	const temperatureSensorValues = {
 		T: sensorValues[SENSOR_LIST.TEMPERATURE],

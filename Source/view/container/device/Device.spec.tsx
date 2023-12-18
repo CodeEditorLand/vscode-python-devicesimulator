@@ -1,4 +1,3 @@
-import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { IntlProvider } from "react-intl";
 import * as testRenderer from "react-test-renderer";
@@ -11,7 +10,7 @@ describe("Device component ", () => {
 			.create(
 				<IntlProvider locale="en">
 					<Device currentSelectedDevice={DEVICE_LIST_KEY.MICROBIT} />
-				</IntlProvider>
+				</IntlProvider>,
 			)
 			.toJSON();
 		expect(component).toMatchSnapshot();
@@ -23,7 +22,7 @@ describe("Device component ", () => {
 			<IntlProvider locale="en">
 				<Device currentSelectedDevice={DEVICE_LIST_KEY.MICROBIT} />
 			</IntlProvider>,
-			div
+			div,
 		);
 		ReactDOM.unmountComponentAtNode(div);
 	});

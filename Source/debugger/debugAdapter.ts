@@ -10,7 +10,7 @@ export class DebugAdapter implements DebugAdapterTracker {
 	constructor(
 		debugSession: DebugSession,
 		messagingService: MessagingService,
-		debugCommunicationService: DebuggerCommunicationService
+		debugCommunicationService: DebuggerCommunicationService,
 	) {
 		this.console = debugSession.configuration.console;
 		this.messagingService = messagingService;

@@ -9,8 +9,8 @@ import "../../styles/Simulator.css";
 import PlayLogo from "../../svgs/play_svg";
 import StopLogo from "../../svgs/stop_svg";
 import ActionBar from "../simulator/ActionBar";
-import { BUTTON_NEUTRAL, BUTTON_PRESSED } from "./Cpx_svg_style";
 import { CpxImage, updatePinTouch, updateSwitch } from "./CpxImage";
+import { BUTTON_NEUTRAL, BUTTON_PRESSED } from "./Cpx_svg_style";
 
 interface ICpxState {
 	pixels: number[][];
@@ -90,7 +90,7 @@ class Simulator extends React.Component<{}, IState> {
 				break;
 			case "set-state":
 				console.log(
-					"Setting the state: " + JSON.stringify(message.state)
+					"Setting the state: " + JSON.stringify(message.state),
 				);
 				this.setState({
 					cpx: message.state,
@@ -108,7 +108,7 @@ class Simulator extends React.Component<{}, IState> {
 			case "visible-editors":
 				console.log(
 					"Setting active editors",
-					message.state.activePythonEditors
+					message.state.activePythonEditors,
 				);
 				this.setState({
 					active_editors: message.state.activePythonEditors,
@@ -188,7 +188,7 @@ class Simulator extends React.Component<{}, IState> {
 
 	protected refreshSimulatorClick() {
 		const button = window.document.getElementById(
-			CONSTANTS.ID_NAME.REFRESH_BUTTON
+			CONSTANTS.ID_NAME.REFRESH_BUTTON,
 		);
 		if (button) {
 			button.focus();
@@ -210,19 +210,19 @@ class Simulator extends React.Component<{}, IState> {
 			[event.code, event.key].includes(CONSTANTS.KEYBOARD_KEYS.A)
 		) {
 			element = window.document.getElementById(
-				CONSTANTS.ID_NAME.BUTTON_A
+				CONSTANTS.ID_NAME.BUTTON_A,
 			);
 		} else if (
 			[event.code, event.key].includes(CONSTANTS.KEYBOARD_KEYS.B)
 		) {
 			element = window.document.getElementById(
-				CONSTANTS.ID_NAME.BUTTON_B
+				CONSTANTS.ID_NAME.BUTTON_B,
 			);
 		} else if (
 			[event.code, event.key].includes(CONSTANTS.KEYBOARD_KEYS.C)
 		) {
 			element = window.document.getElementById(
-				CONSTANTS.ID_NAME.BUTTON_AB
+				CONSTANTS.ID_NAME.BUTTON_AB,
 			);
 		} else if (
 			[event.code, event.key].includes(CONSTANTS.KEYBOARD_KEYS.S)
@@ -232,51 +232,49 @@ class Simulator extends React.Component<{}, IState> {
 			this.togglePlayClick();
 		} else if (event.key === CONSTANTS.KEYBOARD_KEYS.CAPITAL_R) {
 			this.refreshSimulatorClick();
-		} else {
-			if (event.shiftKey) {
-				switch (event.code) {
-					case CONSTANTS.KEYBOARD_KEYS.NUMERIC_ONE:
-						element = window.document.getElementById(
-							CONSTANTS.ID_NAME.PIN_A1
-						);
-						break;
+		} else if (event.shiftKey) {
+			switch (event.code) {
+				case CONSTANTS.KEYBOARD_KEYS.NUMERIC_ONE:
+					element = window.document.getElementById(
+						CONSTANTS.ID_NAME.PIN_A1,
+					);
+					break;
 
-					case CONSTANTS.KEYBOARD_KEYS.NUMERIC_TWO:
-						element = window.document.getElementById(
-							CONSTANTS.ID_NAME.PIN_A2
-						);
-						break;
+				case CONSTANTS.KEYBOARD_KEYS.NUMERIC_TWO:
+					element = window.document.getElementById(
+						CONSTANTS.ID_NAME.PIN_A2,
+					);
+					break;
 
-					case CONSTANTS.KEYBOARD_KEYS.NUMERIC_THREE:
-						element = window.document.getElementById(
-							CONSTANTS.ID_NAME.PIN_A3
-						);
-						break;
+				case CONSTANTS.KEYBOARD_KEYS.NUMERIC_THREE:
+					element = window.document.getElementById(
+						CONSTANTS.ID_NAME.PIN_A3,
+					);
+					break;
 
-					case CONSTANTS.KEYBOARD_KEYS.NUMERIC_FOUR:
-						element = window.document.getElementById(
-							CONSTANTS.ID_NAME.PIN_A4
-						);
-						break;
+				case CONSTANTS.KEYBOARD_KEYS.NUMERIC_FOUR:
+					element = window.document.getElementById(
+						CONSTANTS.ID_NAME.PIN_A4,
+					);
+					break;
 
-					case CONSTANTS.KEYBOARD_KEYS.NUMERIC_FIVE:
-						element = window.document.getElementById(
-							CONSTANTS.ID_NAME.PIN_A5
-						);
-						break;
+				case CONSTANTS.KEYBOARD_KEYS.NUMERIC_FIVE:
+					element = window.document.getElementById(
+						CONSTANTS.ID_NAME.PIN_A5,
+					);
+					break;
 
-					case CONSTANTS.KEYBOARD_KEYS.NUMERIC_SIX:
-						element = window.document.getElementById(
-							CONSTANTS.ID_NAME.PIN_A6
-						);
-						break;
+				case CONSTANTS.KEYBOARD_KEYS.NUMERIC_SIX:
+					element = window.document.getElementById(
+						CONSTANTS.ID_NAME.PIN_A6,
+					);
+					break;
 
-					case CONSTANTS.KEYBOARD_KEYS.NUMERIC_SEVEN:
-						element = window.document.getElementById(
-							CONSTANTS.ID_NAME.PIN_A7
-						);
-						break;
-				}
+				case CONSTANTS.KEYBOARD_KEYS.NUMERIC_SEVEN:
+					element = window.document.getElementById(
+						CONSTANTS.ID_NAME.PIN_A7,
+					);
+					break;
 			}
 		}
 		if (element) {

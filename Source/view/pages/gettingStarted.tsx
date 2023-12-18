@@ -27,7 +27,7 @@ export class GettingStartedPage extends React.Component {
 						className="deviceSelector"
 						ref={this.selectRef}
 					>
-						<option selected disabled>
+						<option selected={true} disabled={true}>
 							Learn more about:
 						</option>
 						<optgroup label="Devices">

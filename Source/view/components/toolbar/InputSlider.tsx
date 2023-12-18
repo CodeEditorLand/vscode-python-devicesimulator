@@ -76,7 +76,7 @@ class InputSlider extends React.Component<ISliderProps, any, any> {
 		return (
 			Math.max(
 				this.props.minValue.toString().length,
-				this.props.maxValue.toString().length
+				this.props.maxValue.toString().length,
 			) + 2
 		);
 	};

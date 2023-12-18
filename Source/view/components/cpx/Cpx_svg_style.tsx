@@ -24,14 +24,14 @@ export const POWER_LED_OFF: string = "#FFFFFF";
 
 // Adapted from : https://github.com/microsoft/pxt/blob/master/pxtsim/simlib.ts
 export function rgbToHsl(
-	rgb: [number, number, number]
+	rgb: [number, number, number],
 ): [number, number, number] {
 	const [r, g, b] = rgb;
 	const [r$, g$, b$] = [r / 255, g / 255, b / 255];
 	const cMin = Math.min(r$, g$, b$);
 	const cMax = Math.max(r$, g$, b$);
 	const cDelta = cMax - cMin;
-	let h: number = 0,
+	let h = 0,
 		s: number,
 		l: number;
 	const maxAndMin = cMax + cMin;

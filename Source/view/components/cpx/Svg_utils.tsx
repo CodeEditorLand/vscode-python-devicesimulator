@@ -36,7 +36,7 @@ namespace svg {
 	export function createElement(name: string, props?: any): SVGElement {
 		const newElement = document.createElementNS(
 			"http://www.w3.org/2000/svg",
-			name
+			name,
 		);
 		if (props) {
 			svg.hydrate(newElement, props);
@@ -47,7 +47,7 @@ namespace svg {
 	export function child(
 		parent: Element,
 		name: string,
-		props?: any
+		props?: any,
 	): SVGElement {
 		const childElement = svg.createElement(name, props);
 		parent.appendChild(childElement);
@@ -83,7 +83,7 @@ namespace svg {
 		offColor: string,
 		onColor: string,
 		ledElement: SVGElement | null,
-		gradientStopElement: SVGStopElement | null
+		gradientStopElement: SVGStopElement | null,
 	) {
 		if (ledStatus) {
 			ledElement?.setAttribute("fill", onColor);
