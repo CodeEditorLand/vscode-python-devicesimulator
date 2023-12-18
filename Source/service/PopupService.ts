@@ -8,7 +8,7 @@ export class PopupService {
 			"releaseNote",
 			"Release Note",
 			vscode.ViewColumn.One,
-			{},
+			{}
 		);
 
 		panel.webview.html = LATEST_RELEASE_NOTE;

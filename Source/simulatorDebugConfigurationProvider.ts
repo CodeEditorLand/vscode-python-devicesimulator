@@ -20,7 +20,7 @@ export class SimulatorDebugConfigurationProvider
 	public resolveDebugConfiguration(
 		folder: vscode.WorkspaceFolder | undefined,
 		config: vscode.DebugConfiguration,
-		token?: vscode.CancellationToken,
+		token?: vscode.CancellationToken
 	): vscode.ProviderResult<vscode.DebugConfiguration> {
 		const activeTextEditor = vscode.window.activeTextEditor;
 
@@ -46,7 +46,7 @@ export class SimulatorDebugConfigurationProvider
 				if (!(activeTextEditor.document.languageId === "python")) {
 					return vscode.window
 						.showErrorMessage(
-							CONSTANTS.ERROR.INVALID_FILE_EXTENSION_DEBUG,
+							CONSTANTS.ERROR.INVALID_FILE_EXTENSION_DEBUG
 						)
 						.then(() => {
 							return undefined; // Abort launch

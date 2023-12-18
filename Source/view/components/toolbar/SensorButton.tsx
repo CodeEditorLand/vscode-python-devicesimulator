@@ -16,7 +16,7 @@ class SensorButton extends React.Component<ISensorButtonProps> {
 		if (isActive && !isInputDisabled) {
 			this.buttonRef.current?.setAttribute(
 				"class",
-				"sensor-button active-button",
+				"sensor-button active-button"
 			);
 		} else if (this.buttonRef.current) {
 			this.buttonRef!.current!.setAttribute("class", "sensor-button");
@@ -35,8 +35,7 @@ class SensorButton extends React.Component<ISensorButtonProps> {
 				onKeyUp={this.props.onKeyUp}
 				onKeyDown={this.props.onKeyDown}
 				aria-label={`${this.props.type} sensor`}
-				className="sensor-button"
-			>
+				className="sensor-button">
 				{this.props.label}
 			</button>
 		);

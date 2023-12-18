@@ -44,7 +44,7 @@ export class MicrobitImage extends React.Component<IProps, {}> {
 			} else if (this.context === VIEW_STATE.RUNNING) {
 				setupAllButtons(
 					this.props.eventTriggers,
-					this.svgRef.current.getButtons(),
+					this.svgRef.current.getButtons()
 				);
 			}
 		}
@@ -54,11 +54,7 @@ export class MicrobitImage extends React.Component<IProps, {}> {
 		window.document.removeEventListener("keyup", this.handleKeyUp);
 	}
 	setupKeyPresses = (
-		onKeyEvent: (
-			event: KeyboardEvent,
-			active: boolean,
-			key: string,
-		) => void,
+		onKeyEvent: (event: KeyboardEvent, active: boolean, key: string) => void
 	) => {
 		window.document.addEventListener("keydown", this.handleKeyDown);
 		window.document.addEventListener("keyup", this.handleKeyUp);
@@ -89,12 +85,12 @@ export class MicrobitImage extends React.Component<IProps, {}> {
 			if (isActive) {
 				button.children[0].setAttribute(
 					"class",
-					BUTTON_STYLING_CLASSES.KEYPRESSED,
+					BUTTON_STYLING_CLASSES.KEYPRESSED
 				);
 			} else {
 				button.children[0].setAttribute(
 					"class",
-					BUTTON_STYLING_CLASSES.DEFAULT,
+					BUTTON_STYLING_CLASSES.DEFAULT
 				);
 			}
 			button.setAttribute("pressed", `${isActive}`);
@@ -107,7 +103,7 @@ MicrobitImage.contextType = ViewStateContext;
 const setupButton = (
 	buttonElement: SVGRectElement,
 	eventTriggers: EventTriggers,
-	key: string,
+	key: string
 ) => {
 	buttonElement.setAttribute("class", BUTTON_CLASSNAME.ACTIVE);
 
@@ -132,7 +128,7 @@ const setupButton = (
 };
 const setupAllButtons = (
 	eventTriggers: EventTriggers,
-	buttonRefs: IRefObject,
+	buttonRefs: IRefObject
 ) => {
 	for (const [key, ref] of Object.entries(buttonRefs)) {
 		if (ref.current) {
@@ -154,7 +150,7 @@ const disableAllButtons = (buttonRefs: IRefObject) => {
 };
 const updateAllLeds = (
 	leds: number[][],
-	ledRefs: Array<Array<React.RefObject<SVGRectElement>>>,
+	ledRefs: Array<Array<React.RefObject<SVGRectElement>>>
 ) => {
 	for (let j = 0; j < leds.length; j++) {
 		for (let i = 0; i < leds[0].length; i++) {

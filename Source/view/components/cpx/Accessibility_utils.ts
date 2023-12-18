@@ -11,7 +11,7 @@ namespace accessibility {
 	export function setAria(
 		elem: Element,
 		role?: string,
-		label?: string,
+		label?: string
 	): void {
 		if (role && !elem.hasAttribute("role")) {
 			elem.setAttribute("role", role);

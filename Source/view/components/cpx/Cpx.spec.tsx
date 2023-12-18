@@ -10,7 +10,7 @@ describe("CPX component", () => {
 			.create(
 				<IntlProvider locale="en">
 					<Cpx />
-				</IntlProvider>,
+				</IntlProvider>
 			)
 			.toJSON();
 		expect(component).toMatchSnapshot();
@@ -22,7 +22,7 @@ describe("CPX component", () => {
 			<IntlProvider locale="en">
 				<Cpx />
 			</IntlProvider>,
-			div,
+			div
 		);
 		ReactDOM.unmountComponentAtNode(div);
 	});

@@ -34,14 +34,14 @@ class App extends React.Component<{}, IState> {
 	componentDidMount() {
 		if (document.currentScript) {
 			const webviewTypeAttribute = document.currentScript.getAttribute(
-				WEBVIEW_ATTRIBUTES_KEY.TYPE,
+				WEBVIEW_ATTRIBUTES_KEY.TYPE
 			) as WEBVIEW_TYPES;
 			if (webviewTypeAttribute) {
 				this.setState({ type: webviewTypeAttribute });
 			}
 			if (webviewTypeAttribute === WEBVIEW_TYPES.SIMULATOR) {
 				const initialDevice = document.currentScript.getAttribute(
-					WEBVIEW_ATTRIBUTES_KEY.INITIAL_DEVICE,
+					WEBVIEW_ATTRIBUTES_KEY.INITIAL_DEVICE
 				);
 
 				if (initialDevice) {

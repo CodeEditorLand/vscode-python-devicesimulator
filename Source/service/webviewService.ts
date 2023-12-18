@@ -12,7 +12,7 @@ export class WebviewService {
 
 	constructor(
 		context: vscode.ExtensionContext,
-		deviceSelectionService: DeviceSelectionService,
+		deviceSelectionService: DeviceSelectionService
 	) {
 		this.context = context;
 		this.deviceSelectionService = deviceSelectionService;
@@ -29,15 +29,15 @@ export class WebviewService {
 	public getWebviewContent(
 		webviewType: string,
 		hasDevice: boolean,
-		panel: vscode.WebviewPanel,
+		panel: vscode.WebviewPanel
 	) {
 		const onDiskPath = vscode.Uri.file(
-			this.context.asAbsolutePath(CONSTANTS.SCRIPT_PATH.SIMULATOR),
+			this.context.asAbsolutePath(CONSTANTS.SCRIPT_PATH.SIMULATOR)
 		);
 		const scriptSrc = panel.webview.asWebviewUri(onDiskPath);
 
 		const vscodeImportPath = vscode.Uri.file(
-			this.context.asAbsolutePath(CONSTANTS.SCRIPT_PATH.VSCODE_API),
+			this.context.asAbsolutePath(CONSTANTS.SCRIPT_PATH.VSCODE_API)
 		);
 		const vscodeImportPathSrc =
 			panel.webview.asWebviewUri(vscodeImportPath);
@@ -73,12 +73,12 @@ export class WebviewService {
 			{
 				enableScripts: true,
 				retainContextWhenHidden: true,
-			},
+			}
 		);
 		this.tutorialPanel.webview.html = this.getWebviewContent(
 			WEBVIEW_TYPES.GETTING_STARTED,
 			false,
-			this.tutorialPanel,
+			this.tutorialPanel
 		);
 		this.tutorialPanel.onDidDispose(() => {
 			this.disposeTutorialPanel();

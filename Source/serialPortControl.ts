@@ -27,7 +27,7 @@ export class SerialPortControl {
 		return new Promise((resolve, reject) => {
 			SerialPortControl.serialport.list().then(
 				(ports) => resolve(ports),
-				(err) => reject(err),
+				(err) => reject(err)
 			);
 		});
 	}
@@ -41,7 +41,7 @@ export class SerialPortControl {
 	public constructor(
 		port: string,
 		baudRate: number,
-		private _outputChannel: OutputChannel,
+		private _outputChannel: OutputChannel
 	) {
 		this._currentPort = port;
 		this._currentBaudRate = baudRate;
@@ -58,7 +58,7 @@ export class SerialPortControl {
 	public open(): Promise<any> {
 		logToOutputChannel(
 			this._outputChannel,
-			CONSTANTS.INFO.OPENING_SERIAL_PORT(this._currentPort),
+			CONSTANTS.INFO.OPENING_SERIAL_PORT(this._currentPort)
 		);
 		return new Promise((resolve, reject) => {
 			if (this._currentSerialPort && this._currentSerialPort.isOpen) {
@@ -73,13 +73,13 @@ export class SerialPortControl {
 						},
 						(error) => {
 							reject(error);
-						},
+						}
 					);
 				});
 			} else {
 				this._currentSerialPort = new SerialPortControl.serialport(
 					this._currentPort,
-					{ baudRate: this._currentBaudRate },
+					{ baudRate: this._currentBaudRate }
 				);
 				this._outputChannel.show();
 				this._currentSerialPort.on("open", () => {
@@ -90,31 +90,31 @@ export class SerialPortControl {
 								err &&
 								!(
 									err.message.indexOf(
-										CONSTANTS.ERROR.COMPORT_UNKNOWN_ERROR,
+										CONSTANTS.ERROR.COMPORT_UNKNOWN_ERROR
 									) >= 0
 								)
 							) {
 								logToOutputChannel(
 									this._outputChannel,
 									CONSTANTS.ERROR.FAILED_TO_OPEN_SERIAL_PORT(
-										this._currentPort,
-									),
+										this._currentPort
+									)
 								);
 								logToOutputChannel(
 									this._outputChannel,
-									CONSTANTS.ERROR.RECONNECT_DEVICE,
+									CONSTANTS.ERROR.RECONNECT_DEVICE
 								);
 								reject(err);
 							} else {
 								logToOutputChannel(
 									this._outputChannel,
 									CONSTANTS.INFO.OPENED_SERIAL_PORT(
-										this._currentPort,
-									),
+										this._currentPort
+									)
 								);
 								resolve();
 							}
-						},
+						}
 					);
 				});
 			}
@@ -161,7 +161,7 @@ export class SerialPortControl {
 				if (this._outputChannel) {
 					logToOutputChannel(
 						this._outputChannel,
-						CONSTANTS.INFO.CLOSED_SERIAL_PORT(this._currentPort),
+						CONSTANTS.INFO.CLOSED_SERIAL_PORT(this._currentPort)
 					);
 				}
 				this._currentSerialPort = null;
@@ -189,7 +189,7 @@ export class SerialPortControl {
 					} else {
 						resolve();
 					}
-				},
+				}
 			);
 		});
 	}

@@ -9,7 +9,7 @@ import * as SENSOR_PROPERTIES from "./ClueSensorProperties";
 
 export const TEMPERATURE_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number },
+	sensorValues: { [key: string]: number }
 ): IModalContent => {
 	const temperatureSensorValues = {
 		T: sensorValues[SENSOR_LIST.TEMPERATURE],
@@ -33,7 +33,7 @@ export const TEMPERATURE_CONTENT = (
 
 export const GPIO_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number },
+	sensorValues: { [key: string]: number }
 ): IModalContent => {
 	return {
 		descriptionTitle: "toolbar-clue-gpio.title",
@@ -48,7 +48,7 @@ export const GPIO_CONTENT = (
 
 export const ACCELEROMETER_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number },
+	sensorValues: { [key: string]: number }
 ): IModalContent => {
 	const accelerometerSensorValues = {
 		X: sensorValues[SENSOR_LIST.MOTION_X],
@@ -73,7 +73,7 @@ export const ACCELEROMETER_CONTENT = (
 };
 export const GYROSCOPE_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number },
+	sensorValues: { [key: string]: number }
 ): IModalContent => {
 	const gyroSensorValues = {
 		X: sensorValues[SENSOR_LIST.GYRO_X],
@@ -98,7 +98,7 @@ export const GYROSCOPE_CONTENT = (
 };
 export const MAGNETOSCOPE_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number },
+	sensorValues: { [key: string]: number }
 ): IModalContent => {
 	const magnetSensorValues = {
 		X: sensorValues[SENSOR_LIST.MAGNET_X],
@@ -124,7 +124,7 @@ export const MAGNETOSCOPE_CONTENT = (
 
 export const LIGHT_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number },
+	sensorValues: { [key: string]: number }
 ): IModalContent => {
 	const lightSensorValues = {
 		R: sensorValues[SENSOR_LIST.LIGHT_R],
@@ -151,7 +151,7 @@ export const LIGHT_CONTENT = (
 
 export const HUMIDITY_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number },
+	sensorValues: { [key: string]: number }
 ): IModalContent => {
 	const humiditySensorValues = {
 		H: sensorValues[SENSOR_LIST.HUMIDITY],
@@ -175,7 +175,7 @@ export const HUMIDITY_CONTENT = (
 
 export const GESTURE_CONTENT = (
 	onSelectGestures?: (event: React.ChangeEvent<HTMLSelectElement>) => void,
-	sendGesture?: (isActive: boolean) => void,
+	sendGesture?: (isActive: boolean) => void
 ): IModalContent => {
 	return {
 		descriptionTitle: "toolbar-clue-gesture-sensor.title",
@@ -196,7 +196,7 @@ export const GESTURE_CONTENT = (
 
 export const PROXIMITY_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number },
+	sensorValues: { [key: string]: number }
 ): IModalContent => {
 	const proximitySensorValues = {
 		P: sensorValues[SENSOR_LIST.PROXIMITY],
@@ -220,7 +220,7 @@ export const PROXIMITY_CONTENT = (
 
 export const PRESSURE_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number },
+	sensorValues: { [key: string]: number }
 ): IModalContent => {
 	const pressureSensorValues = {
 		P: sensorValues[SENSOR_LIST.PRESSURE],
@@ -244,7 +244,7 @@ export const PRESSURE_CONTENT = (
 
 export const BUTTON_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number },
+	sensorValues: { [key: string]: number }
 ): IModalContent => {
 	return {
 		descriptionTitle: "toolbar-clue-a-b-push.title",
@@ -259,7 +259,7 @@ export const BUTTON_CONTENT = (
 
 export const BLUETOOTH_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number },
+	sensorValues: { [key: string]: number }
 ): IModalContent => {
 	return {
 		descriptionTitle: "toolbar-clue-bluetooth.title",
@@ -274,7 +274,7 @@ export const BLUETOOTH_CONTENT = (
 
 export const SOUND_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number },
+	sensorValues: { [key: string]: number }
 ): IModalContent => {
 	return {
 		descriptionTitle: "toolbar-clue-sound-sensor.title",
@@ -289,7 +289,7 @@ export const SOUND_CONTENT = (
 
 export const LED_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number },
+	sensorValues: { [key: string]: number }
 ): IModalContent => {
 	return {
 		descriptionTitle: "toolbar-clue-led.title",
@@ -304,7 +304,7 @@ export const LED_CONTENT = (
 
 export const SPEAKER_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number },
+	sensorValues: { [key: string]: number }
 ): IModalContent => {
 	return {
 		descriptionTitle: "toolbar-speaker.title",

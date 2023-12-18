@@ -10,7 +10,7 @@ describe("App component ", () => {
 			.create(
 				<IntlProvider locale="en">
 					<App />
-				</IntlProvider>,
+				</IntlProvider>
 			)
 			.toJSON();
 		expect(component).toMatchSnapshot();
@@ -21,7 +21,7 @@ describe("App component ", () => {
 			<IntlProvider locale="en">
 				<App />
 			</IntlProvider>,
-			div,
+			div
 		);
 		ReactDOM.unmountComponentAtNode(div);
 	});

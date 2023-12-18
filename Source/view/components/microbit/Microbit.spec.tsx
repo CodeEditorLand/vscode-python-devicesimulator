@@ -10,7 +10,7 @@ describe("Microbit component ", () => {
 			.create(
 				<IntlProvider locale="en">
 					<Microbit />
-				</IntlProvider>,
+				</IntlProvider>
 			)
 			.toJSON();
 		expect(component).toMatchSnapshot();
@@ -22,7 +22,7 @@ describe("Microbit component ", () => {
 			<IntlProvider locale="en">
 				<Microbit />
 			</IntlProvider>,
-			div,
+			div
 		);
 		ReactDOM.unmountComponentAtNode(div);
 	});

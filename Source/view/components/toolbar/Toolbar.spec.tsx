@@ -34,7 +34,7 @@ describe("Toolbar component ", () => {
 						onUpdateSensor={mockUpdateSensors}
 						sensorValues={mockInitialValues}
 					/>
-				</IntlProvider>,
+				</IntlProvider>
 			)
 			.toJSON();
 		expect(component).toMatchSnapshot();
@@ -50,7 +50,7 @@ describe("Toolbar component ", () => {
 					sensorValues={mockInitialValues}
 				/>
 			</IntlProvider>,
-			div,
+			div
 		);
 		ReactDOM.unmountComponentAtNode(div);
 	});

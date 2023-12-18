@@ -32,7 +32,7 @@ export class DebuggerCommunicationServer {
 	constructor(
 		webviewPanel: WebviewPanel | undefined,
 		port = SERVER_INFO.DEFAULT_SERVER_PORT,
-		deviceSelectionService: DeviceSelectionService,
+		deviceSelectionService: DeviceSelectionService
 	) {
 		this.port = port;
 		this.serverHttp = new http.Server();
@@ -60,13 +60,13 @@ export class DebuggerCommunicationServer {
 			this.pendingCallbacks.push(() => {
 				this.serverIo.emit(
 					DEBUGGER_MESSAGES.EMITTER.INPUT_CHANGED,
-					newState,
+					newState
 				);
 			});
 		} else {
 			this.serverIo.emit(
 				DEBUGGER_MESSAGES.EMITTER.INPUT_CHANGED,
-				newState,
+				newState
 			);
 			this.isPendingResponse = true;
 		}
@@ -92,7 +92,7 @@ export class DebuggerCommunicationServer {
 				this.handleState(data);
 				this.serverIo.emit(
 					DEBUGGER_MESSAGES.EMITTER.RECEIVED_STATE,
-					{},
+					{}
 				);
 			});
 			socket.on(DEBUGGER_MESSAGES.LISTENER.RECEIVED_STATE, () => {

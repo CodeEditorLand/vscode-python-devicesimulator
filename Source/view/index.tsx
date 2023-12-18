@@ -18,5 +18,5 @@ ReactDOM.render(
 	<IntlProvider locale={locale} messages={message[locale]}>
 		<App />
 	</IntlProvider>,
-	document.getElementById("root"),
+	document.getElementById("root")
 );

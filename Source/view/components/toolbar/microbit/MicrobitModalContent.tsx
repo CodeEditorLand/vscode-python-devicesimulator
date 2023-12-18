@@ -9,7 +9,7 @@ import * as SENSOR_PROPERTIES from "./MicrobitSensorProperties";
 
 export const ACCELEROMETER_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number },
+	sensorValues: { [key: string]: number }
 ): IModalContent => {
 	// this object will be accessed with the axis label
 	const accelerometerSensorValues = {
@@ -35,7 +35,7 @@ export const ACCELEROMETER_CONTENT = (
 };
 export const LED_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number },
+	sensorValues: { [key: string]: number }
 ): IModalContent => {
 	return {
 		descriptionTitle: "toolbar-microbit-led.title",
@@ -50,7 +50,7 @@ export const LED_CONTENT = (
 
 export const BUTTON_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number },
+	sensorValues: { [key: string]: number }
 ): IModalContent => {
 	return {
 		descriptionTitle: "toolbar-microbit-a-b-push.title",
@@ -64,7 +64,7 @@ export const BUTTON_CONTENT = (
 };
 export const SOUND_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number },
+	sensorValues: { [key: string]: number }
 ): IModalContent => {
 	return {
 		descriptionTitle: "toolbar-microbit-sound.title",
@@ -78,7 +78,7 @@ export const SOUND_CONTENT = (
 };
 export const GPIO_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number },
+	sensorValues: { [key: string]: number }
 ): IModalContent => {
 	return {
 		descriptionTitle: "toolbar-microbit-gpio.title",
@@ -92,7 +92,7 @@ export const GPIO_CONTENT = (
 };
 export const COMPASS_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number },
+	sensorValues: { [key: string]: number }
 ): IModalContent => {
 	return {
 		descriptionTitle: "toolbar-microbit-compass-sensor.title",
@@ -106,7 +106,7 @@ export const COMPASS_CONTENT = (
 };
 export const WIRELESS_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number },
+	sensorValues: { [key: string]: number }
 ): IModalContent => {
 	return {
 		descriptionTitle: "toolbar-microbit-wireless.title",
@@ -120,7 +120,7 @@ export const WIRELESS_CONTENT = (
 };
 export const GESTURE_CONTENT = (
 	onSelectGestures?: (event: React.ChangeEvent<HTMLSelectElement>) => void,
-	sendGesture?: (isActive: boolean) => void,
+	sendGesture?: (isActive: boolean) => void
 ): IModalContent => {
 	return {
 		descriptionTitle: "toolbar-microbit-gesture-sensor.title",
@@ -140,7 +140,7 @@ export const GESTURE_CONTENT = (
 };
 export const LIGHT_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number },
+	sensorValues: { [key: string]: number }
 ): IModalContent => {
 	const lightSensorValues = {
 		L: sensorValues[SENSOR_LIST.LIGHT],
@@ -164,7 +164,7 @@ export const LIGHT_CONTENT = (
 
 export const TEMPERATURE_CONTENT = (
 	onUpdateValue: (sensor: SENSOR_LIST, value: number) => void,
-	sensorValues: { [key: string]: number },
+	sensorValues: { [key: string]: number }
 ): IModalContent => {
 	const temperatureSensorValues = {
 		T: sensorValues[SENSOR_LIST.TEMPERATURE],

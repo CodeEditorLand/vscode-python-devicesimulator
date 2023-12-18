@@ -34,7 +34,7 @@ export const GenericSliderComponent: React.FC<IProps> = (props) => {
 							<br />
 						</React.Fragment>
 					);
-				},
+				}
 			)}
 		</div>
 	);

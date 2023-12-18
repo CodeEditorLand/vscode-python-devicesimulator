@@ -25,13 +25,13 @@ export class DeviceContext implements vscode.Disposable {
 	private constructor() {
 		if (vscode.workspace && CPXWorkspace.rootPath) {
 			this._watcher = vscode.workspace.createFileSystemWatcher(
-				path.join(CPXWorkspace.rootPath, CPX_CONFIG_FILE),
+				path.join(CPXWorkspace.rootPath, CPX_CONFIG_FILE)
 			);
 			this._vscodeWatcher = vscode.workspace.createFileSystemWatcher(
 				path.join(CPXWorkspace.rootPath, ".vscode"),
 				true,
 				true,
-				false,
+				false
 			);
 
 			// Reloads the config into the code if the cpx config file has changed
@@ -50,7 +50,7 @@ export class DeviceContext implements vscode.Disposable {
 				if (files && files.length > 0) {
 					const configFile = files[0];
 					cpxConfigJson = utils.tryParseJSON(
-						fs.readFileSync(configFile.fsPath, "utf8"),
+						fs.readFileSync(configFile.fsPath, "utf8")
 					);
 					if (cpxConfigJson) {
 						this._port = cpxConfigJson.port;
@@ -68,7 +68,7 @@ export class DeviceContext implements vscode.Disposable {
 				this._port = null;
 				this._onDidChange.fire();
 				return this;
-			},
+			}
 		);
 	}
 
@@ -80,7 +80,7 @@ export class DeviceContext implements vscode.Disposable {
 		let cpxConfigJson: any = {};
 		if (utils.fileExistsSync(cpxConfigFile)) {
 			cpxConfigJson = utils.tryParseJSON(
-				fs.readFileSync(cpxConfigFile, "utf8"),
+				fs.readFileSync(cpxConfigFile, "utf8")
 			);
 		}
 		if (!cpxConfigJson) {
@@ -100,8 +100,8 @@ export class DeviceContext implements vscode.Disposable {
 					}
 					return value;
 				},
-				4,
-			),
+				4
+			)
 		);
 	}
 
@@ -119,17 +119,17 @@ export class DeviceContext implements vscode.Disposable {
 		if (
 			CPXWorkspace.rootPath &&
 			utils.fileExistsSync(
-				path.join(CPXWorkspace.rootPath, CPX_CONFIG_FILE),
+				path.join(CPXWorkspace.rootPath, CPX_CONFIG_FILE)
 			)
 		) {
 			vscode.window.showInformationMessage(
-				CONSTANTS.INFO.CPX_JSON_ALREADY_GENERATED,
+				CONSTANTS.INFO.CPX_JSON_ALREADY_GENERATED
 			);
 			return;
 		} else {
 			if (!CPXWorkspace.rootPath) {
 				vscode.window.showInformationMessage(
-					CONSTANTS.INFO.PLEASE_OPEN_FOLDER,
+					CONSTANTS.INFO.PLEASE_OPEN_FOLDER
 				);
 				return;
 			}

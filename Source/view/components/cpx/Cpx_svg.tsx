@@ -10,8 +10,7 @@ export const CPX_SVG = (
 		xmlns="http://www.w3.org/2000/svg"
 		id="cpx_svg"
 		width="45%"
-		viewBox="0 0 180.094 179.229"
-	>
+		viewBox="0 0 180.094 179.229">
 		<defs id="defs6">
 			<clipPath id="clipPath32">
 				<path d="M0 143.383h144.075V0H0v143.383z" id="path34" />

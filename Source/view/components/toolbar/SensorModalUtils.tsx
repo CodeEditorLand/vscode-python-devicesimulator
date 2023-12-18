@@ -19,8 +19,7 @@ export const FEATURE_REQUEST_ON_GITHUB = (
 	<div className="link-parent">
 		<a
 			href="https://github.com/microsoft/vscode-python-devicesimulator/issues/268"
-			className="link"
-		>
+			className="link">
 			Upvote feature requests on GitHub {ARROW_RIGHT_SVG}
 		</a>
 	</div>
@@ -158,7 +157,7 @@ export const getModalContent = (
 	onUpdateValue: (onUpdateValue: SENSOR_LIST, value: number) => void,
 	sensorValues: { [key: string]: number },
 	onSelectGestures?: (event: React.ChangeEvent<HTMLSelectElement>) => void,
-	sendGesture?: (isActive: boolean) => void,
+	sendGesture?: (isActive: boolean) => void
 ) => {
 	if (label === CLUE_TOOLBAR_ICON_ID.GESTURE) {
 		return CLUE_MODAL.GESTURE_CONTENT(onSelectGestures, sendGesture);

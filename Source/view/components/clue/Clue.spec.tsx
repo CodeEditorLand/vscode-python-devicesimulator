@@ -10,7 +10,7 @@ describe("Clue component", () => {
 			.create(
 				<IntlProvider locale="en">
 					<Clue />
-				</IntlProvider>,
+				</IntlProvider>
 			)
 			.toJSON();
 		expect(component).toMatchSnapshot();
@@ -22,7 +22,7 @@ describe("Clue component", () => {
 			<IntlProvider locale="en">
 				<Clue />
 			</IntlProvider>,
-			div,
+			div
 		);
 		ReactDOM.unmountComponentAtNode(div);
 	});

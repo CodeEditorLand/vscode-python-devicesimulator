@@ -15,19 +15,19 @@ export class DebugAdapterFactory implements DebugAdapterTrackerFactory {
 	constructor(
 		debugSession: DebugSession,
 		messagingService: MessagingService,
-		debugCommunicationService: DebuggerCommunicationService,
+		debugCommunicationService: DebuggerCommunicationService
 	) {
 		this.debugSession = debugSession;
 		this.messagingService = messagingService;
 		this.debugCommunicationService = debugCommunicationService;
 	}
 	public createDebugAdapterTracker(
-		session: DebugSession,
+		session: DebugSession
 	): ProviderResult<DebugAdapterTracker> {
 		return new DebugAdapter(
 			session,
 			this.messagingService,
-			this.debugCommunicationService,
+			this.debugCommunicationService
 		);
 	}
 }

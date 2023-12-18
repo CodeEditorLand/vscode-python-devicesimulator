@@ -30,7 +30,7 @@ export class SetupService {
 
 	public setupEnv = async (
 		context: vscode.ExtensionContext,
-		needsResponse: boolean = false,
+		needsResponse: boolean = false
 	) => {
 		const originalPythonExecutablePath =
 			await this.getCurrentPythonExecutablePath();
@@ -46,14 +46,14 @@ export class SetupService {
 		if (
 			!(await this.areDependenciesInstalled(
 				context,
-				pythonExecutablePath,
+				pythonExecutablePath
 			))
 		) {
 			// environment needs to install dependencies
 			if (!(await this.checkIfVenv(context, pythonExecutablePath))) {
 				const pythonExecutablePathVenv = await this.getPythonVenv(
 					context,
-					pythonExecutableName,
+					pythonExecutableName
 				);
 				if (await this.hasVenv(context)) {
 					// venv in extention exists with wrong dependencies
@@ -61,14 +61,14 @@ export class SetupService {
 					if (
 						!(await this.areDependenciesInstalled(
 							context,
-							pythonExecutablePathVenv,
+							pythonExecutablePathVenv
 						))
 					) {
 						pythonExecutablePath =
 							await this.installDependenciesWrapper(
 								context,
 								pythonExecutablePathVenv,
-								pythonExecutablePath,
+								pythonExecutablePath
 							);
 					} else {
 						pythonExecutablePath = pythonExecutablePathVenv;
@@ -77,16 +77,16 @@ export class SetupService {
 					pythonExecutablePath = await this.promptInstallVenv(
 						context,
 						originalPythonExecutablePath,
-						pythonExecutableName,
+						pythonExecutableName
 					);
 					this.telemetryAI.trackFeatureUsage(
-						TelemetryEventName.SETUP_INSTALL_VENV,
+						TelemetryEventName.SETUP_INSTALL_VENV
 					);
 				}
 
 				if (pythonExecutablePath === pythonExecutablePathVenv) {
 					vscode.window.showInformationMessage(
-						CONSTANTS.INFO.UPDATED_TO_EXTENSION_VENV,
+						CONSTANTS.INFO.UPDATED_TO_EXTENSION_VENV
 					);
 					vscode.workspace
 						.getConfiguration()
@@ -94,7 +94,7 @@ export class SetupService {
 				}
 			} else {
 				this.telemetryAI.trackFeatureUsage(
-					TelemetryEventName.SETUP_HAS_VENV,
+					TelemetryEventName.SETUP_HAS_VENV
 				);
 			}
 			if (pythonExecutablePath === originalPythonExecutablePath) {
@@ -105,35 +105,35 @@ export class SetupService {
 						.showInformationMessage(
 							CONSTANTS.INFO.INSTALL_PYTHON_DEPS,
 							DialogResponses.INSTALL_NOW,
-							DialogResponses.DONT_INSTALL,
+							DialogResponses.DONT_INSTALL
 						)
 						.then(
 							async (
-								installChoice: vscode.MessageItem | undefined,
+								installChoice: vscode.MessageItem | undefined
 							) => {
 								if (
 									installChoice ===
 									DialogResponses.INSTALL_NOW
 								) {
 									this.telemetryAI.trackFeatureUsage(
-										TelemetryEventName.SETUP_ORIGINAL_INTERPRETER_DEP_INSTALL,
+										TelemetryEventName.SETUP_ORIGINAL_INTERPRETER_DEP_INSTALL
 									);
 									await this.installDependenciesWrapper(
 										context,
-										pythonExecutablePath,
+										pythonExecutablePath
 									);
 								} else {
 									await vscode.window
 										.showInformationMessage(
 											CONSTANTS.INFO.ARE_YOU_SURE,
 											DialogResponses.INSTALL_NOW,
-											DialogResponses.DONT_INSTALL,
+											DialogResponses.DONT_INSTALL
 										)
 										.then(
 											async (
 												installChoice2:
 													| vscode.MessageItem
-													| undefined,
+													| undefined
 											) => {
 												if (
 													installChoice2 ===
@@ -141,23 +141,23 @@ export class SetupService {
 												) {
 													await this.installDependenciesWrapper(
 														context,
-														pythonExecutablePath,
+														pythonExecutablePath
 													);
 												} else {
 													this.telemetryAI.trackFeatureUsage(
-														TelemetryEventName.SETUP_NO_DEPS_INSTALLED,
+														TelemetryEventName.SETUP_NO_DEPS_INSTALLED
 													);
 												}
-											},
+											}
 										);
 								}
-							},
+							}
 						);
 				}
 			}
 		} else if (needsResponse) {
 			vscode.window.showInformationMessage(
-				CONSTANTS.INFO.ALREADY_SUCCESSFUL_INSTALL,
+				CONSTANTS.INFO.ALREADY_SUCCESSFUL_INSTALL
 			);
 		}
 
@@ -165,7 +165,7 @@ export class SetupService {
 	};
 
 	public getCurrentPythonExecutablePath = async (
-		isTryingPython3: boolean = false,
+		isTryingPython3: boolean = false
 	) => {
 		let originalPythonExecutablePath = "";
 		const systemPythonVar = isTryingPython3
@@ -186,17 +186,17 @@ export class SetupService {
 			// catching any instance where the python path needs to be resolved
 			// from an system variable
 			this.telemetryAI.trackFeatureUsage(
-				TelemetryEventName.SETUP_AUTO_RESOLVE_PYTHON_PATH,
+				TelemetryEventName.SETUP_AUTO_RESOLVE_PYTHON_PATH
 			);
 			try {
 				const { stdout } = await this.executePythonCommand(
 					systemPythonVar,
-					`-c "import sys; print(sys.executable)"`,
+					`-c "import sys; print(sys.executable)"`
 				);
 				originalPythonExecutablePath = stdout.trim();
 			} catch (err) {
 				this.telemetryAI.trackFeatureUsage(
-					TelemetryEventName.SETUP_NO_PYTHON_PATH,
+					TelemetryEventName.SETUP_NO_PYTHON_PATH
 				);
 				if (isTryingPython3) {
 					// if trying python3 failed, that means that BOTH
@@ -205,19 +205,19 @@ export class SetupService {
 					vscode.window
 						.showErrorMessage(
 							CONSTANTS.ERROR.NO_PYTHON_PATH,
-							DialogResponses.INSTALL_PYTHON,
+							DialogResponses.INSTALL_PYTHON
 						)
 						.then((selection: vscode.MessageItem | undefined) => {
 							if (selection === DialogResponses.INSTALL_PYTHON) {
 								const okAction = () => {
 									this.telemetryAI.trackFeatureUsage(
-										TelemetryEventName.SETUP_DOWNLOAD_PYTHON,
+										TelemetryEventName.SETUP_DOWNLOAD_PYTHON
 									);
 									open(CONSTANTS.LINKS.DOWNLOAD_PYTHON);
 								};
 								showPrivacyModal(
 									okAction,
-									CONSTANTS.INFO.THIRD_PARTY_WEBSITE_PYTHON,
+									CONSTANTS.INFO.THIRD_PARTY_WEBSITE_PYTHON
 								);
 							}
 						});
@@ -230,11 +230,11 @@ export class SetupService {
 			}
 			if (
 				!(await this.validatePythonVersion(
-					originalPythonExecutablePath,
+					originalPythonExecutablePath
 				))
 			) {
 				this.telemetryAI.trackFeatureUsage(
-					TelemetryEventName.SETUP_INVALID_PYTHON_VER,
+					TelemetryEventName.SETUP_INVALID_PYTHON_VER
 				);
 				if (isTryingPython3) {
 					// if we're trying python3, it means we already tried python and it
@@ -244,7 +244,7 @@ export class SetupService {
 					vscode.window
 						.showInformationMessage(
 							CONSTANTS.ERROR.INVALID_PYTHON_PATH,
-							DialogResponses.INSTALL_PYTHON,
+							DialogResponses.INSTALL_PYTHON
 						)
 						.then(
 							(installChoice: vscode.MessageItem | undefined) => {
@@ -254,17 +254,17 @@ export class SetupService {
 								) {
 									const okAction = () => {
 										this.telemetryAI.trackFeatureUsage(
-											TelemetryEventName.SETUP_DOWNLOAD_PYTHON,
+											TelemetryEventName.SETUP_DOWNLOAD_PYTHON
 										);
 										open(CONSTANTS.LINKS.DOWNLOAD_PYTHON);
 									};
 									showPrivacyModal(
 										okAction,
 										CONSTANTS.INFO
-											.THIRD_PARTY_WEBSITE_PYTHON,
+											.THIRD_PARTY_WEBSITE_PYTHON
 									);
 								}
-							},
+							}
 						);
 					return "";
 				} else {
@@ -280,44 +280,44 @@ export class SetupService {
 			if (!path.isAbsolute(originalPythonExecutablePath)) {
 				originalPythonExecutablePath = path.join(
 					vscode.workspace.rootPath,
-					originalPythonExecutablePath,
+					originalPythonExecutablePath
 				);
 			}
 
 			if (!fs.existsSync(originalPythonExecutablePath)) {
 				await vscode.window.showErrorMessage(
-					CONSTANTS.ERROR.BAD_PYTHON_PATH,
+					CONSTANTS.ERROR.BAD_PYTHON_PATH
 				);
 				this.telemetryAI.trackFeatureUsage(
-					TelemetryEventName.SETUP_INVALID_PYTHON_INTERPRETER_PATH,
+					TelemetryEventName.SETUP_INVALID_PYTHON_INTERPRETER_PATH
 				);
 				return "";
 			}
 
 			if (
 				!(await this.validatePythonVersion(
-					originalPythonExecutablePath,
+					originalPythonExecutablePath
 				))
 			) {
 				this.telemetryAI.trackFeatureUsage(
-					TelemetryEventName.SETUP_INVALID_PYTHON_VER,
+					TelemetryEventName.SETUP_INVALID_PYTHON_VER
 				);
 				vscode.window
 					.showInformationMessage(
 						CONSTANTS.ERROR.INVALID_PYTHON_PATH,
-						DialogResponses.INSTALL_PYTHON,
+						DialogResponses.INSTALL_PYTHON
 					)
 					.then((installChoice: vscode.MessageItem | undefined) => {
 						if (installChoice === DialogResponses.INSTALL_PYTHON) {
 							const okAction = () => {
 								this.telemetryAI.trackFeatureUsage(
-									TelemetryEventName.SETUP_DOWNLOAD_PYTHON,
+									TelemetryEventName.SETUP_DOWNLOAD_PYTHON
 								);
 								open(CONSTANTS.LINKS.DOWNLOAD_PYTHON);
 							};
 							showPrivacyModal(
 								okAction,
-								CONSTANTS.INFO.THIRD_PARTY_WEBSITE_PYTHON,
+								CONSTANTS.INFO.THIRD_PARTY_WEBSITE_PYTHON
 							);
 						}
 					});
@@ -336,7 +336,7 @@ export class SetupService {
 			vscode.window
 				.showErrorMessage(
 					`We found that you may not have Pip installed on your interpreter at ${pythonExecutablePath}, please install it and try again.`,
-					DialogResponses.INSTALL_PIP,
+					DialogResponses.INSTALL_PIP
 				)
 				.then((selection: vscode.MessageItem | undefined) => {
 					if (selection === DialogResponses.INSTALL_PIP) {
@@ -345,7 +345,7 @@ export class SetupService {
 						};
 						showPrivacyModal(
 							okAction,
-							CONSTANTS.INFO.THIRD_PARTY_WEBSITE_PIP,
+							CONSTANTS.INFO.THIRD_PARTY_WEBSITE_PIP
 						);
 					}
 				});
@@ -355,23 +355,23 @@ export class SetupService {
 
 	public checkIfVenv = async (
 		context: vscode.ExtensionContext,
-		pythonExecutablePath: string,
+		pythonExecutablePath: string
 	) => {
 		const venvCheckerPath: string = getPathToScript(
 			context,
 			CONSTANTS.FILESYSTEM.OUTPUT_DIRECTORY,
-			HELPER_FILES.CHECK_IF_VENV_PY,
+			HELPER_FILES.CHECK_IF_VENV_PY
 		);
 		const { stdout } = await this.executePythonCommand(
 			pythonExecutablePath,
-			`"${venvCheckerPath}"`,
+			`"${venvCheckerPath}"`
 		);
 		return stdout.trim() === "1";
 	};
 
 	public executePythonCommand = async (
 		pythonExecutablePath: string,
-		command: string,
+		command: string
 	) => {
 		return exec(`${createEscapedPath(pythonExecutablePath)} ${command}`);
 	};
@@ -379,7 +379,7 @@ export class SetupService {
 	public validatePythonVersion = async (pythonExecutablePath: string) => {
 		const { stdout } = await this.executePythonCommand(
 			pythonExecutablePath,
-			"--version",
+			"--version"
 		);
 		if (stdout < VERSIONS.MIN_PY_VERSION) {
 			return false;
@@ -391,7 +391,7 @@ export class SetupService {
 	public hasVenv = async (context: vscode.ExtensionContext) => {
 		const pathToEnv: string = getPathToScript(
 			context,
-			CONSTANTS.FILESYSTEM.PYTHON_VENV_DIR,
+			CONSTANTS.FILESYSTEM.PYTHON_VENV_DIR
 		);
 
 		return fs.existsSync(pathToEnv);
@@ -400,20 +400,20 @@ export class SetupService {
 	public promptInstallVenv = (
 		context: vscode.ExtensionContext,
 		pythonExecutable: string,
-		pythonExecutableName: string,
+		pythonExecutableName: string
 	) => {
 		return vscode.window
 			.showInformationMessage(
 				CONSTANTS.INFO.INSTALL_PYTHON_VENV,
 				DialogResponses.YES,
-				DialogResponses.NO,
+				DialogResponses.NO
 			)
 			.then((selection: vscode.MessageItem | undefined) => {
 				if (selection === DialogResponses.YES) {
 					return this.installPythonVenv(
 						context,
 						pythonExecutable,
-						pythonExecutableName,
+						pythonExecutableName
 					);
 				} else {
 					// return pythonExecutable, notifying the caller
@@ -427,34 +427,34 @@ export class SetupService {
 
 	public getPythonVenv = async (
 		context: vscode.ExtensionContext,
-		pythonExecutableName: string,
+		pythonExecutableName: string
 	) => {
 		const subFolder = os.platform() === "win32" ? "Scripts" : "bin";
 
 		return getPathToScript(
 			context,
 			path.join(CONSTANTS.FILESYSTEM.PYTHON_VENV_DIR, subFolder),
-			pythonExecutableName,
+			pythonExecutableName
 		);
 	};
 
 	public installPythonVenv = async (
 		context: vscode.ExtensionContext,
 		pythonExecutable: string,
-		pythonExecutableName: string,
+		pythonExecutableName: string
 	) => {
 		const pathToEnv: string = getPathToScript(
 			context,
-			CONSTANTS.FILESYSTEM.PYTHON_VENV_DIR,
+			CONSTANTS.FILESYSTEM.PYTHON_VENV_DIR
 		);
 
 		vscode.window.showInformationMessage(
-			CONSTANTS.INFO.INSTALLING_PYTHON_VENV,
+			CONSTANTS.INFO.INSTALLING_PYTHON_VENV
 		);
 
 		const pythonPath: string = await this.getPythonVenv(
 			context,
-			pythonExecutableName,
+			pythonExecutableName
 		);
 
 		try {
@@ -462,16 +462,16 @@ export class SetupService {
 			// run command to download dependencies to out/python_libs
 			await this.executePythonCommand(
 				pythonExecutable,
-				`-m venv "${pathToEnv}"`,
+				`-m venv "${pathToEnv}"`
 			);
 		} catch (err) {
 			this.telemetryAI.trackFeatureUsage(
-				TelemetryEventName.SETUP_VENV_CREATION_ERR,
+				TelemetryEventName.SETUP_VENV_CREATION_ERR
 			);
 			vscode.window
 				.showErrorMessage(
 					`Virtual environment for download could not be completed. Using original interpreter at: ${pythonExecutable}. If you're on Linux, try running "sudo apt-get install python3-venv".`,
-					DialogResponses.READ_INSTALL_MD,
+					DialogResponses.READ_INSTALL_MD
 				)
 				.then((selection: vscode.MessageItem | undefined) => {
 					if (selection === DialogResponses.READ_INSTALL_MD) {
@@ -487,25 +487,25 @@ export class SetupService {
 		return this.installDependenciesWrapper(
 			context,
 			pythonPath,
-			pythonExecutable,
+			pythonExecutable
 		);
 	};
 
 	public areDependenciesInstalled = async (
 		context: vscode.ExtensionContext,
-		pythonPath: string,
+		pythonPath: string
 	) => {
 		const dependencyCheckerPath: string = getPathToScript(
 			context,
 			CONSTANTS.FILESYSTEM.OUTPUT_DIRECTORY,
-			HELPER_FILES.CHECK_PYTHON_DEPENDENCIES,
+			HELPER_FILES.CHECK_PYTHON_DEPENDENCIES
 		);
 		try {
 			// python script will throw exception
 			// if not all dependencies are downloaded
 			const { stdout } = await this.executePythonCommand(
 				pythonPath,
-				`"${dependencyCheckerPath}"`,
+				`"${dependencyCheckerPath}"`
 			);
 
 			// output for debugging purposes
@@ -518,12 +518,12 @@ export class SetupService {
 
 	public installDependencies = async (
 		context: vscode.ExtensionContext,
-		pythonPath: string,
+		pythonPath: string
 	) => {
 		const requirementsPyInstallPath: string = getPathToScript(
 			context,
 			CONSTANTS.FILESYSTEM.OUTPUT_DIRECTORY,
-			"install_dependencies.py",
+			"install_dependencies.py"
 		);
 
 		if (!this.isPipInstalled(pythonPath)) {
@@ -534,11 +534,11 @@ export class SetupService {
 		try {
 			const { stdout } = await this.executePythonCommand(
 				pythonPath,
-				`"${requirementsPyInstallPath}"`,
+				`"${requirementsPyInstallPath}"`
 			);
 			console.log(`DSE ${stdout}`);
 			vscode.window.showInformationMessage(
-				CONSTANTS.INFO.SUCCESSFUL_INSTALL,
+				CONSTANTS.INFO.SUCCESSFUL_INSTALL
 			);
 			return true;
 		} catch (err) {
@@ -550,7 +550,7 @@ export class SetupService {
 	public installDependenciesWrapper = async (
 		context: vscode.ExtensionContext,
 		pythonPath: string,
-		backupPythonPath: string = "",
+		backupPythonPath: string = ""
 	) => {
 		let errMessage = CONSTANTS.ERROR.DEPENDENCY_DOWNLOAD_ERROR;
 		if (backupPythonPath !== "") {
@@ -560,7 +560,7 @@ export class SetupService {
 			vscode.window
 				.showErrorMessage(
 					CONSTANTS.ERROR.DEPENDENCY_DOWNLOAD_ERROR,
-					DialogResponses.READ_INSTALL_MD,
+					DialogResponses.READ_INSTALL_MD
 				)
 				.then((selection: vscode.MessageItem | undefined) => {
 					if (selection === DialogResponses.READ_INSTALL_MD) {
@@ -569,7 +569,7 @@ export class SetupService {
 				});
 
 			this.telemetryAI.trackFeatureUsage(
-				TelemetryEventName.SETUP_DEP_INSTALL_FAIL,
+				TelemetryEventName.SETUP_DEP_INSTALL_FAIL
 			);
 			return backupPythonPath;
 		}

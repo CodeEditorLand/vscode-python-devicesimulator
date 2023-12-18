@@ -40,7 +40,7 @@ export class CpxImage extends React.Component<IProps, any> {
 		this.updateImage();
 	}
 	setupKeyPresses = (
-		onKeyEvent: (event: KeyboardEvent, active: boolean) => void,
+		onKeyEvent: (event: KeyboardEvent, active: boolean) => void
 	) => {
 		window.document.addEventListener("keydown", this.handleKeyDown);
 		window.document.addEventListener("keyup", this.handleKeyUp);
@@ -78,7 +78,7 @@ const makeButton = (
 	g: SVGElement,
 	left: number,
 	top: number,
-	id: string,
+	id: string
 ): { outer: SVGElement; inner: SVGElement } => {
 	const buttonCornerRadius = SvgStyle.BUTTON_CORNER_RADIUS;
 	const buttonWidth = SvgStyle.BUTTON_WIDTH;
@@ -111,7 +111,7 @@ const initSvgStyle = (svgElement: HTMLElement, brightness: number): void => {
 	const style: SVGStyleElement = svg.child(
 		svgElement,
 		"style",
-		{},
+		{}
 	) as SVGStyleElement;
 	style.textContent = SvgStyle.SVG_STYLE;
 
@@ -119,7 +119,7 @@ const initSvgStyle = (svgElement: HTMLElement, brightness: number): void => {
 	const defs: SVGDefsElement = svg.child(
 		svgElement,
 		"defs",
-		{},
+		{}
 	) as SVGDefsElement;
 
 	const g = svg.createElement("g") as SVGElement;
@@ -158,7 +158,7 @@ const initSvgStyle = (svgElement: HTMLElement, brightness: number): void => {
 	const neopixelfeComponentTransfer = svg.child(
 		neopixelglow,
 		"feComponentTransfer",
-		{},
+		{}
 	);
 	svg.child(neopixelfeComponentTransfer, "feFuncR", {
 		id: "brightnessFilterR",
@@ -220,7 +220,7 @@ const updatePowerLED = (propsPowerLED: boolean): void => {
 const setNeopixel = (
 	led: HTMLElement,
 	pixValue: number[],
-	brightness: number,
+	brightness: number
 ): void => {
 	if (isLightOn(pixValue) && brightness > 0) {
 		// Neopixels style (Adapted from : https://github.com/microsoft/pxt-adafruit/blob/master/sim/visuals/board.ts)
@@ -235,7 +235,7 @@ const setNeopixel = (
 		]);
 		const innerLum = Math.max(
 			lum * SvgStyle.INTENSITY_FACTOR,
-			SvgStyle.MIN_INNER_LUM,
+			SvgStyle.MIN_INNER_LUM
 		);
 		lum = (lum * 90) / 100 + 10; // at least 10% luminosity for the stroke
 
@@ -243,7 +243,7 @@ const setNeopixel = (
 		led.style.fill = `hsl(${hue}, ${sat}%, ${innerLum}%)`;
 		led.style.stroke = `hsl(${hue}, ${sat}%, ${Math.min(
 			lum * 3,
-			SvgStyle.MAX_STROKE_LUM,
+			SvgStyle.MAX_STROKE_LUM
 		)}%)`;
 		led.style.strokeWidth = `1.5`;
 	} else {
@@ -309,7 +309,7 @@ const setupPins = (props: IProps): void => {
 			accessibility.setAria(
 				svgPin,
 				"button",
-				`Touch pin ${pinName.substr(pinName.length - 2)}`,
+				`Touch pin ${pinName.substr(pinName.length - 2)}`
 			);
 		}
 	});
@@ -376,7 +376,7 @@ const setupSwitch = (props: IProps): void => {
 export const updateSwitch = (switchState: boolean): void => {
 	const switchElement = window.document.getElementById("SWITCH");
 	const switchInner = window.document.getElementById(
-		"SWITCH_INNER",
+		"SWITCH_INNER"
 	) as unknown as SVGElement;
 
 	if (switchElement && switchInner) {

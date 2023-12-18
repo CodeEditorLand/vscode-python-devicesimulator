@@ -24,8 +24,7 @@ const Button: React.FC<IButtonProps> = (props) => {
 			role="button"
 			onClick={props.onClick}
 			style={buttonStyle}
-			tabIndex={tabIndex}
-		>
+			tabIndex={tabIndex}>
 			{iconSvg}
 		</button>
 	);

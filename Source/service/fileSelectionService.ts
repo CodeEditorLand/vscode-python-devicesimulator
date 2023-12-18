@@ -20,7 +20,7 @@ export class FileSelectionService {
 		return this.currentTextDocument;
 	}
 	public updateCurrentFileFromTextFile = async (
-		activeTextDocument: vscode.TextDocument | undefined,
+		activeTextDocument: vscode.TextDocument | undefined
 	) => {
 		if (activeTextDocument) {
 			await this.updateCurrentFileFromEditor({
@@ -31,7 +31,7 @@ export class FileSelectionService {
 		}
 	};
 	public updateCurrentFileFromEditor = async (
-		activeTextDocument: vscode.TextEditor | undefined,
+		activeTextDocument: vscode.TextEditor | undefined
 	) => {
 		if (
 			activeTextDocument &&
@@ -50,14 +50,14 @@ export class FileSelectionService {
 		) {
 			await vscode.window.showTextDocument(
 				this.currentTextDocument,
-				vscode.ViewColumn.One,
+				vscode.ViewColumn.One
 			);
 		}
 	};
 	public findCurrentTextDocument() {
 		if (this.currentFileAbsPath) {
 			const foundDocument = this.getActiveEditorFromPath(
-				this.currentFileAbsPath,
+				this.currentFileAbsPath
 			);
 			if (foundDocument !== undefined) {
 				this.currentTextDocument = foundDocument;
@@ -71,22 +71,21 @@ export class FileSelectionService {
 			VSCODE_MESSAGES_TO_WEBVIEW.CURRENT_FILE,
 			{
 				running_file: newFilePath,
-			},
+			}
 		);
 	};
 	private getActiveEditorFromPath = (
-		filePath: string,
+		filePath: string
 	): vscode.TextDocument => {
 		const activeEditor = vscode.window.visibleTextEditors.find(
-			(editor: vscode.TextEditor) =>
-				editor.document.fileName === filePath,
+			(editor: vscode.TextEditor) => editor.document.fileName === filePath
 		);
 		return activeEditor ? activeEditor.document : undefined;
 	};
 	private getActivePythonFile = () => {
 		const editors: vscode.TextEditor[] = vscode.window.visibleTextEditors;
 		const activeEditor = editors.find(
-			(editor) => editor.document.languageId === LANGUAGE_VARS.PYTHON.ID,
+			(editor) => editor.document.languageId === LANGUAGE_VARS.PYTHON.ID
 		);
 		if (activeEditor) {
 			this.currentTextDocument = activeEditor.document;

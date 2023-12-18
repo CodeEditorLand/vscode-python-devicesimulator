@@ -10,7 +10,7 @@ export interface IPackageJson {
 
 const getPackagePath = (context: vscode.ExtensionContext) => {
 	const onDiskPath = vscode.Uri.file(
-		path.join(context.extensionPath, "package.json"),
+		path.join(context.extensionPath, "package.json")
 	);
 	const packagePath = onDiskPath.with({ scheme: "vscode-resource" });
 
@@ -39,7 +39,7 @@ export default function getPackageInfo(context: vscode.ExtensionContext): {
 
 	if (!extensionName) {
 		throw new Error(
-			"Extension's package.json is missing instrumentation key.",
+			"Extension's package.json is missing instrumentation key."
 		);
 	}
 

@@ -67,8 +67,7 @@ export class ClueSvg extends React.Component<IProps, {}> {
 					x="0px"
 					y="0px"
 					width="100%"
-					height="100%"
-				>
+					height="100%">
 					<defs>
 						<radialGradient
 							id="gradNeopixel"
@@ -76,8 +75,7 @@ export class ClueSvg extends React.Component<IProps, {}> {
 							cy="50%"
 							r="70%"
 							fx="50%"
-							fy="50%"
-						>
+							fy="50%">
 							<stop
 								offset="0%"
 								stopColor="rgb(0,0,0)"
@@ -92,8 +90,7 @@ export class ClueSvg extends React.Component<IProps, {}> {
 							cy="50%"
 							r="70%"
 							fx="50%"
-							fy="50%"
-						>
+							fy="50%">
 							<stop
 								offset="0%"
 								stopColor="rgb(255,0,0)"
@@ -108,8 +105,7 @@ export class ClueSvg extends React.Component<IProps, {}> {
 							cy="50%"
 							r="30%"
 							fx="50%"
-							fy="50%"
-						>
+							fy="50%">
 							<stop
 								offset="0%"
 								stopColor="rgb(255,255,255)"
@@ -831,8 +827,7 @@ export class ClueSvg extends React.Component<IProps, {}> {
 						tabIndex={0}
 						role="button"
 						aria-label="a"
-						ref={this.buttonRefs.BTN_A}
-					>
+						ref={this.buttonRefs.BTN_A}>
 						<rect
 							className="sim-button-outer"
 							x="13.19"
@@ -878,8 +873,7 @@ export class ClueSvg extends React.Component<IProps, {}> {
 						tabIndex={0}
 						role="button"
 						aria-label="b"
-						ref={this.buttonRefs.BTN_B}
-					>
+						ref={this.buttonRefs.BTN_B}>
 						<rect
 							className="sim-button-outer"
 							x="258.06"
@@ -927,8 +921,7 @@ export class ClueSvg extends React.Component<IProps, {}> {
 						tabIndex={0}
 						role="button"
 						aria-label="ab"
-						ref={this.buttonRefs.BTN_AB}
-					>
+						ref={this.buttonRefs.BTN_AB}>
 						<rect
 							className="sim-button-outer"
 							x="327.48"
@@ -1013,20 +1006,17 @@ export class ClueSvg extends React.Component<IProps, {}> {
 						/>
 						<text
 							className="cls-18"
-							transform="translate(29.59 11.79) rotate(45.15) scale(1 1.56)"
-						>
+							transform="translate(29.59 11.79) rotate(45.15) scale(1 1.56)">
 							LIGHT
 						</text>
 						<text
 							className="cls-18"
-							transform="translate(22.78 18.93) rotate(45.15) scale(1 1.56)"
-						>
+							transform="translate(22.78 18.93) rotate(45.15) scale(1 1.56)">
 							GESTURE
 						</text>
 						<text
 							className="cls-18"
-							transform="translate(15.48 26.01) rotate(45.15) scale(1 1.56)"
-						>
+							transform="translate(15.48 26.01) rotate(45.15) scale(1 1.56)">
 							P
 							<tspan className="cls-19" x="4.13" y={0}>
 								R
@@ -1127,7 +1117,7 @@ export class ClueSvg extends React.Component<IProps, {}> {
 		if (this.props.displayImage) {
 			this.displayRef.current?.setAttribute(
 				"href",
-				`data:image/png;base64,${this.props.displayImage}`,
+				`data:image/png;base64,${this.props.displayImage}`
 			);
 		}
 	}
@@ -1146,17 +1136,17 @@ export class ClueSvg extends React.Component<IProps, {}> {
 		if (neopixel === DEFAULT_CLUE_STATE.leds.neopixel) {
 			this.gradientRefs.neopixel.current?.setAttribute(
 				"stop-opacity",
-				"0",
+				"0"
 			);
 		} else {
 			this.gradientRefs.neopixel.current?.setAttribute(
 				"stop-opacity",
-				"1",
+				"1"
 			);
 		}
 		this.gradientRefs.neopixel.current?.setAttribute(
 			"stop-color",
-			rgbColor,
+			rgbColor
 		);
 	}
 	private updateLeds() {
@@ -1170,16 +1160,16 @@ export class ClueSvg extends React.Component<IProps, {}> {
 					CLUE_LEDS_COLORS.WHITE_LEDS_OFF,
 					CLUE_LEDS_COLORS.WHITE_LEDS_ON,
 					ledRef.current,
-					this.gradientRefs.whiteLed.current,
+					this.gradientRefs.whiteLed.current
 				);
-			},
+			}
 		);
 		svg.setLed(
 			isRedLedOn,
 			CLUE_LEDS_COLORS.RED_LED_OFF,
 			CLUE_LEDS_COLORS.RED_LED_ON,
 			this.ledsRefs.redLed.current,
-			this.gradientRefs.redLed.current,
+			this.gradientRefs.redLed.current
 		);
 	}
 }

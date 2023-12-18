@@ -77,7 +77,7 @@ export async function activate(context: vscode.ExtensionContext) {
 	const webviewService = new WebviewService(context, deviceSelectionService);
 	const telemetryHandlerService = new TelemetryHandlerService(
 		telemetryAI,
-		deviceSelectionService,
+		deviceSelectionService
 	);
 	const formalNameToNickNameMapping = {
 		[CONSTANTS.DEVICE_NAME_FORMAL.CPX]: CONSTANTS.DEVICE_NAME.CPX,
@@ -114,14 +114,14 @@ export async function activate(context: vscode.ExtensionContext) {
 	vscode.workspace.onDidSaveTextDocument(
 		async (document: vscode.TextDocument) => {
 			await fileSelectionService.updateCurrentFileFromTextFile(document);
-		},
+		}
 	);
 
 	const currVersionReleaseName =
 		"release_note_" + getPackageInfo(context).extensionVersion;
 	const viewedReleaseNote = context.globalState.get(
 		currVersionReleaseName,
-		false,
+		false
 	);
 
 	if (!viewedReleaseNote) {
@@ -135,7 +135,7 @@ export async function activate(context: vscode.ExtensionContext) {
 			currentPanel.webview.html = webviewService.getWebviewContent(
 				WEBVIEW_TYPES.SIMULATOR,
 				true,
-				currentPanel,
+				currentPanel
 			);
 			currentPanel.reveal(vscode.ViewColumn.Beside);
 		} else {
@@ -149,18 +149,18 @@ export async function activate(context: vscode.ExtensionContext) {
 						vscode.Uri.file(
 							path.join(
 								context.extensionPath,
-								CONSTANTS.FILESYSTEM.OUTPUT_DIRECTORY,
-							),
+								CONSTANTS.FILESYSTEM.OUTPUT_DIRECTORY
+							)
 						),
 					],
 					enableScripts: true,
-				},
+				}
 			);
 
 			currentPanel.webview.html = webviewService.getWebviewContent(
 				WEBVIEW_TYPES.SIMULATOR,
 				true,
-				currentPanel,
+				currentPanel
 			);
 			messagingService.setWebview(currentPanel.webview);
 
@@ -194,7 +194,7 @@ export async function activate(context: vscode.ExtensionContext) {
 							case WEBVIEW_MESSAGES.BUTTON_PRESS:
 								// Send input to the Python process
 								telemetryHandlerService.handleButtonPressTelemetry(
-									message.text,
+									message.text
 								);
 								console.log(`About to write ${messageJson} \n`);
 								if (
@@ -206,7 +206,7 @@ export async function activate(context: vscode.ExtensionContext) {
 										.emitInputChanged(messageJson);
 								} else if (childProcess) {
 									childProcess.stdin.write(
-										messageJson + "\n",
+										messageJson + "\n"
 									);
 								}
 								break;
@@ -214,11 +214,11 @@ export async function activate(context: vscode.ExtensionContext) {
 								console.log(`Play button ${messageJson} \n`);
 								if (message.text.state as boolean) {
 									fileSelectionService.setPathAndSendMessage(
-										message.text.selected_file,
+										message.text.selected_file
 									);
 									fileSelectionService.findCurrentTextDocument();
 									telemetryAI.trackFeatureUsage(
-										TelemetryEventName.COMMAND_RUN_SIMULATOR_BUTTON,
+										TelemetryEventName.COMMAND_RUN_SIMULATOR_BUTTON
 									);
 									runSimulatorCommand();
 								} else {
@@ -227,7 +227,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
 								if (childProcess) {
 									childProcess.stdin.write(
-										messageJson + "\n",
+										messageJson + "\n"
 									);
 								}
 
@@ -235,7 +235,7 @@ export async function activate(context: vscode.ExtensionContext) {
 							case WEBVIEW_MESSAGES.GESTURE:
 							case WEBVIEW_MESSAGES.SENSOR_CHANGED:
 								telemetryHandlerService.handleGestureTelemetry(
-									message.text,
+									message.text
 								);
 								console.log(`Sensor changed ${messageJson} \n`);
 								if (
@@ -247,7 +247,7 @@ export async function activate(context: vscode.ExtensionContext) {
 										.emitInputChanged(messageJson);
 								} else if (childProcess) {
 									childProcess.stdin.write(
-										messageJson + "\n",
+										messageJson + "\n"
 									);
 								}
 								break;
@@ -257,29 +257,29 @@ export async function activate(context: vscode.ExtensionContext) {
 								break;
 							case WEBVIEW_MESSAGES.SLIDER_TELEMETRY:
 								telemetryHandlerService.handleSensorTelemetry(
-									message.text,
+									message.text
 								);
 								break;
 							case WEBVIEW_MESSAGES.SWITCH_DEVICE:
 								deviceSelectionService.setCurrentActiveDevice(
-									message.text.active_device,
+									message.text.active_device
 								);
 								killProcessIfRunning();
 								break;
 							default:
 								vscode.window.showInformationMessage(
-									CONSTANTS.ERROR.UNEXPECTED_MESSAGE,
+									CONSTANTS.ERROR.UNEXPECTED_MESSAGE
 								);
 								break;
 						}
 					},
 					undefined,
-					context.subscriptions,
+					context.subscriptions
 				);
 
 				activeEditorListener = utils.addVisibleTextEditorCallback(
 					currentPanel,
-					context,
+					context
 				);
 			}
 
@@ -296,13 +296,13 @@ export async function activate(context: vscode.ExtensionContext) {
 					killProcessIfRunning();
 					if (firstTimeClosed) {
 						vscode.window.showInformationMessage(
-							CONSTANTS.INFO.FIRST_TIME_WEBVIEW,
+							CONSTANTS.INFO.FIRST_TIME_WEBVIEW
 						);
 						firstTimeClosed = false;
 					}
 				},
 				undefined,
-				context.subscriptions,
+				context.subscriptions
 			);
 		}
 		sendCurrentDeviceMessage(currentPanel);
@@ -313,14 +313,14 @@ export async function activate(context: vscode.ExtensionContext) {
 		"deviceSimulatorExpress.common.openSimulator",
 		async () => {
 			const chosen_device = await vscode.window.showQuickPick(
-				Object.values(CONSTANTS.DEVICE_NAME_FORMAL),
+				Object.values(CONSTANTS.DEVICE_NAME_FORMAL)
 			);
 
 			if (!chosen_device) {
 				utils.logToOutputChannel(
 					outChannel,
 					CONSTANTS.INFO.NO_DEVICE_CHOSEN_TO_SIMULATE_TO,
-					true,
+					true
 				);
 				return;
 			}
@@ -329,16 +329,16 @@ export async function activate(context: vscode.ExtensionContext) {
 			deviceSelectionService.setCurrentActiveDevice(device);
 			const telemetryEvents =
 				telemetryHandlerService.getTelemetryEventsForOpenSimulator(
-					device,
+					device
 				);
 			telemetryAI.trackFeatureUsage(
-				telemetryEvents.openSimulatorTelemetryEvent,
+				telemetryEvents.openSimulatorTelemetryEvent
 			);
 			telemetryAI.runWithLatencyMeasure(
 				openWebview,
-				telemetryEvents.openSimulatorPerformanceTelemetryEvent,
+				telemetryEvents.openSimulatorPerformanceTelemetryEvent
 			);
-		},
+		}
 	);
 
 	const gettingStartedOpen: vscode.Disposable =
@@ -346,10 +346,10 @@ export async function activate(context: vscode.ExtensionContext) {
 			"deviceSimulatorExpress.common.gettingStarted",
 			() => {
 				telemetryAI.trackFeatureUsage(
-					TelemetryEventName.COMMAND_GETTING_STARTED,
+					TelemetryEventName.COMMAND_GETTING_STARTED
 				);
 				webviewService.openTutorialPanel();
-			},
+			}
 		);
 
 	const openTemplateFile = (template: string) => {
@@ -367,7 +367,7 @@ export async function activate(context: vscode.ExtensionContext) {
 					CONSTANTS.INFO.NEW_FILE,
 					DialogResponses.DONT_SHOW,
 					DialogResponses.EXAMPLE_CODE,
-					DialogResponses.TUTORIALS,
+					DialogResponses.TUTORIALS
 				)
 				.then((selection: vscode.MessageItem | undefined) => {
 					if (selection === DialogResponses.DONT_SHOW) {
@@ -375,23 +375,23 @@ export async function activate(context: vscode.ExtensionContext) {
 							.getConfiguration()
 							.update(CONFIG.SHOW_NEW_FILE_POPUP, false);
 						telemetryAI.trackFeatureUsage(
-							TelemetryEventName.CPX_CLICK_DIALOG_DONT_SHOW,
+							TelemetryEventName.CPX_CLICK_DIALOG_DONT_SHOW
 						);
 					} else if (selection === DialogResponses.EXAMPLE_CODE) {
 						open(CONSTANTS.LINKS.EXAMPLE_CODE);
 						telemetryAI.trackFeatureUsage(
-							TelemetryEventName.CPX_CLICK_DIALOG_EXAMPLE_CODE,
+							TelemetryEventName.CPX_CLICK_DIALOG_EXAMPLE_CODE
 						);
 					} else if (selection === DialogResponses.TUTORIALS) {
 						const okAction = () => {
 							open(CONSTANTS.LINKS.TUTORIALS);
 							telemetryAI.trackFeatureUsage(
-								TelemetryEventName.CPX_CLICK_DIALOG_TUTORIALS,
+								TelemetryEventName.CPX_CLICK_DIALOG_TUTORIALS
 							);
 						};
 						utils.showPrivacyModal(
 							okAction,
-							CONSTANTS.INFO.THIRD_PARTY_WEBSITE_ADAFRUIT,
+							CONSTANTS.INFO.THIRD_PARTY_WEBSITE_ADAFRUIT
 						);
 					}
 				});
@@ -419,14 +419,14 @@ export async function activate(context: vscode.ExtensionContext) {
 		"deviceSimulatorExpress.common.newFile",
 		async () => {
 			const chosen_device = await vscode.window.showQuickPick(
-				Object.values(CONSTANTS.DEVICE_NAME_FORMAL),
+				Object.values(CONSTANTS.DEVICE_NAME_FORMAL)
 			);
 
 			if (!chosen_device) {
 				utils.logToOutputChannel(
 					outChannel,
 					CONSTANTS.INFO.NO_DEVICE_CHOSEN_FOR_NEW_FILE,
-					true,
+					true
 				);
 				return;
 			}
@@ -445,13 +445,13 @@ export async function activate(context: vscode.ExtensionContext) {
 				telemetryHandlerService.getTelemetryEventsForNewFile(device);
 
 			telemetryAI.trackFeatureUsage(
-				telemetryEvents.newFileTelemetryEvent,
+				telemetryEvents.newFileTelemetryEvent
 			);
 			telemetryAI.runWithLatencyMeasure(
 				() => openTemplateFile(templateFile),
-				telemetryEvents.newFilePerformanceTelemetryEvent,
+				telemetryEvents.newFilePerformanceTelemetryEvent
 			);
-		},
+		}
 	);
 
 	const installDependencies: vscode.Disposable =
@@ -460,12 +460,12 @@ export async function activate(context: vscode.ExtensionContext) {
 			async () => {
 				pythonExecutablePath = await setupService.setupEnv(
 					context,
-					true,
+					true
 				);
 				telemetryAI.trackFeatureUsage(
-					TelemetryEventName.COMMAND_INSTALL_EXTENSION_DEPENDENCIES,
+					TelemetryEventName.COMMAND_INSTALL_EXTENSION_DEPENDENCIES
 				);
-			},
+			}
 		);
 
 	const killProcessIfRunning = () => {
@@ -488,7 +488,7 @@ export async function activate(context: vscode.ExtensionContext) {
 		// Prevent running new code if a debug session is active
 		if (inDebugMode) {
 			vscode.window.showErrorMessage(
-				CONSTANTS.ERROR.DEBUGGING_SESSION_IN_PROGESS,
+				CONSTANTS.ERROR.DEBUGGING_SESSION_IN_PROGESS
 			);
 			return;
 		}
@@ -497,7 +497,7 @@ export async function activate(context: vscode.ExtensionContext) {
 				.showWarningMessage(
 					CONSTANTS.WARNING.ACCEPT_AND_RUN,
 					DialogResponses.ACCEPT_AND_RUN,
-					DialogResponses.CANCEL,
+					DialogResponses.CANCEL
 				)
 				.then((selection: vscode.MessageItem | undefined) => {
 					let hasAccepted = true;
@@ -524,24 +524,24 @@ export async function activate(context: vscode.ExtensionContext) {
 		utils.logToOutputChannel(
 			outChannel,
 			CONSTANTS.INFO.DEPLOY_SIMULATOR,
-			true,
+			true
 		);
 
 		killProcessIfRunning();
 
 		await fileSelectionService.updateCurrentFileFromEditor(
-			vscode.window.activeTextEditor,
+			vscode.window.activeTextEditor
 		);
 
 		if (fileSelectionService.getCurrentFileAbsPath() === "") {
 			utils.logToOutputChannel(
 				outChannel,
 				CONSTANTS.ERROR.NO_FILE_TO_RUN,
-				true,
+				true
 			);
 			vscode.window.showErrorMessage(
 				CONSTANTS.ERROR.NO_FILE_TO_RUN,
-				DialogResponses.MESSAGE_UNDERSTOOD,
+				DialogResponses.MESSAGE_UNDERSTOOD
 			);
 		} else {
 			// Save on run
@@ -555,15 +555,15 @@ export async function activate(context: vscode.ExtensionContext) {
 				utils.logToOutputChannel(
 					outChannel,
 					CONSTANTS.ERROR.NO_FILE_TO_RUN,
-					true,
+					true
 				);
 				return;
 			}
 			utils.logToOutputChannel(
 				outChannel,
 				CONSTANTS.INFO.FILE_SELECTED(
-					fileSelectionService.getCurrentFileAbsPath(),
-				),
+					fileSelectionService.getCurrentFileAbsPath()
+				)
 			);
 
 			// Activate the run webview button
@@ -575,7 +575,7 @@ export async function activate(context: vscode.ExtensionContext) {
 				utils.getPathToScript(
 					context,
 					CONSTANTS.FILESYSTEM.OUTPUT_DIRECTORY,
-					HELPER_FILES.PROCESS_USER_CODE_PY,
+					HELPER_FILES.PROCESS_USER_CODE_PY
 				),
 				fileSelectionService.getCurrentFileAbsPath(),
 				JSON.stringify({ enable_telemetry: utils.getTelemetryState() }),
@@ -615,7 +615,7 @@ export async function activate(context: vscode.ExtensionContext) {
 								switch (messageToWebview.type) {
 									case "state":
 										const messageData = JSON.parse(
-											messageToWebview.data,
+											messageToWebview.data
 										);
 										if (
 											messageData.device_name ===
@@ -623,24 +623,24 @@ export async function activate(context: vscode.ExtensionContext) {
 										) {
 											messagingService.sendMessageToWebview(
 												VSCODE_MESSAGES_TO_WEBVIEW.SET_STATE,
-												messageData,
+												messageData
 											);
 										}
 										break;
 
 									case "print":
 										console.log(
-											`Process print statement output = ${messageToWebview.data}`,
+											`Process print statement output = ${messageToWebview.data}`
 										);
 										utils.logToOutputChannel(
 											outChannel,
-											`[PRINT] ${messageToWebview.data}`,
+											`[PRINT] ${messageToWebview.data}`
 										);
 										break;
 
 									default:
 										console.log(
-											`Non-state JSON output from the process : ${messageToWebview}`,
+											`Non-state JSON output from the process : ${messageToWebview}`
 										);
 										break;
 								}
@@ -651,7 +651,7 @@ export async function activate(context: vscode.ExtensionContext) {
 									pythonProcessDataBuffer.push(message);
 								} else {
 									console.log(
-										`Errored output: ${messageToWebview}`,
+										`Errored output: ${messageToWebview}`
 									);
 								}
 							}
@@ -663,15 +663,15 @@ export async function activate(context: vscode.ExtensionContext) {
 			// Std error output
 			childProcess.stderr.on("data", (data) => {
 				console.error(
-					`Error from the Python process through stderr: ${data}`,
+					`Error from the Python process through stderr: ${data}`
 				);
 				telemetryAI.trackFeatureUsage(
-					TelemetryEventName.ERROR_PYTHON_PROCESS,
+					TelemetryEventName.ERROR_PYTHON_PROCESS
 				);
 				utils.logToOutputChannel(
 					outChannel,
 					CONSTANTS.ERROR.STDERR(data),
-					true,
+					true
 				);
 				if (currentPanel) {
 					currentPanel.webview.postMessage({
@@ -694,32 +694,32 @@ export async function activate(context: vscode.ExtensionContext) {
 		"deviceSimulatorExpress.common.runSimulator",
 		() => {
 			telemetryAI.trackFeatureUsage(
-				TelemetryEventName.COMMAND_RUN_PALETTE,
+				TelemetryEventName.COMMAND_RUN_PALETTE
 			);
 			runSimulatorCommand();
-		},
+		}
 	);
 
 	const deployCode = async (device: string) => {
 		utils.logToOutputChannel(
 			outChannel,
 			CONSTANTS.INFO.DEPLOY_DEVICE,
-			true,
+			true
 		);
 
 		await fileSelectionService.updateCurrentFileFromEditor(
-			vscode.window.activeTextEditor,
+			vscode.window.activeTextEditor
 		);
 
 		if (fileSelectionService.getCurrentFileAbsPath() === "") {
 			utils.logToOutputChannel(
 				outChannel,
 				CONSTANTS.ERROR.NO_FILE_TO_DEPLOY,
-				true,
+				true
 			);
 			vscode.window.showErrorMessage(
 				CONSTANTS.ERROR.NO_FILE_TO_DEPLOY,
-				DialogResponses.MESSAGE_UNDERSTOOD,
+				DialogResponses.MESSAGE_UNDERSTOOD
 			);
 		} else {
 			await fileSelectionService.getCurrentTextDocument().save();
@@ -727,15 +727,15 @@ export async function activate(context: vscode.ExtensionContext) {
 			utils.logToOutputChannel(
 				outChannel,
 				CONSTANTS.INFO.FILE_SELECTED(
-					fileSelectionService.getCurrentFileAbsPath(),
-				),
+					fileSelectionService.getCurrentFileAbsPath()
+				)
 			);
 
 			const deviceProcess = cp.spawn(pythonExecutablePath, [
 				utils.getPathToScript(
 					context,
 					CONSTANTS.FILESYSTEM.OUTPUT_DIRECTORY,
-					HELPER_FILES.DEVICE_PY,
+					HELPER_FILES.DEVICE_PY
 				),
 				device,
 				fileSelectionService.getCurrentFileAbsPath(),
@@ -754,16 +754,16 @@ export async function activate(context: vscode.ExtensionContext) {
 						utils.logToOutputChannel(
 							outChannel,
 							CONSTANTS.INFO.DEPLOY_SUCCESS,
-							true,
+							true
 						);
 					}
 					telemetryHandlerService.handleDeployToDeviceFinishedTelemetry(
 						messageToWebview,
-						device,
+						device
 					);
 				} catch (err) {
 					console.log(
-						`Non-JSON output from the process :  ${dataFromTheProcess}`,
+						`Non-JSON output from the process :  ${dataFromTheProcess}`
 					);
 				}
 			});
@@ -772,15 +772,15 @@ export async function activate(context: vscode.ExtensionContext) {
 			deviceProcess.stderr.on("data", (data) => {
 				telemetryHandlerService.handleDeployToDeviceErrorTelemetry(
 					data,
-					device,
+					device
 				);
 				console.error(
-					`Error from the Python device process through stderr: ${data}`,
+					`Error from the Python device process through stderr: ${data}`
 				);
 				utils.logToOutputChannel(
 					outChannel,
 					`[ERROR] ${data} \n`,
-					true,
+					true
 				);
 			});
 
@@ -795,14 +795,14 @@ export async function activate(context: vscode.ExtensionContext) {
 		"deviceSimulatorExpress.common.deployToDevice",
 		async () => {
 			const chosen_device = await vscode.window.showQuickPick(
-				Object.values(CONSTANTS.DEVICE_NAME_FORMAL),
+				Object.values(CONSTANTS.DEVICE_NAME_FORMAL)
 			);
 
 			if (!chosen_device) {
 				utils.logToOutputChannel(
 					outChannel,
 					CONSTANTS.INFO.NO_DEVICE_CHOSEN_TO_DEPLOY_TO,
-					true,
+					true
 				);
 				return;
 			}
@@ -811,14 +811,14 @@ export async function activate(context: vscode.ExtensionContext) {
 
 			const telemetryEvents =
 				telemetryHandlerService.getTelemetryEventsForStartingDeployToDevice(
-					device,
+					device
 				);
 
 			telemetryAI.trackFeatureUsage(telemetryEvents.deployTelemetryEvent);
 			telemetryAI.runWithLatencyMeasure(() => {
 				deployCode(device);
 			}, telemetryEvents.deployPerformanceTelemetryEvent);
-		},
+		}
 	);
 
 	let serialMonitor: SerialMonitor | undefined;
@@ -836,11 +836,11 @@ export async function activate(context: vscode.ExtensionContext) {
 				}, TelemetryEventName.COMMAND_SERIAL_MONITOR_CHOOSE_PORT);
 			} else {
 				vscode.window.showErrorMessage(
-					CONSTANTS.ERROR.NO_FOLDER_OPENED,
+					CONSTANTS.ERROR.NO_FOLDER_OPENED
 				);
 				console.info("Serial monitor is not defined.");
 			}
-		},
+		}
 	);
 
 	const openSerialMonitor: vscode.Disposable =
@@ -850,15 +850,15 @@ export async function activate(context: vscode.ExtensionContext) {
 				if (serialMonitor) {
 					telemetryAI.runWithLatencyMeasure(
 						serialMonitor.openSerialMonitor.bind(serialMonitor),
-						TelemetryEventName.COMMAND_SERIAL_MONITOR_OPEN,
+						TelemetryEventName.COMMAND_SERIAL_MONITOR_OPEN
 					);
 				} else {
 					vscode.window.showErrorMessage(
-						CONSTANTS.ERROR.NO_FOLDER_OPENED,
+						CONSTANTS.ERROR.NO_FOLDER_OPENED
 					);
 					console.info("Serial monitor is not defined.");
 				}
-			},
+			}
 		);
 
 	const changeBaudRate: vscode.Disposable = vscode.commands.registerCommand(
@@ -867,15 +867,15 @@ export async function activate(context: vscode.ExtensionContext) {
 			if (serialMonitor) {
 				telemetryAI.runWithLatencyMeasure(
 					serialMonitor.changeBaudRate.bind(serialMonitor),
-					TelemetryEventName.COMMAND_SERIAL_MONITOR_BAUD_RATE,
+					TelemetryEventName.COMMAND_SERIAL_MONITOR_BAUD_RATE
 				);
 			} else {
 				vscode.window.showErrorMessage(
-					CONSTANTS.ERROR.NO_FOLDER_OPENED,
+					CONSTANTS.ERROR.NO_FOLDER_OPENED
 				);
 				console.info("Serial monitor is not defined.");
 			}
-		},
+		}
 	);
 
 	const closeSerialMonitor: vscode.Disposable =
@@ -888,11 +888,11 @@ export async function activate(context: vscode.ExtensionContext) {
 					}, TelemetryEventName.COMMAND_SERIAL_MONITOR_CLOSE);
 				} else {
 					vscode.window.showErrorMessage(
-						CONSTANTS.ERROR.NO_FOLDER_OPENED,
+						CONSTANTS.ERROR.NO_FOLDER_OPENED
 					);
 					console.info("Serial monitor is not defined.");
 				}
-			},
+			}
 		);
 
 	const showReleaseNote = vscode.commands.registerCommand(
@@ -904,11 +904,11 @@ export async function activate(context: vscode.ExtensionContext) {
 				}, TelemetryEventName.COMMAND_SERIAL_MONITOR_CLOSE);
 			} else {
 				vscode.window.showErrorMessage(
-					CONSTANTS.ERROR.NO_FOLDER_OPENED,
+					CONSTANTS.ERROR.NO_FOLDER_OPENED
 				);
 				console.info("Serial monitor is not defined.");
 			}
-		},
+		}
 	);
 
 	UsbDetector.getInstance().initialize(context.extensionPath);
@@ -917,7 +917,7 @@ export async function activate(context: vscode.ExtensionContext) {
 	if (
 		CPXWorkspace.rootPath &&
 		(utils.fileExistsSync(
-			path.join(CPXWorkspace.rootPath, CPX_CONFIG_FILE),
+			path.join(CPXWorkspace.rootPath, CPX_CONFIG_FILE)
 		) ||
 			vscode.window.activeTextEditor)
 	) {
@@ -930,17 +930,17 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	// Debugger configuration
 	const simulatorDebugConfiguration = new SimulatorDebugConfigurationProvider(
-		utils.getPathToScript(context, "out/", "debug_user_code.py"),
+		utils.getPathToScript(context, "out/", "debug_user_code.py")
 	);
 
 	const debugAdapterFactory = new DebugAdapterFactory(
 		vscode.debug.activeDebugSession,
 		messagingService,
-		debuggerCommunicationService,
+		debuggerCommunicationService
 	);
 	vscode.debug.registerDebugAdapterTrackerFactory(
 		LANGUAGE_VARS.PYTHON.ID,
-		debugAdapterFactory,
+		debugAdapterFactory
 	);
 	// On Debug Session Start: Init comunication
 	const debugSessionsStarted = vscode.debug.onDidStartDebugSession(() => {
@@ -959,8 +959,8 @@ export async function activate(context: vscode.ExtensionContext) {
 					new DebuggerCommunicationServer(
 						currentPanel,
 						utils.getServerPortConfig(),
-						deviceSelectionService,
-					),
+						deviceSelectionService
+					)
 				);
 
 				telemetryHandlerService.handleDebuggerTelemetry();
@@ -979,15 +979,15 @@ export async function activate(context: vscode.ExtensionContext) {
 			} catch (err) {
 				if (err.message === SERVER_INFO.ERROR_CODE_INIT_SERVER) {
 					console.error(
-						`Error trying to init the server on port ${utils.getServerPortConfig()}`,
+						`Error trying to init the server on port ${utils.getServerPortConfig()}`
 					);
 
 					telemetryHandlerService.handleDebuggerFailTelemetry();
 
 					vscode.window.showErrorMessage(
 						CONSTANTS.ERROR.DEBUGGER_SERVER_INIT_FAILED(
-							utils.getServerPortConfig(),
-						),
+							utils.getServerPortConfig()
+						)
 					);
 				}
 			}
@@ -1017,7 +1017,7 @@ export async function activate(context: vscode.ExtensionContext) {
 			if (utils.checkConfig(CONFIG.CONFIG_ENV_ON_SWITCH)) {
 				pythonExecutablePath = await setupService.setupEnv(context);
 			}
-		},
+		}
 	);
 
 	context.subscriptions.push(
@@ -1033,11 +1033,11 @@ export async function activate(context: vscode.ExtensionContext) {
 		gettingStartedOpen,
 		vscode.debug.registerDebugConfigurationProvider(
 			CONSTANTS.DEBUG_CONFIGURATION_TYPE,
-			simulatorDebugConfiguration,
+			simulatorDebugConfiguration
 		),
 		debugSessionsStarted,
 		debugSessionStopped,
-		configsChanged,
+		configsChanged
 	);
 }
 
@@ -1050,31 +1050,31 @@ const updatePythonExtraPaths = () => {
 			path.join(__dirname, CONSTANTS.FILESYSTEM.CLUE),
 			path.join(__dirname, CONSTANTS.FILESYSTEM.BASE_CIRCUITPYTHON),
 		],
-		vscode.ConfigurationTarget.Global,
+		vscode.ConfigurationTarget.Global
 	);
 };
 
 const updatePylintArgs = (context: vscode.ExtensionContext) => {
 	const outPath: string = utils.createEscapedPath(
 		context.extensionPath,
-		CONSTANTS.FILESYSTEM.OUTPUT_DIRECTORY,
+		CONSTANTS.FILESYSTEM.OUTPUT_DIRECTORY
 	);
 	const micropythonPath: string = utils.createEscapedPath(
 		context.extensionPath,
 		CONSTANTS.FILESYSTEM.OUTPUT_DIRECTORY,
-		CONSTANTS.FILESYSTEM.MICROPYTHON_DIRECTORY,
+		CONSTANTS.FILESYSTEM.MICROPYTHON_DIRECTORY
 	);
 
 	const cluePath: string = utils.createEscapedPath(
 		context.extensionPath,
 		CONSTANTS.FILESYSTEM.OUTPUT_DIRECTORY,
-		CONSTANTS.FILESYSTEM.CLUE,
+		CONSTANTS.FILESYSTEM.CLUE
 	);
 
 	const baseCircuitPythonPath: string = utils.createEscapedPath(
 		context.extensionPath,
 		CONSTANTS.FILESYSTEM.OUTPUT_DIRECTORY,
-		CONSTANTS.FILESYSTEM.BASE_CIRCUITPYTHON,
+		CONSTANTS.FILESYSTEM.BASE_CIRCUITPYTHON
 	);
 	// update pylint args to extend system path
 	// to include python libs local to extention
@@ -1084,20 +1084,20 @@ const updatePylintArgs = (context: vscode.ExtensionContext) => {
 			"--init-hook",
 			`import sys; sys.path.extend([\"${outPath}\",\"${micropythonPath}\",\"${cluePath}\",\"${baseCircuitPythonPath}\"])`,
 		],
-		vscode.ConfigurationTarget.Workspace,
+		vscode.ConfigurationTarget.Workspace
 	);
 };
 
 const updateConfigLists = (
 	section: string,
 	newItems: string[],
-	scope: vscode.ConfigurationTarget,
+	scope: vscode.ConfigurationTarget
 ) => {
 	// function for adding elements to configuration arrays
 	const currentExtraItems: string[] =
 		vscode.workspace.getConfiguration().get(section) || [];
 	const extraItemsSet: Set<string> = new Set(
-		currentExtraItems.concat(newItems),
+		currentExtraItems.concat(newItems)
 	);
 
 	vscode.workspace

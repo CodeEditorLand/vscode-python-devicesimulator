@@ -11,7 +11,7 @@ describe("Device component ", () => {
 			.create(
 				<IntlProvider locale="en">
 					<Device currentSelectedDevice={DEVICE_LIST_KEY.MICROBIT} />
-				</IntlProvider>,
+				</IntlProvider>
 			)
 			.toJSON();
 		expect(component).toMatchSnapshot();
@@ -23,7 +23,7 @@ describe("Device component ", () => {
 			<IntlProvider locale="en">
 				<Device currentSelectedDevice={DEVICE_LIST_KEY.MICROBIT} />
 			</IntlProvider>,
-			div,
+			div
 		);
 		ReactDOM.unmountComponentAtNode(div);
 	});

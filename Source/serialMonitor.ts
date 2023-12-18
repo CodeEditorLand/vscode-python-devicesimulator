@@ -59,12 +59,12 @@ export class SerialMonitor implements vscode.Disposable {
 	public initialize() {
 		const defaultBaudRate: number = SerialMonitor.DEFAULT_BAUD_RATE;
 		this._outputChannel = vscode.window.createOutputChannel(
-			CONSTANTS.MISC.SERIAL_MONITOR_NAME,
+			CONSTANTS.MISC.SERIAL_MONITOR_NAME
 		);
 		this._currentBaudRate = defaultBaudRate;
 		this._portsStatusBar = vscode.window.createStatusBarItem(
 			vscode.StatusBarAlignment.Right,
-			STATUS_BAR_PRIORITY.PORT,
+			STATUS_BAR_PRIORITY.PORT
 		);
 		this._portsStatusBar.command =
 			"deviceSimulatorExpress.common.selectSerialPort";
@@ -73,7 +73,7 @@ export class SerialMonitor implements vscode.Disposable {
 
 		this._openPortStatusBar = vscode.window.createStatusBarItem(
 			vscode.StatusBarAlignment.Right,
-			STATUS_BAR_PRIORITY.OPEN_PORT,
+			STATUS_BAR_PRIORITY.OPEN_PORT
 		);
 		this._openPortStatusBar.command =
 			"deviceSimulatorExpress.common.openSerialMonitor";
@@ -83,7 +83,7 @@ export class SerialMonitor implements vscode.Disposable {
 
 		this._baudRateStatusBar = vscode.window.createStatusBarItem(
 			vscode.StatusBarAlignment.Right,
-			STATUS_BAR_PRIORITY.BAUD_RATE,
+			STATUS_BAR_PRIORITY.BAUD_RATE
 		);
 		this._baudRateStatusBar.command =
 			"deviceSimulatorExpress.common.changeBaudRate";
@@ -96,7 +96,7 @@ export class SerialMonitor implements vscode.Disposable {
 		const lists = await SerialPortControl.list();
 		if (!lists.length) {
 			vscode.window.showInformationMessage(
-				"No serial message is available.",
+				"No serial message is available."
 			);
 			return;
 		}
@@ -132,10 +132,10 @@ export class SerialMonitor implements vscode.Disposable {
 						return a.label === b.label
 							? 0
 							: a.label > b.label
-							  ? 1
-							  : -1;
+								? 1
+								: -1;
 					}) as vscode.QuickPickItem[],
-				{ placeHolder: CONSTANTS.MISC.SELECT_PORT_PLACEHOLDER },
+				{ placeHolder: CONSTANTS.MISC.SELECT_PORT_PLACEHOLDER }
 			);
 
 			if (chosen && chosen.label) {
@@ -149,7 +149,7 @@ export class SerialMonitor implements vscode.Disposable {
 			const ans = await vscode.window.showInformationMessage(
 				CONSTANTS.WARNING.NO_SERIAL_PORT_SELECTED,
 				DialogResponses.SELECT,
-				DialogResponses.CANCEL,
+				DialogResponses.CANCEL
 			);
 			if (ans === DialogResponses.SELECT) {
 				await this.selectSerialPort(null, null);
@@ -164,7 +164,7 @@ export class SerialMonitor implements vscode.Disposable {
 				await this._serialPortControl.changePort(this._currentPort);
 			} else if (this._serialPortControl.isActive) {
 				vscode.window.showWarningMessage(
-					`Serial Monitor is already opened for ${this._currentPort}`,
+					`Serial Monitor is already opened for ${this._currentPort}`
 				);
 				return;
 			}
@@ -172,13 +172,13 @@ export class SerialMonitor implements vscode.Disposable {
 			this._serialPortControl = new SerialPortControl(
 				this._currentPort,
 				this._currentBaudRate,
-				this._outputChannel,
+				this._outputChannel
 			);
 		}
 
 		if (!this._serialPortControl.currentPort) {
 			console.error(
-				CONSTANTS.ERROR.FAILED_TO_OPEN_SERIAL_PORT(this._currentPort),
+				CONSTANTS.ERROR.FAILED_TO_OPEN_SERIAL_PORT(this._currentPort)
 			);
 			return;
 		}
@@ -191,9 +191,9 @@ export class SerialMonitor implements vscode.Disposable {
 				outChannel,
 				CONSTANTS.ERROR.FAILED_TO_OPEN_SERIAL_PORT_DUE_TO(
 					this._currentPort,
-					error,
+					error
 				),
-				true,
+				true
 			);
 		}
 	}
@@ -211,14 +211,14 @@ export class SerialMonitor implements vscode.Disposable {
 	public async changeBaudRate() {
 		const baudRates = SerialMonitor.listBaudRates();
 		const chosen = await vscode.window.showQuickPick(
-			baudRates.map((baudRate) => baudRate.toString()),
+			baudRates.map((baudRate) => baudRate.toString())
 		);
 
 		if (!chosen) {
 			logToOutputChannel(
 				outChannel,
 				CONSTANTS.WARNING.NO_RATE_SELECTED,
-				true,
+				true
 			);
 			return;
 		}
@@ -227,7 +227,7 @@ export class SerialMonitor implements vscode.Disposable {
 			logToOutputChannel(
 				outChannel,
 				CONSTANTS.WARNING.INVALID_BAUD_RATE,
-				true,
+				true
 			);
 			return;
 		}
@@ -236,7 +236,7 @@ export class SerialMonitor implements vscode.Disposable {
 			logToOutputChannel(
 				outChannel,
 				CONSTANTS.WARNING.SERIAL_MONITOR_NOT_STARTED,
-				true,
+				true
 			);
 			return;
 		}
@@ -260,7 +260,7 @@ export class SerialMonitor implements vscode.Disposable {
 			logToOutputChannel(
 				outChannel,
 				CONSTANTS.WARNING.SERIAL_PORT_NOT_STARTED,
-				true,
+				true
 			);
 			return false;
 		}

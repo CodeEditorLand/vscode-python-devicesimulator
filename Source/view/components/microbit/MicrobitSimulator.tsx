@@ -154,7 +154,7 @@ export class MicrobitSimulator extends React.Component<any, IState> {
 
 	protected refreshSimulatorClick = () => {
 		const button = window.document.getElementById(
-			CONSTANTS.ID_NAME.REFRESH_BUTTON,
+			CONSTANTS.ID_NAME.REFRESH_BUTTON
 		);
 		if (button) {
 			button.focus();
@@ -206,17 +206,17 @@ export class MicrobitSimulator extends React.Component<any, IState> {
 			if (key === BUTTONS_KEYS.BTN_A) {
 				this.imageRef.current?.updateButtonAttributes(
 					BUTTONS_KEYS.BTN_A,
-					active,
+					active
 				);
 			} else if (key === BUTTONS_KEYS.BTN_B) {
 				this.imageRef.current?.updateButtonAttributes(
 					BUTTONS_KEYS.BTN_B,
-					active,
+					active
 				);
 			} else if (key === BUTTONS_KEYS.BTN_AB) {
 				this.imageRef.current?.updateButtonAttributes(
 					BUTTONS_KEYS.BTN_AB,
-					active,
+					active
 				);
 			}
 		} else if (
@@ -227,7 +227,7 @@ export class MicrobitSimulator extends React.Component<any, IState> {
 
 			this.imageRef.current?.updateButtonAttributes(
 				BUTTONS_KEYS.BTN_A,
-				active,
+				active
 			);
 		} else if (
 			[event.code, event.key].includes(CONSTANTS.KEYBOARD_KEYS.B) &&
@@ -237,7 +237,7 @@ export class MicrobitSimulator extends React.Component<any, IState> {
 
 			this.imageRef.current?.updateButtonAttributes(
 				BUTTONS_KEYS.BTN_B,
-				active,
+				active
 			);
 		} else if (
 			[event.code, event.key].includes(CONSTANTS.KEYBOARD_KEYS.C) &&
@@ -247,7 +247,7 @@ export class MicrobitSimulator extends React.Component<any, IState> {
 
 			this.imageRef.current?.updateButtonAttributes(
 				BUTTONS_KEYS.BTN_AB,
-				active,
+				active
 			);
 		} else if (event.key === CONSTANTS.KEYBOARD_KEYS.CAPITAL_F) {
 			this.togglePlayClick();
