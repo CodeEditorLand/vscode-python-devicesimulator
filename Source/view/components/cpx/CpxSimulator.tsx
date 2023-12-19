@@ -81,23 +81,25 @@ class Simulator extends React.Component<{}, IState> {
 			return;
 		}
 		switch (message.command) {
-			case "reset-state":
+			case "reset-state": {
 				console.log("Clearing the state");
 				this.setState({
 					cpx: DEFAULT_CPX_STATE,
 					play_button: false,
 				});
 				break;
-			case "set-state":
+			}
+			case "set-state": {
 				console.log(
-					"Setting the state: " + JSON.stringify(message.state),
+					`Setting the state: ${JSON.stringify(message.state)}`,
 				);
 				this.setState({
 					cpx: message.state,
 					play_button: true,
 				});
 				break;
-			case "activate-play":
+			}
+			case "activate-play": {
 				const newRunningFile = this.state.currently_selected_file;
 
 				this.setState({
@@ -105,7 +107,8 @@ class Simulator extends React.Component<{}, IState> {
 					running_file: newRunningFile,
 				});
 				break;
-			case "visible-editors":
+			}
+			case "visible-editors": {
 				console.log(
 					"Setting active editors",
 					message.state.activePythonEditors,
@@ -114,7 +117,8 @@ class Simulator extends React.Component<{}, IState> {
 					active_editors: message.state.activePythonEditors,
 				});
 				break;
-			case "current-file":
+			}
+			case "current-file": {
 				console.log("Setting current file", message.state.running_file);
 				if (this.state.play_button) {
 					this.setState({
@@ -127,6 +131,7 @@ class Simulator extends React.Component<{}, IState> {
 					});
 				}
 				break;
+			}
 		}
 	};
 
@@ -234,47 +239,54 @@ class Simulator extends React.Component<{}, IState> {
 			this.refreshSimulatorClick();
 		} else if (event.shiftKey) {
 			switch (event.code) {
-				case CONSTANTS.KEYBOARD_KEYS.NUMERIC_ONE:
+				case CONSTANTS.KEYBOARD_KEYS.NUMERIC_ONE: {
 					element = window.document.getElementById(
 						CONSTANTS.ID_NAME.PIN_A1,
 					);
 					break;
+				}
 
-				case CONSTANTS.KEYBOARD_KEYS.NUMERIC_TWO:
+				case CONSTANTS.KEYBOARD_KEYS.NUMERIC_TWO: {
 					element = window.document.getElementById(
 						CONSTANTS.ID_NAME.PIN_A2,
 					);
 					break;
+				}
 
-				case CONSTANTS.KEYBOARD_KEYS.NUMERIC_THREE:
+				case CONSTANTS.KEYBOARD_KEYS.NUMERIC_THREE: {
 					element = window.document.getElementById(
 						CONSTANTS.ID_NAME.PIN_A3,
 					);
 					break;
+				}
 
-				case CONSTANTS.KEYBOARD_KEYS.NUMERIC_FOUR:
+				case CONSTANTS.KEYBOARD_KEYS.NUMERIC_FOUR: {
 					element = window.document.getElementById(
 						CONSTANTS.ID_NAME.PIN_A4,
 					);
 					break;
+				}
 
-				case CONSTANTS.KEYBOARD_KEYS.NUMERIC_FIVE:
+				case CONSTANTS.KEYBOARD_KEYS.NUMERIC_FIVE: {
 					element = window.document.getElementById(
 						CONSTANTS.ID_NAME.PIN_A5,
 					);
 					break;
+				}
 
-				case CONSTANTS.KEYBOARD_KEYS.NUMERIC_SIX:
+				case CONSTANTS.KEYBOARD_KEYS.NUMERIC_SIX: {
 					element = window.document.getElementById(
 						CONSTANTS.ID_NAME.PIN_A6,
 					);
 					break;
+				}
 
-				case CONSTANTS.KEYBOARD_KEYS.NUMERIC_SEVEN:
+				case CONSTANTS.KEYBOARD_KEYS.NUMERIC_SEVEN: {
 					element = window.document.getElementById(
 						CONSTANTS.ID_NAME.PIN_A7,
 					);
 					break;
+				}
 			}
 		}
 		if (element) {

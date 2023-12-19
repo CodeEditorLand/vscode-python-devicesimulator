@@ -25,9 +25,6 @@ export enum BUTTONS_KEYS {
 // Displays the SVG and call necessary svg modification.
 export class MicrobitImage extends React.Component<IProps, {}> {
 	private svgRef: React.RefObject<MicrobitSvg> = React.createRef();
-	constructor(props: IProps) {
-		super(props);
-	}
 	componentDidMount() {
 		const svgElement = this.svgRef.current;
 		if (svgElement) {
@@ -154,7 +151,7 @@ const disableAllButtons = (buttonRefs: IRefObject) => {
 };
 const updateAllLeds = (
 	leds: number[][],
-	ledRefs: Array<Array<React.RefObject<SVGRectElement>>>,
+	ledRefs: React.RefObject<SVGRectElement>[][],
 ) => {
 	for (let j = 0; j < leds.length; j++) {
 		for (let i = 0; i < leds[0].length; i++) {

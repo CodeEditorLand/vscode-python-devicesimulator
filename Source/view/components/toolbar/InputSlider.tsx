@@ -38,7 +38,7 @@ class InputSlider extends React.Component<ISliderProps, any, any> {
 							.length
 					}}[.]{0,${nbDecimals > 0 ? 1 : 0}}[0-9]{0,${nbDecimals}}$`}
 					onKeyUp={this.handleOnChange}
-					style={{ width: this.getMaximumBoxWidth() + "ch" }}
+					style={{ width: `${this.getMaximumBoxWidth()}ch` }}
 					aria-label={`${this.props.type} sensor input ${this.props.axisLabel}`}
 				/>
 				<span className="sliderArea">

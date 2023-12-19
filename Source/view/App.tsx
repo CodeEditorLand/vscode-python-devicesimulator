@@ -83,17 +83,20 @@ class App extends React.Component<{}, IState> {
 		const message = event.data;
 
 		switch (message.command) {
-			case VSCODE_MESSAGES_TO_WEBVIEW.SET_DEVICE:
+			case VSCODE_MESSAGES_TO_WEBVIEW.SET_DEVICE: {
 				if (message.active_device !== this.state.currentDevice) {
 					this.setState({ currentDevice: message.active_device });
 				}
 				break;
-			case VSCODE_MESSAGES_TO_WEBVIEW.RUN_DEVICE:
+			}
+			case VSCODE_MESSAGES_TO_WEBVIEW.RUN_DEVICE: {
 				this.setState({ viewState: VIEW_STATE.RUNNING });
 				break;
-			case VSCODE_MESSAGES_TO_WEBVIEW.PAUSE_DEVICE:
+			}
+			case VSCODE_MESSAGES_TO_WEBVIEW.PAUSE_DEVICE: {
 				this.setState({ viewState: VIEW_STATE.PAUSE });
 				break;
+			}
 		}
 	};
 }

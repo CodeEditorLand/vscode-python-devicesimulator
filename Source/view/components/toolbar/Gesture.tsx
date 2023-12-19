@@ -49,7 +49,7 @@ export class Gesture extends React.Component<IProps> {
 	}
 	private handleOnKeyDown = (e: React.KeyboardEvent) => {
 		if (e.key === CONSTANTS.KEYBOARD_KEYS.ENTER) {
-			this.sensorButtonRef!.current!.setButtonClass(true);
+			this.sensorButtonRef?.current?.setButtonClass(true);
 			if (this.props.onSendGesture) {
 				this.props.onSendGesture(true);
 			}
@@ -61,7 +61,7 @@ export class Gesture extends React.Component<IProps> {
 		onSendGesture?: (isActive: boolean) => void,
 	) => {
 		if (e.key === CONSTANTS.KEYBOARD_KEYS.ENTER) {
-			this.sensorButtonRef!.current!.setButtonClass(false);
+			this.sensorButtonRef?.current?.setButtonClass(false);
 
 			if (this.props.onSendGesture) {
 				this.props.onSendGesture(false);

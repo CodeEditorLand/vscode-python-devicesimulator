@@ -48,7 +48,7 @@ export class SerialPortControl {
 	}
 
 	public get isActive(): boolean {
-		return this._currentSerialPort && this._currentSerialPort.isOpen;
+		return this._currentSerialPort?.isOpen;
 	}
 
 	public get currentPort(): string {
@@ -61,7 +61,7 @@ export class SerialPortControl {
 			CONSTANTS.INFO.OPENING_SERIAL_PORT(this._currentPort),
 		);
 		return new Promise((resolve, reject) => {
-			if (this._currentSerialPort && this._currentSerialPort.isOpen) {
+			if (this._currentSerialPort?.isOpen) {
 				this._currentSerialPort.close((err: any) => {
 					if (err) {
 						return reject(err);
@@ -136,7 +136,7 @@ export class SerialPortControl {
 				return;
 			}
 			this._currentPort = newPort;
-			if (!this._currentSerialPort || !this.isActive) {
+			if (!(this._currentSerialPort && this.isActive)) {
 				resolve();
 				return;
 			}
@@ -153,7 +153,7 @@ export class SerialPortControl {
 
 	public stop(): Promise<any> {
 		return new Promise((resolve, reject) => {
-			if (!this._currentSerialPort || !this.isActive) {
+			if (!(this._currentSerialPort && this.isActive)) {
 				resolve(false);
 				return;
 			}
@@ -177,7 +177,7 @@ export class SerialPortControl {
 	public changeBaudRate(newBaudRate: number): Promise<any> {
 		return new Promise((resolve, reject) => {
 			this._currentBaudRate = newBaudRate;
-			if (!this._currentSerialPort || !this.isActive) {
+			if (!(this._currentSerialPort && this.isActive)) {
 				resolve();
 				return;
 			}

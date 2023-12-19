@@ -7,7 +7,7 @@ export class GettingStartedPage extends React.Component {
 	componentDidMount() {
 		this.selectRef.current?.addEventListener("change", (event: any) => {
 			const visibleElement = document.querySelector(".visibleElement");
-			const target = document.getElementById(event!.target!.value);
+			const target = document.getElementById(event?.target?.value);
 			if (visibleElement !== null) {
 				visibleElement.className = "inv";
 			}
@@ -19,7 +19,7 @@ export class GettingStartedPage extends React.Component {
 
 	render() {
 		return (
-			<React.Fragment>
+			<>
 				<div className="container">
 					<h1>Getting started</h1>
 					<select
@@ -424,7 +424,7 @@ export class GettingStartedPage extends React.Component {
 							alt="Start debugging"
 							src="https://raw.githubusercontent.com/microsoft/vscode-python-devicesimulator/dev/src/view/pages/gettingStartedPictures/debugger/start_debugging.jpg"
 							style={{ width: "390px", height: "142px" }}
-						></img>
+						/>
 						<h3 className="normalFontWeight">
 							> Set a breakpoint or multiple breakpoints
 						</h3>
@@ -436,7 +436,7 @@ export class GettingStartedPage extends React.Component {
 						<img
 							alt="Debugger Toolbar"
 							src="https://raw.githubusercontent.com/microsoft/vscode-python-devicesimulator/dev/src/view/pages/gettingStartedPictures/debugger/toolbar.png"
-						></img>
+						/>
 						<ul>
 							<li>
 								<kbd>F5</kbd> to continue / pause
@@ -466,7 +466,7 @@ export class GettingStartedPage extends React.Component {
 						<img
 							alt="debugging experience"
 							src="https://raw.githubusercontent.com/microsoft/vscode-python-devicesimulator/dev/src/view/pages/gettingStartedPictures/debugger/debugging.gif"
-						></img>
+						/>
 						<h3 className="normalFontWeight">
 							> Observe the device's state on the "Variables" tab
 							on the left when stopped at a breakpoint
@@ -475,7 +475,7 @@ export class GettingStartedPage extends React.Component {
 							alt="Debugger Variables"
 							src="https://raw.githubusercontent.com/microsoft/vscode-python-devicesimulator/dev/src/view/pages/gettingStartedPictures/debugger/debugger_vars.png"
 							style={{ width: "286px", height: "504px" }}
-						></img>
+						/>
 						<h3 className="normalFontWeight">
 							And much more! These links have more tutorials:
 						</h3>
@@ -486,7 +486,7 @@ export class GettingStartedPage extends React.Component {
 						</h3>
 					</div>
 				</div>
-			</React.Fragment>
+			</>
 		);
 	}
 }

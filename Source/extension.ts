@@ -117,8 +117,9 @@ export async function activate(context: vscode.ExtensionContext) {
 		},
 	);
 
-	const currVersionReleaseName =
-		"release_note_" + getPackageInfo(context).extensionVersion;
+	const currVersionReleaseName = `release_note_${
+		getPackageInfo(context).extensionVersion
+	}`;
 	const viewedReleaseNote = context.globalState.get(
 		currVersionReleaseName,
 		false,
@@ -130,7 +131,7 @@ export async function activate(context: vscode.ExtensionContext) {
 	}
 
 	const openWebview = () => {
-		if (currentPanel && currentPanel.webview) {
+		if (currentPanel?.webview) {
 			messagingService.setWebview(currentPanel.webview);
 			currentPanel.webview.html = webviewService.getWebviewContent(
 				WEBVIEW_TYPES.SIMULATOR,
@@ -191,7 +192,7 @@ export async function activate(context: vscode.ExtensionContext) {
 							state: message.text,
 						});
 						switch (message.command) {
-							case WEBVIEW_MESSAGES.BUTTON_PRESS:
+							case WEBVIEW_MESSAGES.BUTTON_PRESS: {
 								// Send input to the Python process
 								telemetryHandlerService.handleButtonPressTelemetry(
 									message.text,
@@ -206,11 +207,12 @@ export async function activate(context: vscode.ExtensionContext) {
 										.emitInputChanged(messageJson);
 								} else if (childProcess) {
 									childProcess.stdin.write(
-										messageJson + "\n",
+										`${messageJson}\n`,
 									);
 								}
 								break;
-							case WEBVIEW_MESSAGES.TOGGLE_PLAY_STOP:
+							}
+							case WEBVIEW_MESSAGES.TOGGLE_PLAY_STOP: {
 								console.log(`Play button ${messageJson} \n`);
 								if (message.text.state as boolean) {
 									fileSelectionService.setPathAndSendMessage(
@@ -227,13 +229,14 @@ export async function activate(context: vscode.ExtensionContext) {
 
 								if (childProcess) {
 									childProcess.stdin.write(
-										messageJson + "\n",
+										`${messageJson}\n`,
 									);
 								}
 
 								break;
+							}
 							case WEBVIEW_MESSAGES.GESTURE:
-							case WEBVIEW_MESSAGES.SENSOR_CHANGED:
+							case WEBVIEW_MESSAGES.SENSOR_CHANGED: {
 								telemetryHandlerService.handleGestureTelemetry(
 									message.text,
 								);
@@ -247,30 +250,35 @@ export async function activate(context: vscode.ExtensionContext) {
 										.emitInputChanged(messageJson);
 								} else if (childProcess) {
 									childProcess.stdin.write(
-										messageJson + "\n",
+										`${messageJson}\n`,
 									);
 								}
 								break;
-							case WEBVIEW_MESSAGES.REFRESH_SIMULATOR:
+							}
+							case WEBVIEW_MESSAGES.REFRESH_SIMULATOR: {
 								console.log("Refresh button");
 								runSimulatorCommand();
 								break;
-							case WEBVIEW_MESSAGES.SLIDER_TELEMETRY:
+							}
+							case WEBVIEW_MESSAGES.SLIDER_TELEMETRY: {
 								telemetryHandlerService.handleSensorTelemetry(
 									message.text,
 								);
 								break;
-							case WEBVIEW_MESSAGES.SWITCH_DEVICE:
+							}
+							case WEBVIEW_MESSAGES.SWITCH_DEVICE: {
 								deviceSelectionService.setCurrentActiveDevice(
 									message.text.active_device,
 								);
 								killProcessIfRunning();
 								break;
-							default:
+							}
+							default: {
 								vscode.window.showInformationMessage(
 									CONSTANTS.ERROR.UNEXPECTED_MESSAGE,
 								);
 								break;
+							}
 						}
 					},
 					undefined,
@@ -354,8 +362,9 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	const openTemplateFile = (template: string) => {
 		const fileName = template;
-		const filePath =
-			__dirname + path.sep + "templates" + path.sep + fileName;
+		const filePath = `${__dirname + path.sep}templates${
+			path.sep
+		}${fileName}`;
 		const file = fs.readFileSync(filePath, "utf8");
 		const showNewFilePopup: boolean = vscode.workspace
 			.getConfiguration()
@@ -613,7 +622,7 @@ export async function activate(context: vscode.ExtensionContext) {
 								messageToWebview = JSON.parse(message);
 								// Check the JSON is a state
 								switch (messageToWebview.type) {
-									case "state":
+									case "state": {
 										const messageData = JSON.parse(
 											messageToWebview.data,
 										);
@@ -627,8 +636,9 @@ export async function activate(context: vscode.ExtensionContext) {
 											);
 										}
 										break;
+									}
 
-									case "print":
+									case "print": {
 										console.log(
 											`Process print statement output = ${messageToWebview.data}`,
 										);
@@ -637,12 +647,14 @@ export async function activate(context: vscode.ExtensionContext) {
 											`[PRINT] ${messageToWebview.data}`,
 										);
 										break;
+									}
 
-									default:
+									default: {
 										console.log(
 											`Non-state JSON output from the process : ${messageToWebview}`,
 										);
 										break;
+									}
 								}
 							} catch (err) {
 								if (err instanceof SyntaxError) {

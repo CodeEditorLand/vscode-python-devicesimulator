@@ -150,13 +150,15 @@ class ToolBar extends React.Component<IProps, IToolbarState, any> {
 
 	private getIconModal() {
 		if (
-			!this.state.showModal ||
-			!getModalContent(
-				this.state.currentOpenedId,
-				this.props.onUpdateSensor,
-				this.props.sensorValues,
-				this.props.onSelectGesture,
-				this.props.sendGesture,
+			!(
+				this.state.showModal &&
+				getModalContent(
+					this.state.currentOpenedId,
+					this.props.onUpdateSensor,
+					this.props.sensorValues,
+					this.props.onSelectGesture,
+					this.props.sendGesture,
+				)
 			)
 		) {
 			return null;
@@ -194,7 +196,6 @@ class ToolBar extends React.Component<IProps, IToolbarState, any> {
 				{this.state.isDescriptionVisible && (
 					<Callout
 						className="description-callout"
-						role="text"
 						target=".info-icon"
 						setInitialFocus={true}
 						onDismiss={this.onDescriptionDismiss}

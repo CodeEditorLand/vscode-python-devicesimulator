@@ -31,7 +31,7 @@ export class DebuggerCommunicationServer {
 
 	constructor(
 		webviewPanel: WebviewPanel | undefined,
-		port = SERVER_INFO.DEFAULT_SERVER_PORT,
+		port,
 		deviceSelectionService: DeviceSelectionService,
 	) {
 		this.port = port;

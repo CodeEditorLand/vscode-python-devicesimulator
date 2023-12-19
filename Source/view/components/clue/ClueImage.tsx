@@ -30,9 +30,6 @@ export enum BUTTONS_KEYS {
 // Displays the SVG and call necessary svg modification.
 export class ClueImage extends React.Component<IProps, {}> {
 	private svgRef: React.RefObject<ClueSvg> = React.createRef();
-	constructor(props: IProps) {
-		super(props);
-	}
 	componentDidMount() {
 		const svgElement = this.svgRef.current;
 		if (svgElement) {

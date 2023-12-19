@@ -25,7 +25,7 @@ export class SimulatorDebugConfigurationProvider
 		const activeTextEditor = vscode.window.activeTextEditor;
 
 		// Create a configuration if no launch.json exists or if it's empty
-		if (!config.type && !config.request && !config.name) {
+		if (!(config.type || config.request || config.name)) {
 			if (
 				activeTextEditor &&
 				activeTextEditor.document.languageId === "python"

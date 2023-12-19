@@ -33,8 +33,7 @@ export class FileSelectionService {
 		activeTextDocument: vscode.TextEditor | undefined,
 	) => {
 		if (
-			activeTextDocument &&
-			activeTextDocument.document &&
+			activeTextDocument?.document &&
 			activeTextDocument.document.languageId === "python"
 		) {
 			this.setPathAndSendMessage(activeTextDocument.document.fileName);

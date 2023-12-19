@@ -19,7 +19,7 @@ class SensorButton extends React.Component<ISensorButtonProps> {
 				"sensor-button active-button",
 			);
 		} else if (this.buttonRef.current) {
-			this.buttonRef!.current!.setAttribute("class", "sensor-button");
+			this.buttonRef?.current?.setAttribute("class", "sensor-button");
 		}
 	};
 	render() {

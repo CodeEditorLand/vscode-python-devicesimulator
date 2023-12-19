@@ -33,22 +33,23 @@ export class Cpx extends React.Component {
 		const message = event.data;
 
 		switch (message.command) {
-			case VSCODE_MESSAGES_TO_WEBVIEW.RESET:
+			case VSCODE_MESSAGES_TO_WEBVIEW.RESET: {
 				this.setState({ ...DEFAULT_STATE });
 				break;
+			}
 		}
 	};
 
 	render() {
 		return (
-			<React.Fragment>
+			<>
 				<Simulator />
 				<ToolBar
 					buttonList={CPX_TOOLBAR_BUTTONS}
 					onUpdateSensor={this.updateSensor}
 					sensorValues={this.state.sensors}
 				/>
-			</React.Fragment>
+			</>
 		);
 	}
 	updateSensor = (sensor: SENSOR_LIST, value: number) => {

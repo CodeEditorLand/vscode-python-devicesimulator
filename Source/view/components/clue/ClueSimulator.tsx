@@ -64,16 +64,18 @@ export class ClueSimulator extends React.Component<any, IState> {
 			return;
 		}
 		switch (message.command) {
-			case "reset-state":
+			case "reset-state": {
 				this.setState({
 					clue: DEFAULT_CLUE_STATE,
 					play_button: false,
 				});
 				break;
-			case "set-state":
+			}
+			case "set-state": {
 				this.handleStateChangeMessage(message);
 				break;
-			case "activate-play":
+			}
+			case "activate-play": {
 				const newRunningFile = this.state.currently_selected_file;
 				this.setState({
 					play_button: !this.state.play_button,
@@ -84,12 +86,14 @@ export class ClueSimulator extends React.Component<any, IState> {
 					},
 				});
 				break;
-			case "visible-editors":
+			}
+			case "visible-editors": {
 				this.setState({
 					active_editors: message.state.activePythonEditors,
 				});
 				break;
-			case "current-file":
+			}
+			case "current-file": {
 				if (this.state.play_button) {
 					this.setState({
 						currently_selected_file: message.state.running_file,
@@ -102,6 +106,7 @@ export class ClueSimulator extends React.Component<any, IState> {
 				}
 
 				break;
+			}
 		}
 	};
 	componentDidMount() {
@@ -172,18 +177,21 @@ export class ClueSimulator extends React.Component<any, IState> {
 	protected handleButtonClick = (key: string, isActive: boolean) => {
 		let newButtonState = this.state.clue.buttons;
 		switch (key) {
-			case AB_BUTTONS_KEYS.BTN_A:
+			case AB_BUTTONS_KEYS.BTN_A: {
 				newButtonState.button_a = isActive;
 				break;
-			case AB_BUTTONS_KEYS.BTN_B:
+			}
+			case AB_BUTTONS_KEYS.BTN_B: {
 				newButtonState.button_b = isActive;
 				break;
-			case AB_BUTTONS_KEYS.BTN_AB:
+			}
+			case AB_BUTTONS_KEYS.BTN_AB: {
 				newButtonState = {
 					button_a: isActive,
 					button_b: isActive,
 				};
 				break;
+			}
 		}
 		sendMessage(WEBVIEW_MESSAGES.BUTTON_PRESS, newButtonState);
 		this.setState({

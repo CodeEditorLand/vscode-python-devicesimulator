@@ -87,7 +87,7 @@ const makeButton = (
 	svg.child(btng, "rect", {
 		fill: SvgStyle.BUTTON_OUTER,
 		height: buttonWidth,
-		id: id + "_OUTER",
+		id: `${id}_OUTER`,
 		rx: buttonCornerRadius,
 		ry: buttonCornerRadius,
 		width: buttonWidth,
@@ -97,7 +97,7 @@ const makeButton = (
 
 	const outer = btng;
 	const inner = svg.child(btng, "circle", {
-		id: id + "_INNER",
+		id: `${id}_INNER`,
 		cx: left + buttonWidth / 2,
 		cy: top + buttonWidth / 2,
 		r: buttonCircleRadius,
@@ -239,17 +239,17 @@ const setNeopixel = (
 		);
 		lum = (lum * 90) / 100 + 10; // at least 10% luminosity for the stroke
 
-		led.style.filter = `url(#neopixelglow)`;
+		led.style.filter = "url(#neopixelglow)";
 		led.style.fill = `hsl(${hue}, ${sat}%, ${innerLum}%)`;
 		led.style.stroke = `hsl(${hue}, ${sat}%, ${Math.min(
 			lum * 3,
 			SvgStyle.MAX_STROKE_LUM,
 		)}%)`;
-		led.style.strokeWidth = `1.5`;
+		led.style.strokeWidth = "1.5";
 	} else {
 		led.style.fill = SvgStyle.OFF_COLOR;
-		led.style.filter = `none`;
-		led.style.stroke = `none`;
+		led.style.filter = "none";
+		led.style.stroke = "none";
 	}
 };
 
@@ -271,14 +271,14 @@ const setupButtons = (props: IProps): void => {
 	const outButtons = ["A_OUTER", "B_OUTER", "AB_OUTER"];
 	const inButtons = ["A_INNER", "B_INNER", "AB_INNER"];
 	outButtons.forEach((buttonName) => {
-		const button = window.document.getElementById("BTN_" + buttonName);
+		const button = window.document.getElementById(`BTN_${buttonName}`);
 
 		if (button) {
 			setupButton(button, "sim-button-outer", props);
 		}
 	});
 	inButtons.forEach((buttonName) => {
-		const button = window.document.getElementById("BTN_" + buttonName);
+		const button = window.document.getElementById(`BTN_${buttonName}`);
 		if (button) {
 			setupButton(button, "sim-button", props);
 		}

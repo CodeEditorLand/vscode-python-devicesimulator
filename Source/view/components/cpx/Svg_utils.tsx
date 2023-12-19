@@ -9,7 +9,7 @@ namespace svg {
 		if (el.classList) {
 			el.classList.add(cls);
 		} else if (el.className.baseVal.indexOf(cls) < 0) {
-			el.className.baseVal += " " + cls;
+			el.className.baseVal += ` ${cls}`;
 		}
 	}
 
@@ -25,7 +25,7 @@ namespace svg {
 
 	export function hydrate(el: SVGElement, props: any) {
 		for (const k in props) {
-			if (k == "title") {
+			if (k === "title") {
 				svg.title(el, props[k]);
 			} else {
 				el.setAttributeNS(null, k, props[k]);

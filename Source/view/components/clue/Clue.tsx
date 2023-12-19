@@ -58,14 +58,15 @@ export class Clue extends React.Component<{}, IState> {
 		const message = event.data;
 
 		switch (message.command) {
-			case VSCODE_MESSAGES_TO_WEBVIEW.RESET:
+			case VSCODE_MESSAGES_TO_WEBVIEW.RESET: {
 				this.setState({ ...DEFAULT_STATE });
 				break;
+			}
 		}
 	};
 	render() {
 		return (
-			<React.Fragment>
+			<>
 				<ClueSimulator />
 				<ToolBar
 					buttonList={CLUE_TOOLBAR_BUTTONS}
@@ -74,7 +75,7 @@ export class Clue extends React.Component<{}, IState> {
 					onSelectGesture={this.updateGesture}
 					sendGesture={this.sendGesture}
 				/>
-			</React.Fragment>
+			</>
 		);
 	}
 	updateSensor = (sensor: SENSOR_LIST, value: number) => {

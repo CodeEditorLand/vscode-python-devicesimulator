@@ -117,7 +117,7 @@ gulp.task(
 //---- internal
 
 function compile(buildNls) {
-	var r = tsProject
+	let r = tsProject
 		.src()
 		.pipe(sourcemaps.init())
 		.pipe(tsProject())

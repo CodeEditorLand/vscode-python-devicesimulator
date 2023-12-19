@@ -77,7 +77,7 @@ export class SerialMonitor implements vscode.Disposable {
 		);
 		this._openPortStatusBar.command =
 			"deviceSimulatorExpress.common.openSerialMonitor";
-		this._openPortStatusBar.text = `$(plug)`;
+		this._openPortStatusBar.text = "$(plug)";
 		this._openPortStatusBar.tooltip = "Open Serial Monitor";
 		this._openPortStatusBar.show();
 
@@ -113,10 +113,7 @@ export class SerialMonitor implements vscode.Disposable {
 				}
 				return false;
 			});
-			if (
-				foundPort &&
-				!(this._serialPortControl && this._serialPortControl.isActive)
-			) {
+			if (foundPort && !this._serialPortControl?.isActive) {
 				this.updatePortListStatus(foundPort.path);
 			}
 		} else {
@@ -138,7 +135,7 @@ export class SerialMonitor implements vscode.Disposable {
 				{ placeHolder: CONSTANTS.MISC.SELECT_PORT_PLACEHOLDER },
 			);
 
-			if (chosen && chosen.label) {
+			if (chosen?.label) {
 				this.updatePortListStatus(chosen.label);
 			}
 		}
@@ -203,7 +200,7 @@ export class SerialMonitor implements vscode.Disposable {
 	}
 
 	public dispose() {
-		if (this._serialPortControl && this._serialPortControl.isActive) {
+		if (this._serialPortControl?.isActive) {
 			return this._serialPortControl.stop();
 		}
 	}
@@ -270,13 +267,13 @@ export class SerialMonitor implements vscode.Disposable {
 		if (isOpened) {
 			this._openPortStatusBar.command =
 				"deviceSimulatorExpress.common.closeSerialMonitor";
-			this._openPortStatusBar.text = `$(x)`;
+			this._openPortStatusBar.text = "$(x)";
 			this._openPortStatusBar.tooltip = "Close Serial Monitor";
 			this._baudRateStatusBar.show();
 		} else {
 			this._openPortStatusBar.command =
 				"deviceSimulatorExpress.common.openSerialMonitor";
-			this._openPortStatusBar.text = `$(plug)`;
+			this._openPortStatusBar.text = "$(plug)";
 			this._openPortStatusBar.tooltip = "Open Serial Monitor";
 			this._baudRateStatusBar.hide();
 		}

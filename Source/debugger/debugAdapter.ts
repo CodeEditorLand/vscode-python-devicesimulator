@@ -23,18 +23,21 @@ export class DebugAdapter implements DebugAdapterTracker {
 		if (message.command) {
 			// Only send pertinent debug messages
 			switch (message.command) {
-				case DEBUG_COMMANDS.CONTINUE:
+				case DEBUG_COMMANDS.CONTINUE: {
 					this.messagingService.sendStartMessage();
 					break;
-				case DEBUG_COMMANDS.STACK_TRACE:
+				}
+				case DEBUG_COMMANDS.STACK_TRACE: {
 					this.messagingService.sendPauseMessage();
 					break;
-				case DEBUG_COMMANDS.DISCONNECT:
+				}
+				case DEBUG_COMMANDS.DISCONNECT: {
 					// Triggered on stop event for debugger
 					if (!message.arguments.restart) {
 						this.debugCommunicationService.handleStopEvent();
 					}
 					break;
+				}
 			}
 		}
 	}

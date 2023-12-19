@@ -19,21 +19,24 @@ export class TelemetryHandlerService {
 
 	public handleDebuggerTelemetry = () => {
 		switch (this.deviceSelectionService.getCurrentActiveDevice()) {
-			case CONSTANTS.DEVICE_NAME.CPX:
+			case CONSTANTS.DEVICE_NAME.CPX: {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CPX_DEBUGGER_INIT_SUCCESS,
 				);
 				break;
-			case CONSTANTS.DEVICE_NAME.MICROBIT:
+			}
+			case CONSTANTS.DEVICE_NAME.MICROBIT: {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.MICROBIT_DEBUGGER_INIT_SUCCESS,
 				);
 				break;
-			case CONSTANTS.DEVICE_NAME.CLUE:
+			}
+			case CONSTANTS.DEVICE_NAME.CLUE: {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CLUE_DEBUGGER_INIT_SUCCESS,
 				);
 				break;
+			}
 			default:
 				break;
 		}
@@ -41,21 +44,24 @@ export class TelemetryHandlerService {
 
 	public handleDebuggerFailTelemetry = () => {
 		switch (this.deviceSelectionService.getCurrentActiveDevice()) {
-			case CONSTANTS.DEVICE_NAME.CPX:
+			case CONSTANTS.DEVICE_NAME.CPX: {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CPX_DEBUGGER_INIT_FAIL,
 				);
 				break;
-			case CONSTANTS.DEVICE_NAME.MICROBIT:
+			}
+			case CONSTANTS.DEVICE_NAME.MICROBIT: {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.MICROBIT_DEBUGGER_INIT_FAIL,
 				);
 				break;
-			case CONSTANTS.DEVICE_NAME.CLUE:
+			}
+			case CONSTANTS.DEVICE_NAME.CLUE: {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CLUE_DEBUGGER_INIT_FAIL,
 				);
 				break;
+			}
 			default:
 				break;
 		}
@@ -63,15 +69,18 @@ export class TelemetryHandlerService {
 
 	public handleButtonPressTelemetry = (buttonState: any) => {
 		switch (this.deviceSelectionService.getCurrentActiveDevice()) {
-			case CONSTANTS.DEVICE_NAME.CPX:
+			case CONSTANTS.DEVICE_NAME.CPX: {
 				this.handleCPXButtonPressTelemetry(buttonState);
 				break;
-			case CONSTANTS.DEVICE_NAME.MICROBIT:
+			}
+			case CONSTANTS.DEVICE_NAME.MICROBIT: {
 				this.handleMicrobitButtonPressTelemetry(buttonState);
 				break;
-			case CONSTANTS.DEVICE_NAME.CLUE:
+			}
+			case CONSTANTS.DEVICE_NAME.CLUE: {
 				this.handleClueButtonPressTelemetry(buttonState);
 				break;
+			}
 			default:
 				break;
 		}
@@ -79,9 +88,10 @@ export class TelemetryHandlerService {
 
 	public handleGestureTelemetry = (sensorState: any) => {
 		switch (this.deviceSelectionService.getCurrentActiveDevice()) {
-			case CONSTANTS.DEVICE_NAME.CPX:
+			case CONSTANTS.DEVICE_NAME.CPX: {
 				this.handleCPXGestureTelemetry(sensorState);
 				break;
+			}
 			case CONSTANTS.DEVICE_NAME.MICROBIT:
 				break;
 			default:
@@ -91,15 +101,18 @@ export class TelemetryHandlerService {
 
 	public handleSensorTelemetry = (sensor: string) => {
 		switch (this.deviceSelectionService.getCurrentActiveDevice()) {
-			case CONSTANTS.DEVICE_NAME.CPX:
+			case CONSTANTS.DEVICE_NAME.CPX: {
 				this.handleCPXSensorTelemetry(sensor);
 				break;
-			case CONSTANTS.DEVICE_NAME.MICROBIT:
+			}
+			case CONSTANTS.DEVICE_NAME.MICROBIT: {
 				this.handleMicrobitSensorTelemetry(sensor);
 				break;
-			case CONSTANTS.DEVICE_NAME.CLUE:
+			}
+			case CONSTANTS.DEVICE_NAME.CLUE: {
 				this.handleClueSensorTelemetry(sensor);
 				break;
+			}
 			default:
 				break;
 		}
@@ -135,41 +148,48 @@ export class TelemetryHandlerService {
 
 	public handleCPXSensorTelemetry = (sensor: string) => {
 		switch (sensor) {
-			case "temperature":
+			case "temperature": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CPX_SIMULATOR_TEMPERATURE_SENSOR,
 				);
 				break;
-			case "light":
+			}
+			case "light": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CPX_SIMULATOR_LIGHT_SENSOR,
 				);
 				break;
-			case "motion_x":
+			}
+			case "motion_x": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CPX_SIMULATOR_MOTION_SENSOR,
 				);
 				break;
-			case "motion_y":
+			}
+			case "motion_y": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CPX_SIMULATOR_MOTION_SENSOR,
 				);
 				break;
-			case "motion_z":
+			}
+			case "motion_z": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CPX_SIMULATOR_MOTION_SENSOR,
 				);
 				break;
-			case "shake":
+			}
+			case "shake": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CPX_SIMULATOR_SHAKE,
 				);
 				break;
-			case "touch":
+			}
+			case "touch": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CPX_SIMULATOR_CAPACITIVE_TOUCH,
 				);
 				break;
+			}
 		}
 	};
 
@@ -191,36 +211,42 @@ export class TelemetryHandlerService {
 
 	public handleMicrobitSensorTelemetry = (sensor: string) => {
 		switch (sensor) {
-			case "temperature":
+			case "temperature": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.MICROBIT_SIMULATOR_TEMPERATURE_SENSOR,
 				);
 				break;
-			case "light":
+			}
+			case "light": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.MICROBIT_SIMULATOR_LIGHT_SENSOR,
 				);
 				break;
-			case "motion_x":
+			}
+			case "motion_x": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.MICROBIT_SIMULATOR_MOTION_SENSOR,
 				);
 				break;
-			case "motion_y":
+			}
+			case "motion_y": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.MICROBIT_SIMULATOR_MOTION_SENSOR,
 				);
 				break;
-			case "motion_z":
+			}
+			case "motion_z": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.MICROBIT_SIMULATOR_MOTION_SENSOR,
 				);
 				break;
-			case "gesture":
+			}
+			case "gesture": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.MICROBIT_SIMULATOR_GESTURE_SENSOR,
 				);
 				break;
+			}
 		}
 	};
 
@@ -242,116 +268,137 @@ export class TelemetryHandlerService {
 
 	public handleClueSensorTelemetry = (sensor: string) => {
 		switch (sensor) {
-			case "temperature":
+			case "temperature": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CLUE_SIMULATOR_TEMPERATURE_SENSOR,
 				);
 				break;
-			case "light_r":
+			}
+			case "light_r": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CLUE_SIMULATOR_LIGHT_SENSOR,
 				);
 				break;
-			case "light_g":
+			}
+			case "light_g": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CLUE_SIMULATOR_LIGHT_SENSOR,
 				);
 				break;
-			case "light_b":
+			}
+			case "light_b": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CLUE_SIMULATOR_LIGHT_SENSOR,
 				);
 				break;
-			case "light_c":
+			}
+			case "light_c": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CLUE_SIMULATOR_LIGHT_SENSOR,
 				);
 				break;
-			case "motion_x":
+			}
+			case "motion_x": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CLUE_SIMULATOR_MOTION_SENSOR,
 				);
 				break;
-			case "motion_y":
+			}
+			case "motion_y": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CLUE_SIMULATOR_MOTION_SENSOR,
 				);
 				break;
-			case "motion_z":
+			}
+			case "motion_z": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CLUE_SIMULATOR_MOTION_SENSOR,
 				);
 				break;
-			case "gesture":
+			}
+			case "gesture": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CLUE_SIMULATOR_GESTURE_SENSOR,
 				);
 				break;
-			case "humidity":
+			}
+			case "humidity": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CLUE_SIMULATOR_HUMIDITY_SENSOR,
 				);
 				break;
-			case "pressure":
+			}
+			case "pressure": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CLUE_SIMULATOR_PRESSURE_SENSOR,
 				);
 				break;
-			case "proximity":
+			}
+			case "proximity": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CLUE_SIMULATOR_PROXIMITY_SENSOR,
 				);
 				break;
-			case "gyro_x":
+			}
+			case "gyro_x": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CLUE_SIMULATOR_GYRO_SENSOR,
 				);
 				break;
-			case "gyro_y":
+			}
+			case "gyro_y": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CLUE_SIMULATOR_GYRO_SENSOR,
 				);
 				break;
-			case "gyro_z":
+			}
+			case "gyro_z": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CLUE_SIMULATOR_GYRO_SENSOR,
 				);
 				break;
-			case "magnet_x":
+			}
+			case "magnet_x": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CLUE_SIMULATOR_MAGNET_SENSOR,
 				);
 				break;
-			case "magnet_y":
+			}
+			case "magnet_y": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CLUE_SIMULATOR_MAGNET_SENSOR,
 				);
 				break;
-			case "magnet_z":
+			}
+			case "magnet_z": {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CLUE_SIMULATOR_MAGNET_SENSOR,
 				);
 				break;
+			}
 		}
 	};
 
 	public handleNewFileErrorTelemetry = () => {
 		switch (this.deviceSelectionService.getCurrentActiveDevice()) {
-			case CONSTANTS.DEVICE_NAME.CPX:
+			case CONSTANTS.DEVICE_NAME.CPX: {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CPX_ERROR_COMMAND_NEW_FILE,
 				);
 				break;
-			case CONSTANTS.DEVICE_NAME.MICROBIT:
+			}
+			case CONSTANTS.DEVICE_NAME.MICROBIT: {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.MICROBIT_ERROR_COMMAND_NEW_FILE,
 				);
 				break;
-			case CONSTANTS.DEVICE_NAME.CLUE:
+			}
+			case CONSTANTS.DEVICE_NAME.CLUE: {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.CLUE_ERROR_COMMAND_NEW_FILE,
 				);
 				break;
+			}
 			default:
 				break;
 		}
@@ -361,24 +408,27 @@ export class TelemetryHandlerService {
 		let deployTelemetryEvent: string;
 		let deployPerformanceTelemetryEvent: string;
 		switch (device) {
-			case CONSTANTS.DEVICE_NAME.CPX:
+			case CONSTANTS.DEVICE_NAME.CPX: {
 				deployTelemetryEvent =
 					TelemetryEventName.CPX_COMMAND_DEPLOY_DEVICE;
 				deployPerformanceTelemetryEvent =
 					TelemetryEventName.CPX_COMMAND_DEPLOY_DEVICE;
 				break;
-			case CONSTANTS.DEVICE_NAME.MICROBIT:
+			}
+			case CONSTANTS.DEVICE_NAME.MICROBIT: {
 				deployTelemetryEvent =
 					TelemetryEventName.MICROBIT_COMMAND_DEPLOY_DEVICE;
 				deployPerformanceTelemetryEvent =
 					TelemetryEventName.MICROBIT_COMMAND_DEPLOY_DEVICE;
 				break;
-			case CONSTANTS.DEVICE_NAME.CLUE:
+			}
+			case CONSTANTS.DEVICE_NAME.CLUE: {
 				deployTelemetryEvent =
 					TelemetryEventName.CLUE_COMMAND_DEPLOY_DEVICE;
 				deployPerformanceTelemetryEvent =
 					TelemetryEventName.CLUE_COMMAND_DEPLOY_DEVICE;
 				break;
+			}
 		}
 		return {
 			deployTelemetryEvent,
@@ -392,10 +442,11 @@ export class TelemetryHandlerService {
 	) => {
 		let telemetryErrorName: string;
 		switch (device) {
-			case CONSTANTS.DEVICE_NAME.CPX:
+			case CONSTANTS.DEVICE_NAME.CPX: {
 				telemetryErrorName =
 					TelemetryEventName.CPX_ERROR_PYTHON_DEVICE_PROCESS;
 				break;
+			}
 			case CONSTANTS.DEVICE_NAME.MICROBIT:
 				telemetryErrorName =
 					TelemetryEventName.MICROBIT_ERROR_PYTHON_DEVICE_PROCESS;
@@ -415,31 +466,35 @@ export class TelemetryHandlerService {
 		let successCommandDeployDevice: string;
 		let errorCommandDeployWithoutDevice: string;
 		switch (device) {
-			case CONSTANTS.DEVICE_NAME.CPX:
+			case CONSTANTS.DEVICE_NAME.CPX: {
 				successCommandDeployDevice =
 					TelemetryEventName.CPX_SUCCESS_COMMAND_DEPLOY_DEVICE;
 				errorCommandDeployWithoutDevice =
 					TelemetryEventName.CPX_ERROR_DEPLOY_WITHOUT_DEVICE;
 				break;
-			case CONSTANTS.DEVICE_NAME.MICROBIT:
+			}
+			case CONSTANTS.DEVICE_NAME.MICROBIT: {
 				successCommandDeployDevice =
 					TelemetryEventName.MICROBIT_SUCCESS_COMMAND_DEPLOY_DEVICE;
 				errorCommandDeployWithoutDevice =
 					TelemetryEventName.MICROBIT_ERROR_DEPLOY_WITHOUT_DEVICE;
 				break;
-			case CONSTANTS.DEVICE_NAME.CLUE:
+			}
+			case CONSTANTS.DEVICE_NAME.CLUE: {
 				successCommandDeployDevice =
 					TelemetryEventName.CLUE_SUCCESS_COMMAND_DEPLOY_DEVICE;
 				errorCommandDeployWithoutDevice =
 					TelemetryEventName.CLUE_ERROR_DEPLOY_WITHOUT_DEVICE;
 				break;
+			}
 		}
 
 		switch (message.type) {
-			case "complete":
+			case "complete": {
 				this.telemetryAI.trackFeatureUsage(successCommandDeployDevice);
 				break;
-			case "no-device":
+			}
+			case "no-device": {
 				this.telemetryAI.trackFeatureUsage(
 					errorCommandDeployWithoutDevice,
 				);
@@ -483,16 +538,19 @@ export class TelemetryHandlerService {
 					vscode.window.showErrorMessage(CONSTANTS.ERROR.NO_DEVICE);
 				}
 				break;
-			case "low-python-version":
+			}
+			case "low-python-version": {
 				vscode.window.showErrorMessage(
 					CONSTANTS.ERROR.LOW_PYTHON_VERSION_FOR_MICROBIT_DEPLOYMENT,
 				);
 				break;
-			default:
+			}
+			default: {
 				console.log(
 					`Non-state JSON output from the process : ${message}`,
 				);
 				break;
+			}
 		}
 	};
 
@@ -500,24 +558,27 @@ export class TelemetryHandlerService {
 		let openSimulatorTelemetryEvent: string;
 		let openSimulatorPerformanceTelemetryEvent: string;
 		switch (device) {
-			case CONSTANTS.DEVICE_NAME.CPX:
+			case CONSTANTS.DEVICE_NAME.CPX: {
 				openSimulatorTelemetryEvent =
 					TelemetryEventName.CPX_COMMAND_OPEN_SIMULATOR;
 				openSimulatorPerformanceTelemetryEvent =
 					TelemetryEventName.CPX_PERFORMANCE_OPEN_SIMULATOR;
 				break;
-			case CONSTANTS.DEVICE_NAME.MICROBIT:
+			}
+			case CONSTANTS.DEVICE_NAME.MICROBIT: {
 				openSimulatorTelemetryEvent =
 					TelemetryEventName.MICROBIT_COMMAND_OPEN_SIMULATOR;
 				openSimulatorPerformanceTelemetryEvent =
 					TelemetryEventName.MICROBIT_PERFORMANCE_OPEN_SIMULATOR;
 				break;
-			case CONSTANTS.DEVICE_NAME.CLUE:
+			}
+			case CONSTANTS.DEVICE_NAME.CLUE: {
 				openSimulatorTelemetryEvent =
 					TelemetryEventName.CLUE_COMMAND_OPEN_SIMULATOR;
 				openSimulatorPerformanceTelemetryEvent =
 					TelemetryEventName.CLUE_PERFORMANCE_OPEN_SIMULATOR;
 				break;
+			}
 		}
 		return {
 			openSimulatorTelemetryEvent,
@@ -529,24 +590,27 @@ export class TelemetryHandlerService {
 		let newFileTelemetryEvent: string;
 		let newFilePerformanceTelemetryEvent: string;
 		switch (device) {
-			case CONSTANTS.DEVICE_NAME.CPX:
+			case CONSTANTS.DEVICE_NAME.CPX: {
 				newFileTelemetryEvent =
 					TelemetryEventName.CPX_COMMAND_OPEN_SIMULATOR;
 				newFilePerformanceTelemetryEvent =
 					TelemetryEventName.CPX_PERFORMANCE_OPEN_SIMULATOR;
 				break;
-			case CONSTANTS.DEVICE_NAME.MICROBIT:
+			}
+			case CONSTANTS.DEVICE_NAME.MICROBIT: {
 				newFileTelemetryEvent =
 					TelemetryEventName.MICROBIT_COMMAND_OPEN_SIMULATOR;
 				newFilePerformanceTelemetryEvent =
 					TelemetryEventName.MICROBIT_PERFORMANCE_OPEN_SIMULATOR;
 				break;
-			case CONSTANTS.DEVICE_NAME.CLUE:
+			}
+			case CONSTANTS.DEVICE_NAME.CLUE: {
 				newFileTelemetryEvent =
 					TelemetryEventName.CLUE_COMMAND_OPEN_SIMULATOR;
 				newFilePerformanceTelemetryEvent =
 					TelemetryEventName.CLUE_PERFORMANCE_OPEN_SIMULATOR;
 				break;
+			}
 		}
 		return {
 			newFileTelemetryEvent,

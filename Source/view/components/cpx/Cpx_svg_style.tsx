@@ -31,9 +31,9 @@ export function rgbToHsl(
 	const cMin = Math.min(r$, g$, b$);
 	const cMax = Math.max(r$, g$, b$);
 	const cDelta = cMax - cMin;
-	let h = 0,
-		s: number,
-		l: number;
+	let h = 0;
+	let s: number;
+	let l: number;
 	const maxAndMin = cMax + cMin;
 
 	// Luminosity
@@ -45,15 +45,18 @@ export function rgbToHsl(
 	} else {
 		// Hue
 		switch (cMax) {
-			case r$:
+			case r$: {
 				h = 60 * (((g$ - b$) / cDelta) % 6);
 				break;
-			case g$:
+			}
+			case g$: {
 				h = 60 * ((b$ - r$) / cDelta + 2);
 				break;
-			case b$:
+			}
+			case b$: {
 				h = 60 * ((r$ - g$) / cDelta + 4);
 				break;
+			}
 		}
 
 		// Saturation

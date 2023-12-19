@@ -131,7 +131,7 @@ export function padStart(
 		if (sourceString.length > targetLength) {
 			return sourceString;
 		} else {
-			targetLength = targetLength - sourceString.length;
+			targetLength -= sourceString.length;
 			if (targetLength > padString.length) {
 				padString += padString.repeat(targetLength / padString.length); // append to original to ensure we are longer than needed
 			}
@@ -225,7 +225,7 @@ export const createEscapedPath = (...pieces: string[]) => {
 
 	// escape all special characters
 	// https://stackoverflow.com/questions/1779858/how-do-i-escape-a-string-for-a-shell-command-in-node
-	return `"` + initialPath.replace(/(["'$`\\])/g, "\\$1") + `"`;
+	return `"${initialPath.replace(/(["'$`\\])/g, "\\$1")}"`;
 };
 
 export const getTelemetryState = () => {

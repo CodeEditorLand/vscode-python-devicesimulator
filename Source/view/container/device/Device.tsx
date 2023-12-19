@@ -13,17 +13,12 @@ interface IProps {
 // Container to switch between multiple devices
 
 export class Device extends React.Component<IProps, {}> {
-	constructor(props: IProps) {
-		super(props);
-	}
 	render() {
 		const { currentSelectedDevice } = this.props;
 
 		return (
 			<div className="device-container">
-				<React.Fragment>
-					{loadSelectedDevice(currentSelectedDevice)}
-				</React.Fragment>
+				{loadSelectedDevice(currentSelectedDevice)}
 			</div>
 		);
 	}
