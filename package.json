@@ -237,7 +237,7 @@
 	],
 	"dependencies": {
 		"@babel/preset-typescript": "7.23.3",
-		"@testing-library/jest-dom": "6.1.6",
+		"@testing-library/jest-dom": "6.2.0",
 		"@testing-library/react": "14.1.2",
 		"@types/jest": "29.5.11",
 		"@types/open": "6.1.0",
@@ -256,7 +256,7 @@
 		"react-dom": "18.2.0",
 		"react-intl": "6.5.5",
 		"react-test-renderer": "18.2.0",
-		"socket.io": "4.7.2",
+		"socket.io": "4.7.3",
 		"svg-inline-react": "3.2.1",
 		"ts-jest": "29.1.1",
 		"usb-native": "6.0.0",
