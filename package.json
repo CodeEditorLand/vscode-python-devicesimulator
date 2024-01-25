@@ -237,7 +237,7 @@
 	],
 	"dependencies": {
 		"@babel/preset-typescript": "7.23.3",
-		"@testing-library/jest-dom": "6.2.1",
+		"@testing-library/jest-dom": "6.3.0",
 		"@testing-library/react": "14.1.2",
 		"@types/jest": "29.5.11",
 		"@types/open": "6.1.0",
@@ -266,7 +266,7 @@
 	},
 	"devDependencies": {
 		"@types/glob": "8.1.0",
-		"@types/node": "20.11.5",
+		"@types/node": "20.11.6",
 		"@types/react": "18.2.48",
 		"@types/react-dom": "18.2.18",
 		"@types/vscode": "1.85.0",
@@ -296,7 +296,7 @@
 		"vsce": "1.47.0",
 		"vscode-nls-dev": "4.0.4",
 		"vscode-test": "1.0.0",
-		"webpack": "5.89.0",
+		"webpack": "5.90.0",
 		"webpack-cli": "5.1.4"
 	},
 	"extensionDependencies": [
