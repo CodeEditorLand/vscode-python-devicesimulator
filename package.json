@@ -283,7 +283,7 @@
         "typescript": "5.3.3",
         "typescript-react-intl": "0.4.1",
         "version-from-git": "1.1.1",
-        "vsce": "1.47.0",
+        "vsce": "1.103.1",
         "vscode-nls-dev": "4.0.4",
         "vscode-test": "1.0.0",
         "webpack": "5.90.0",
