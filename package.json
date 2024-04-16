@@ -1,46 +1,15 @@
 {
-	"name": "__EXTENSIONNAME__",
-	"displayName": "__DISPLAYNAME__",
-	"version": "0.0.1",
-	"private": false,
-	"description": "__DESCRIPTION__",
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandPythonDeviceSimulator#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandPythonDeviceSimulator/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/LandPythonDeviceSimulator.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Land",
-		"email": "Land@Playform.Cloud",
-		"url": "HTTPS://Land.Playform.Cloud"
-	},
-	"type": "module",
-	"main": "./out/extension.js",
-	"scripts": {
-		"Document": "Document 'Source/**/*.ts'",
-		"build": "gulp build",
-		"check:python": "black src --check",
-		"check:ts": "prettier --config .prettierrc.yaml --check src/**/*.{css,ts,tsx}",
-		"clean": "gulp clean",
-		"compile": "npm-run-all compile:*",
-		"compile:extension": "gulp compile",
-		"compile:views": "webpack --mode development",
-		"format:python": "black src",
-		"format:ts": "prettier --config .prettierrc.yaml --write src/**/*.{css,ts,tsx}",
-		"lint:python": "pylint src",
-		"lint:ts": "tslint -c tslint.json src/**/*.{ts,tsx}",
-		"prepublishOnly": "Build 'Source/**/*.ts'",
-		"start": "webpack-dev-server",
-		"test:api-tests": "pytest src",
-		"test:extension-tests": "node ./out/test/runTest.js",
-		"test:ts": "jest",
-		"watch:extension": "tsc --watch",
-		"watch:views": "webpack --watch --mode development"
-	},
+	"activationEvents": [
+		"onCommand:deviceSimulatorExpress.common.installDependencies",
+		"onCommand:deviceSimulatorExpress.common.openSerialMonitor",
+		"onCommand:deviceSimulatorExpress.common.runSimulator",
+		"onCommand:deviceSimulatorExpress.common.selectSerialPort",
+		"onCommand:deviceSimulatorExpress.common.gettingStarted",
+		"onCommand:deviceSimulatorExpress.common.deployToDevice",
+		"onCommand:deviceSimulatorExpress.common.newFile",
+		"onCommand:deviceSimulatorExpress.common.openSimulator",
+		"onDebug"
+	],
 	"contributes": {
 		"breakpoints": [
 			{
@@ -225,17 +194,6 @@
 			}
 		]
 	},
-	"activationEvents": [
-		"onCommand:deviceSimulatorExpress.common.installDependencies",
-		"onCommand:deviceSimulatorExpress.common.openSerialMonitor",
-		"onCommand:deviceSimulatorExpress.common.runSimulator",
-		"onCommand:deviceSimulatorExpress.common.selectSerialPort",
-		"onCommand:deviceSimulatorExpress.common.gettingStarted",
-		"onCommand:deviceSimulatorExpress.common.deployToDevice",
-		"onCommand:deviceSimulatorExpress.common.newFile",
-		"onCommand:deviceSimulatorExpress.common.openSimulator",
-		"onDebug"
-	],
 	"dependencies": {
 		"@types/open": "6.1.0",
 		"@types/socket.io": "3.0.1",
@@ -248,9 +206,9 @@
 		"usb-native": "6.0.0",
 		"util": "0.12.5"
 	},
+	"description": "__DESCRIPTION__",
 	"devDependencies": {
 		"@playform/build": "0.0.7",
-		"@playform/document": "0.0.6",
 		"@types/glob": "8.1.0",
 		"@types/node": "20.12.7",
 		"css-loader": "7.1.1",
@@ -264,13 +222,34 @@
 		"ts-loader": "9.5.1",
 		"version-from-git": "1.1.1"
 	},
+	"displayName": "__DISPLAYNAME__",
 	"extensionDependencies": [
 		"ms-python.python"
 	],
-	"publishConfig": {
-		"access": "public"
-	},
 	"icon": "assets/icon.png",
+	"instrumentationKey": "__AIKEY__",
+	"main": "./out/extension.js",
+	"name": "__EXTENSIONNAME__",
 	"preview": true,
-	"instrumentationKey": "__AIKEY__"
+	"scripts": {
+		"Document": "Document 'Source/**/*.ts'",
+		"build": "gulp build",
+		"check:python": "black src --check",
+		"check:ts": "prettier --config .prettierrc.yaml --check src/**/*.{css,ts,tsx}",
+		"clean": "gulp clean",
+		"compile": "npm-run-all compile:*",
+		"compile:extension": "gulp compile",
+		"compile:views": "webpack --mode development",
+		"format:python": "black src",
+		"format:ts": "prettier --config .prettierrc.yaml --write src/**/*.{css,ts,tsx}",
+		"lint:python": "pylint src",
+		"lint:ts": "tslint -c tslint.json src/**/*.{ts,tsx}",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
+		"start": "webpack-dev-server",
+		"test:api-tests": "pytest src",
+		"test:extension-tests": "node ./out/test/runTest.js",
+		"test:ts": "jest",
+		"watch:extension": "tsc --watch",
+		"watch:views": "webpack --watch --mode development"
+	}
 }
