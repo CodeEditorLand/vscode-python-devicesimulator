@@ -10,6 +10,14 @@
 		"onCommand:deviceSimulatorExpress.common.openSimulator",
 		"onDebug"
 	],
+	"author": {
+		"email": "Land@Playform.Cloud",
+		"name": "Land",
+		"url": "HTTPS://Land.Playform.Cloud"
+	},
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandPythonDeviceSimulator/issues"
+	},
 	"contributes": {
 		"breakpoints": [
 			{
@@ -209,6 +217,7 @@
 	"description": "__DESCRIPTION__",
 	"devDependencies": {
 		"@playform/build": "0.0.7",
+		"@playform/document": "0.0.6",
 		"@types/glob": "8.1.0",
 		"@types/node": "20.12.7",
 		"css-loader": "7.1.1",
@@ -226,11 +235,21 @@
 	"extensionDependencies": [
 		"ms-python.python"
 	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandPythonDeviceSimulator#readme",
 	"icon": "assets/icon.png",
 	"instrumentationKey": "__AIKEY__",
+	"license": "SEE LICENSE IN LICENSE",
 	"main": "./out/extension.js",
 	"name": "__EXTENSIONNAME__",
 	"preview": true,
+	"private": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandPythonDeviceSimulator.git"
+	},
 	"scripts": {
 		"Document": "Document 'Source/**/*.ts'",
 		"build": "gulp build",
@@ -251,5 +270,7 @@
 		"test:ts": "jest",
 		"watch:extension": "tsc --watch",
 		"watch:views": "webpack --watch --mode development"
-	}
+	},
+	"type": "module",
+	"version": "0.0.1"
 }
