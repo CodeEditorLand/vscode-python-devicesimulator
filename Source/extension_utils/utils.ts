@@ -104,7 +104,7 @@ export function mkdirRecursivelySync(dirPath: string): void {
 export function directoryExistsSync(dirPath: string): boolean {
     try {
         return fs.statSync(dirPath).isDirectory();
-    } catch (e) {
+    } catch (_Error) {
         return false;
     }
 }
