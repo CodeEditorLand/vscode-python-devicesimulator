@@ -4,6 +4,9 @@
 	"version": "0.0.1",
 	"private": false,
 	"description": "__DESCRIPTION__",
+	"keywords": [
+		"land"
+	],
 	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandPythonDeviceSimulator#readme",
 	"bugs": {
 		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandPythonDeviceSimulator/issues"
