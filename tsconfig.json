@@ -1,13 +1,24 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "es6",
-    "outDir": "out",
-    "lib": ["es6", "dom"],
-    "sourceMap": true,
-    "rootDir": "src",
-    "jsx": "react",
-    "alwaysStrict": true
-  },
-  "exclude": ["node_modules", ".vscode-test"]
+	"compilerOptions": {
+		"alwaysStrict": true,
+		"baseUrl": "./",
+		"jsx": "react",
+		"lib": [
+			"es6",
+			"dom"
+		],
+		"module": "commonjs",
+		"outDir": "Target",
+		"rootDir": "Source",
+		"sourceMap": true,
+		"target": "es6"
+	},
+	"exclude": [
+		"node_modules",
+		".vscode-test"
+	],
+	"extends": "@playform/build/tsconfig",
+	"include": [
+		"Source"
+	]
 }
