@@ -255,7 +255,7 @@
 		"@playform/build": "0.0.7",
 		"@playform/document": "0.0.6",
 		"@types/glob": "8.1.0",
-		"@types/node": "20.12.7",
+		"@types/node": "20.12.10",
 		"css-loader": "7.1.1",
 		"del": "7.1.0",
 		"event-stream": "4.0.1",
