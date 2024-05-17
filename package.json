@@ -1,27 +1,7 @@
 {
 	"name": "__EXTENSIONNAME__",
 	"displayName": "__DISPLAYNAME__",
-	"version": "0.0.1",
-	"private": false,
 	"description": "__DESCRIPTION__",
-	"keywords": [
-		"land"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandPythonDeviceSimulator#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandPythonDeviceSimulator/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/LandPythonDeviceSimulator.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "🛬 Land —",
-		"email": "Land@PlayForm.Cloud",
-		"url": "HTTPS://Land.PlayForm.Cloud"
-	},
-	"type": "module",
 	"main": "./out/extension.js",
 	"scripts": {
 		"Document": "Document 'Source/**/*.ts'",
@@ -253,7 +233,6 @@
 	},
 	"devDependencies": {
 		"@playform/build": "0.0.7",
-		"@playform/document": "0.0.6",
 		"@types/glob": "8.1.0",
 		"@types/node": "20.12.10",
 		"css-loader": "7.1.1",
@@ -270,9 +249,6 @@
 	"extensionDependencies": [
 		"ms-python.python"
 	],
-	"publishConfig": {
-		"access": "public"
-	},
 	"icon": "assets/icon.png",
 	"preview": true,
 	"instrumentationKey": "__AIKEY__"
