@@ -222,7 +222,7 @@
 		"@types/socket.io": "3.0.1",
 		"compare-versions": "6.1.0",
 		"eventemitter2": "6.4.9",
-		"glob": "10.3.15",
+		"glob": "10.3.16",
 		"open": "10.1.0",
 		"os": "0.1.2",
 		"socket.io": "4.7.5",
@@ -232,7 +232,7 @@
 	"devDependencies": {
 		"@types/glob": "8.1.0",
 		"@types/node": "20.12.12",
-		"css-loader": "7.1.1",
+		"css-loader": "7.1.2",
 		"del": "7.1.0",
 		"event-stream": "4.0.1",
 		"less": "4.2.0",
