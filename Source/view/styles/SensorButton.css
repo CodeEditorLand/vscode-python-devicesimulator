@@ -1,0 +1,29 @@
+.sensor-button {
+	color: var(--vscode-badgeForegroundOverride);
+	text-align: center;
+	background-color: var(--vscode-button-background);
+	width: 100%;
+	height: 32px;
+	font-weight: bolder;
+	border-color: var(--vscode-highContrastButtonBorderOverride-color);
+	border-width: 1px;
+	border-style: solid;
+	padding: 4px;
+}
+
+.sensor-button:focus,
+.sensor-button:active {
+	outline-width: thick;
+	outline-offset: 4px;
+	outline: 2px solid var(--vscode-focusBorder);
+	background-color: var(--vscode-button-hoverBackground);
+}
+
+.sensor-button:active,
+.active-button {
+	opacity: 0.5;
+}
+
+.sensor-button:hover {
+	background-color: var(--vscode-button-hoverBackground);
+}
