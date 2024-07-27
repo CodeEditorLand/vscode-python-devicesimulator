@@ -62,6 +62,7 @@ debugger_communication_client.init_connection(server_port)
 utils.abs_path_to_user_file = abs_path_to_code_file
 utils.debug_mode = True
 
+
 # overriding print function so that it shows on clue terminal
 def print_decorator(func):
     global curr_terminal

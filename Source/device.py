@@ -99,7 +99,9 @@ class Device:
         except IOError:
             self.error_message = CONSTANTS.NO_MICROBIT_DETECTED_ERROR_TITLE
             print(
-                self.error_message, file=sys.stderr, flush=True,
+                self.error_message,
+                file=sys.stderr,
+                flush=True,
             )
             message = {"type": "no-device"}
 

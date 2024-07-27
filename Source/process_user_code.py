@@ -57,6 +57,7 @@ import board
 # get handle to terminal for clue
 curr_terminal = board.DISPLAY.terminal
 
+
 # Handle User Inputs Thread
 class UserInput(threading.Thread):
     def __init__(self):
