@@ -1,27 +1,15 @@
 {
-	"name": "__EXTENSIONNAME__",
-	"displayName": "__DISPLAYNAME__",
-	"description": "__DESCRIPTION__",
-	"main": "./out/extension.js",
-	"scripts": {
-		"build": "gulp build",
-		"check:python": "black src --check",
-		"check:ts": "prettier --config .prettierrc.yaml --check src/**/*.{css,ts,tsx}",
-		"clean": "gulp clean",
-		"compile": "npm-run-all compile:*",
-		"compile:extension": "gulp compile",
-		"compile:views": "webpack --mode development",
-		"format:python": "black src",
-		"format:ts": "prettier --config .prettierrc.yaml --write src/**/*.{css,ts,tsx}",
-		"lint:python": "pylint src",
-		"lint:ts": "tslint -c tslint.json src/**/*.{ts,tsx}",
-		"start": "webpack-dev-server",
-		"test:api-tests": "pytest src",
-		"test:extension-tests": "node ./out/test/runTest.js",
-		"test:ts": "jest",
-		"watch:extension": "tsc --watch",
-		"watch:views": "webpack --watch --mode development"
-	},
+	"activationEvents": [
+		"onCommand:deviceSimulatorExpress.common.installDependencies",
+		"onCommand:deviceSimulatorExpress.common.openSerialMonitor",
+		"onCommand:deviceSimulatorExpress.common.runSimulator",
+		"onCommand:deviceSimulatorExpress.common.selectSerialPort",
+		"onCommand:deviceSimulatorExpress.common.gettingStarted",
+		"onCommand:deviceSimulatorExpress.common.deployToDevice",
+		"onCommand:deviceSimulatorExpress.common.newFile",
+		"onCommand:deviceSimulatorExpress.common.openSimulator",
+		"onDebug"
+	],
 	"contributes": {
 		"breakpoints": [
 			{
@@ -206,17 +194,6 @@
 			}
 		]
 	},
-	"activationEvents": [
-		"onCommand:deviceSimulatorExpress.common.installDependencies",
-		"onCommand:deviceSimulatorExpress.common.openSerialMonitor",
-		"onCommand:deviceSimulatorExpress.common.runSimulator",
-		"onCommand:deviceSimulatorExpress.common.selectSerialPort",
-		"onCommand:deviceSimulatorExpress.common.gettingStarted",
-		"onCommand:deviceSimulatorExpress.common.deployToDevice",
-		"onCommand:deviceSimulatorExpress.common.newFile",
-		"onCommand:deviceSimulatorExpress.common.openSimulator",
-		"onDebug"
-	],
 	"dependencies": {
 		"@types/open": "6.2.1",
 		"@types/socket.io": "3.0.2",
@@ -229,6 +206,7 @@
 		"usb-native": "6.0.0",
 		"util": "0.12.5"
 	},
+	"description": "__DESCRIPTION__",
 	"devDependencies": {
 		"@types/glob": "8.1.0",
 		"@types/node": "22.4.0",
@@ -243,10 +221,32 @@
 		"ts-loader": "9.5.1",
 		"version-from-git": "1.1.3-main.98ff1b7"
 	},
+	"displayName": "__DISPLAYNAME__",
 	"extensionDependencies": [
 		"ms-python.python"
 	],
 	"icon": "assets/icon.png",
+	"instrumentationKey": "__AIKEY__",
+	"main": "./out/extension.js",
+	"name": "__EXTENSIONNAME__",
 	"preview": true,
-	"instrumentationKey": "__AIKEY__"
+	"scripts": {
+		"build": "gulp build",
+		"check:python": "black src --check",
+		"check:ts": "prettier --config .prettierrc.yaml --check src/**/*.{css,ts,tsx}",
+		"clean": "gulp clean",
+		"compile": "npm-run-all compile:*",
+		"compile:extension": "gulp compile",
+		"compile:views": "webpack --mode development",
+		"format:python": "black src",
+		"format:ts": "prettier --config .prettierrc.yaml --write src/**/*.{css,ts,tsx}",
+		"lint:python": "pylint src",
+		"lint:ts": "tslint -c tslint.json src/**/*.{ts,tsx}",
+		"start": "webpack-dev-server",
+		"test:api-tests": "pytest src",
+		"test:extension-tests": "node ./out/test/runTest.js",
+		"test:ts": "jest",
+		"watch:extension": "tsc --watch",
+		"watch:views": "webpack --watch --mode development"
+	}
 }
