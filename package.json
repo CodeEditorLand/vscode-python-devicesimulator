@@ -219,7 +219,7 @@
 		"style-loader": "4.0.0",
 		"ts-import-plugin": "3.0.0",
 		"ts-loader": "9.5.1",
-		"version-from-git": "1.1.3-main.98ff1b7"
+		"version-from-git": "1.1.2"
 	},
 	"displayName": "__DISPLAYNAME__",
 	"extensionDependencies": [
