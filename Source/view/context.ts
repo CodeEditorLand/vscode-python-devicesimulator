@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import { VIEW_STATE } from "./constants";
 
 // View is running by default
