@@ -36,6 +36,7 @@ export class UsbDetector {
 
 	public async startListening() {
 		const workspaceConfig = vscode.workspace.getConfiguration();
+
 		const enableUSBDetection = workspaceConfig.get(
 			CONFIG_KEYS.ENABLE_USB_DETECTION,
 		);
@@ -88,10 +89,12 @@ export class UsbDetector {
 	): any {
 		if (!this._boardDescriptors) {
 			this._boardDescriptors = [];
+
 			const fileContent = fs.readFileSync(
 				path.join(extensionRoot, "misc", "usbmapping.json"),
 				"utf8",
 			);
+
 			const boardIndexes: [] = JSON.parse(fileContent);
 			boardIndexes.forEach((boardIndex: any) => {
 				boardIndex.boards.forEach((board: any) => {

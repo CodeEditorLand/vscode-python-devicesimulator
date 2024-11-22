@@ -35,15 +35,18 @@ export class WebviewService {
 		const onDiskPath = vscode.Uri.file(
 			this.context.asAbsolutePath(CONSTANTS.SCRIPT_PATH.SIMULATOR),
 		);
+
 		const scriptSrc = panel.webview.asWebviewUri(onDiskPath);
 
 		const vscodeImportPath = vscode.Uri.file(
 			this.context.asAbsolutePath(CONSTANTS.SCRIPT_PATH.VSCODE_API),
 		);
+
 		const vscodeImportPathSrc =
 			panel.webview.asWebviewUri(vscodeImportPath);
 
 		const attributeString = this.getAttributeString(webviewType, hasDevice);
+
 		const nonce = getNonce();
 
 		return `<!DOCTYPE html>
@@ -103,8 +106,10 @@ export class WebviewService {
 // https://github.com/microsoft/vscode-extension-samples/blob/master/custom-editor-sample/src/util.ts
 function getNonce() {
 	let text = "";
+
 	const possible =
 		"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
 	for (let i = 0; i < 32; i++) {
 		text += possible.charAt(Math.floor(Math.random() * possible.length));
 	}

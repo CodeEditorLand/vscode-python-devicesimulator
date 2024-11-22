@@ -13,6 +13,7 @@ export class DebugAdapterFactory implements DebugAdapterTrackerFactory {
 	private debugSession: DebugSession;
 	private messagingService: MessagingService;
 	private debugCommunicationService: DebuggerCommunicationService;
+
 	constructor(
 		debugSession: DebugSession,
 		messagingService: MessagingService,

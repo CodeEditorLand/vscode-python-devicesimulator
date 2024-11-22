@@ -32,7 +32,9 @@ export const getPathToScript = (
 	const onDiskPath = vscode.Uri.file(
 		path.join(context.extensionPath, folderName, fileName),
 	);
+
 	const scriptPath = onDiskPath.with({ scheme: "vscode-resource" });
+
 	return scriptPath.fsPath;
 };
 
@@ -71,6 +73,7 @@ export const logToOutputChannel = (
 export function tryParseJSON(jsonString: string): any | boolean {
 	try {
 		const jsonObj = JSON.parse(jsonString);
+
 		if (jsonObj && typeof jsonObj === "object") {
 			return jsonObj;
 		}
@@ -92,6 +95,7 @@ export function mkdirRecursivelySync(dirPath: string): void {
 		return;
 	}
 	const dirname = path.dirname(dirPath);
+
 	if (path.normalize(dirname) === path.normalize(dirPath)) {
 		fs.mkdirSync(dirPath);
 	} else if (directoryExistsSync(dirname)) {
@@ -127,10 +131,12 @@ export function padStart(
 	if (!(String.prototype as any).padStart) {
 		// https://github.com/uxitten/polyfill/blob/master/string.polyfill.js
 		padString = String(padString || " ");
+
 		if (sourceString.length > targetLength) {
 			return sourceString;
 		} else {
 			targetLength = targetLength - sourceString.length;
+
 			if (targetLength > padString.length) {
 				padString += padString.repeat(targetLength / padString.length); // append to original to ensure we are longer than needed
 			}
@@ -147,9 +153,11 @@ export function convertToHex(num: number, width = 0): string {
 
 export function generateCPXConfig(): void {
 	const deviceContext: DeviceContext = DeviceContext.getInstance();
+
 	const cpxJson = {
 		port: deviceContext.port,
 	};
+
 	const cpxConfigFilePath: string = path.join(
 		CPXWorkspace.rootPath,
 		CPX_CONFIG_FILE,
@@ -169,6 +177,7 @@ export const addVisibleTextEditorCallback = (
 		command: "visible-editors",
 		state: { activePythonEditors: initialPythonEditors },
 	});
+
 	return vscode.window.onDidChangeVisibleTextEditors(
 		(textEditors: vscode.TextEditor[]) => {
 			const activePythonEditors = filterForPythonFiles(textEditors);
@@ -196,6 +205,7 @@ export const getActiveEditorFromPath = (
 	const activeEditor = vscode.window.visibleTextEditors.find(
 		(editor: vscode.TextEditor) => editor.document.fileName === filePath,
 	);
+
 	return activeEditor ? activeEditor.document : undefined;
 };
 

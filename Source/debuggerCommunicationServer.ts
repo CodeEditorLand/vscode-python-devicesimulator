@@ -82,6 +82,7 @@ export class DebuggerCommunicationServer {
 
 	private initHttpServer(): void {
 		this.serverHttp.listen(this.port);
+
 		if (!this.serverHttp.listening) {
 			throw new Error(SERVER_INFO.ERROR_CODE_INIT_SERVER);
 		}
@@ -108,6 +109,7 @@ export class DebuggerCommunicationServer {
 
 			socket.on(DEBUGGER_MESSAGES.LISTENER.DISCONNECT, () => {
 				this.serverIo.emit(DEBUGGER_MESSAGES.EMITTER.DISCONNECT, {});
+
 				if (this.simulatorWebview) {
 					this.simulatorWebview.webview.postMessage({
 						command: "reset-state",
@@ -120,8 +122,10 @@ export class DebuggerCommunicationServer {
 	private handleState(data: any): void {
 		try {
 			const messageToWebview = JSON.parse(data);
+
 			if (messageToWebview.type === "state") {
 				const messageState = JSON.parse(messageToWebview.data);
+
 				if (
 					this.simulatorWebview &&
 					messageState.device_name ===

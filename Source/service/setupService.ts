@@ -35,10 +35,12 @@ export class SetupService {
 	) => {
 		const originalPythonExecutablePath =
 			await this.getCurrentPythonExecutablePath();
+
 		if (originalPythonExecutablePath === "") {
 			return;
 		}
 		let pythonExecutablePath = originalPythonExecutablePath;
+
 		const pythonExecutableName: string =
 			os.platform() === "win32"
 				? HELPER_FILES.PYTHON_EXE
@@ -56,6 +58,7 @@ export class SetupService {
 					context,
 					pythonExecutableName,
 				);
+
 				if (await this.hasVenv(context)) {
 					// venv in extention exists with wrong dependencies
 
@@ -169,6 +172,7 @@ export class SetupService {
 		isTryingPython3: boolean = false,
 	) => {
 		let originalPythonExecutablePath = "";
+
 		const systemPythonVar = isTryingPython3
 			? GLOBAL_ENV_VARS.PYTHON3
 			: GLOBAL_ENV_VARS.PYTHON;
@@ -189,6 +193,7 @@ export class SetupService {
 			this.telemetryAI.trackFeatureUsage(
 				TelemetryEventName.SETUP_AUTO_RESOLVE_PYTHON_PATH,
 			);
+
 			try {
 				const { stdout } = await this.executePythonCommand(
 					systemPythonVar,
@@ -199,6 +204,7 @@ export class SetupService {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.SETUP_NO_PYTHON_PATH,
 				);
+
 				if (isTryingPython3) {
 					// if trying python3 failed, that means that BOTH
 					// python and python3 failed as system variables
@@ -237,6 +243,7 @@ export class SetupService {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.SETUP_INVALID_PYTHON_VER,
 				);
+
 				if (isTryingPython3) {
 					// if we're trying python3, it means we already tried python and it
 					// all doesn't seem to work, but it got this far, so it means that
@@ -267,6 +274,7 @@ export class SetupService {
 								}
 							},
 						);
+
 					return "";
 				} else {
 					// otherwise, we ran the "python" system variable
@@ -292,6 +300,7 @@ export class SetupService {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.SETUP_INVALID_PYTHON_INTERPRETER_PATH,
 				);
+
 				return "";
 			}
 
@@ -322,6 +331,7 @@ export class SetupService {
 							);
 						}
 					});
+
 				return "";
 			}
 		}
@@ -332,6 +342,7 @@ export class SetupService {
 	public isPipInstalled = async (pythonExecutablePath: string) => {
 		try {
 			await this.executePythonCommand(pythonExecutablePath, " -m pip");
+
 			return true;
 		} catch (err) {
 			vscode.window
@@ -350,6 +361,7 @@ export class SetupService {
 						);
 					}
 				});
+
 			return false;
 		}
 	};
@@ -363,10 +375,12 @@ export class SetupService {
 			CONSTANTS.FILESYSTEM.OUTPUT_DIRECTORY,
 			HELPER_FILES.CHECK_IF_VENV_PY,
 		);
+
 		const { stdout } = await this.executePythonCommand(
 			pythonExecutablePath,
 			`"${venvCheckerPath}"`,
 		);
+
 		return stdout.trim() === "1";
 	};
 
@@ -382,6 +396,7 @@ export class SetupService {
 			pythonExecutablePath,
 			"--version",
 		);
+
 		if (stdout < VERSIONS.MIN_PY_VERSION) {
 			return false;
 		} else {
@@ -501,6 +516,7 @@ export class SetupService {
 			CONSTANTS.FILESYSTEM.OUTPUT_DIRECTORY,
 			HELPER_FILES.CHECK_PYTHON_DEPENDENCIES,
 		);
+
 		try {
 			// python script will throw exception
 			// if not all dependencies are downloaded
@@ -511,6 +527,7 @@ export class SetupService {
 
 			// output for debugging purposes
 			console.info(stdout);
+
 			return true;
 		} catch (err) {
 			return false;
@@ -529,6 +546,7 @@ export class SetupService {
 
 		if (!this.isPipInstalled(pythonPath)) {
 			this.telemetryAI.trackFeatureUsage(TelemetryEventName.SETUP_NO_PIP);
+
 			return false;
 		}
 
@@ -541,9 +559,11 @@ export class SetupService {
 			vscode.window.showInformationMessage(
 				CONSTANTS.INFO.SUCCESSFUL_INSTALL,
 			);
+
 			return true;
 		} catch (err) {
 			console.log(`DSE ${err}`);
+
 			return false;
 		}
 	};
@@ -554,6 +574,7 @@ export class SetupService {
 		backupPythonPath: string = "",
 	) => {
 		let errMessage = CONSTANTS.ERROR.DEPENDENCY_DOWNLOAD_ERROR;
+
 		if (backupPythonPath !== "") {
 			errMessage = `${errMessage} Using original interpreter at: ${backupPythonPath}.`;
 		}
@@ -572,6 +593,7 @@ export class SetupService {
 			this.telemetryAI.trackFeatureUsage(
 				TelemetryEventName.SETUP_DEP_INSTALL_FAIL,
 			);
+
 			return backupPythonPath;
 		}
 		return pythonPath;

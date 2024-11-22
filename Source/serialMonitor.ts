@@ -95,16 +95,20 @@ export class SerialMonitor implements vscode.Disposable {
 
 	public async selectSerialPort(vid: string | null, pid: string | null) {
 		const lists = await SerialPortControl.list();
+
 		if (!lists.length) {
 			vscode.window.showInformationMessage(
 				"No serial message is available.",
 			);
+
 			return;
 		}
 
 		if (vid && pid) {
 			const valueOfVid = parseInt(vid, 16);
+
 			const valueOfPid = parseInt(pid, 16);
+
 			const foundPort = lists.find((port) => {
 				if (port.productId && port.vendorId) {
 					return (
@@ -114,6 +118,7 @@ export class SerialMonitor implements vscode.Disposable {
 				}
 				return false;
 			});
+
 			if (
 				foundPort &&
 				!(this._serialPortControl && this._serialPortControl.isActive)
@@ -152,6 +157,7 @@ export class SerialMonitor implements vscode.Disposable {
 				DialogResponses.SELECT,
 				DialogResponses.CANCEL,
 			);
+
 			if (ans === DialogResponses.SELECT) {
 				await this.selectSerialPort(null, null);
 			}
@@ -167,6 +173,7 @@ export class SerialMonitor implements vscode.Disposable {
 				vscode.window.showWarningMessage(
 					`Serial Monitor is already opened for ${this._currentPort}`,
 				);
+
 				return;
 			}
 		} else {
@@ -181,6 +188,7 @@ export class SerialMonitor implements vscode.Disposable {
 			console.error(
 				CONSTANTS.ERROR.FAILED_TO_OPEN_SERIAL_PORT(this._currentPort),
 			);
+
 			return;
 		}
 
@@ -211,6 +219,7 @@ export class SerialMonitor implements vscode.Disposable {
 
 	public async changeBaudRate() {
 		const baudRates = SerialMonitor.listBaudRates();
+
 		const chosen = await vscode.window.showQuickPick(
 			baudRates.map((baudRate) => baudRate.toString()),
 		);
@@ -221,6 +230,7 @@ export class SerialMonitor implements vscode.Disposable {
 				CONSTANTS.WARNING.NO_RATE_SELECTED,
 				true,
 			);
+
 			return;
 		}
 
@@ -230,6 +240,7 @@ export class SerialMonitor implements vscode.Disposable {
 				CONSTANTS.WARNING.INVALID_BAUD_RATE,
 				true,
 			);
+
 			return;
 		}
 
@@ -239,6 +250,7 @@ export class SerialMonitor implements vscode.Disposable {
 				CONSTANTS.WARNING.SERIAL_MONITOR_NOT_STARTED,
 				true,
 			);
+
 			return;
 		}
 
@@ -256,6 +268,7 @@ export class SerialMonitor implements vscode.Disposable {
 			}
 			const result = await this._serialPortControl.stop();
 			this.updatePortStatus(false);
+
 			return result;
 		} else if (!port && showWarning) {
 			logToOutputChannel(
@@ -263,6 +276,7 @@ export class SerialMonitor implements vscode.Disposable {
 				CONSTANTS.WARNING.SERIAL_PORT_NOT_STARTED,
 				true,
 			);
+
 			return false;
 		}
 	}
@@ -285,6 +299,7 @@ export class SerialMonitor implements vscode.Disposable {
 
 	private updatePortListStatus(port: string | null) {
 		const deviceContext = DeviceContext.getInstance();
+
 		if (port) {
 			deviceContext.port = port;
 		}

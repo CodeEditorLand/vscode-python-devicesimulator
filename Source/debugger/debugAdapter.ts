@@ -8,6 +8,7 @@ export class DebugAdapter implements DebugAdapterTracker {
 	private readonly console: DebugConsole | undefined;
 	private readonly messagingService: MessagingService;
 	private debugCommunicationService: DebuggerCommunicationService;
+
 	constructor(
 		debugSession: DebugSession,
 		messagingService: MessagingService,
@@ -26,10 +27,14 @@ export class DebugAdapter implements DebugAdapterTracker {
 			switch (message.command) {
 				case DEBUG_COMMANDS.CONTINUE:
 					this.messagingService.sendStartMessage();
+
 					break;
+
 				case DEBUG_COMMANDS.STACK_TRACE:
 					this.messagingService.sendPauseMessage();
+
 					break;
+
 				case DEBUG_COMMANDS.DISCONNECT:
 					// Triggered on stop event for debugger
 					if (!message.arguments.restart) {

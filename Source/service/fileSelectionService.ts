@@ -60,6 +60,7 @@ export class FileSelectionService {
 			const foundDocument = this.getActiveEditorFromPath(
 				this.currentFileAbsPath,
 			);
+
 			if (foundDocument !== undefined) {
 				this.currentTextDocument = foundDocument;
 			}
@@ -82,13 +83,16 @@ export class FileSelectionService {
 			(editor: vscode.TextEditor) =>
 				editor.document.fileName === filePath,
 		);
+
 		return activeEditor ? activeEditor.document : undefined;
 	};
 	private getActivePythonFile = () => {
 		const editors: vscode.TextEditor[] = vscode.window.visibleTextEditors;
+
 		const activeEditor = editors.find(
 			(editor) => editor.document.languageId === LANGUAGE_VARS.PYTHON.ID,
 		);
+
 		if (activeEditor) {
 			this.currentTextDocument = activeEditor.document;
 		}

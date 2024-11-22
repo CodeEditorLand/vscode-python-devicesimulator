@@ -40,6 +40,7 @@ export class SimulatorDebugConfigurationProvider
 		// Check config type
 		if (config.type === CONSTANTS.DEBUG_CONFIGURATION_TYPE) {
 			this.deviceSimulatorExpressDebug = true;
+
 			if (activeTextEditor) {
 				const currentFilePath = activeTextEditor.document.fileName;
 

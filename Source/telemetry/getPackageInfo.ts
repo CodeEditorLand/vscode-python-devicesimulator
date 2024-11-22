@@ -12,6 +12,7 @@ const getPackagePath = (context: vscode.ExtensionContext) => {
 	const onDiskPath = vscode.Uri.file(
 		path.join(context.extensionPath, "package.json"),
 	);
+
 	const packagePath = onDiskPath.with({ scheme: "vscode-resource" });
 
 	return packagePath;
@@ -23,17 +24,21 @@ export default function getPackageInfo(context: vscode.ExtensionContext): {
 	instrumentationKey: string;
 } {
 	let packageJson: IPackageJson;
+
 	const packagePath = getPackagePath(context);
 
 	try {
 		packageJson = JSON.parse(fs.readFileSync(packagePath.fsPath, "utf8"));
 	} catch (error) {
 		console.error(`Failed to read from package.json: ${error}`);
+
 		throw new Error(`Failed to read from package.json: ${error}`);
 	}
 
 	const extensionName: string | undefined = packageJson.name;
+
 	const extensionVersion: string | undefined = packageJson.version;
+
 	const instrumentationKey: string | undefined =
 		packageJson.instrumentationKey;
 

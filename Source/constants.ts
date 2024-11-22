@@ -461,60 +461,76 @@ export namespace DialogResponses {
 	export const ACCEPT_AND_RUN: MessageItem = {
 		title: localize("dialogResponses.agreeAndRun", "Agree and Run"),
 	};
+
 	export const AGREE_AND_PROCEED: MessageItem = {
 		title: localize("dialogResponses.agreeAndProceed", "Agree and Proceed"),
 	};
+
 	export const CANCEL: MessageItem = {
 		title: localize("dialogResponses.cancel", "Cancel"),
 	};
+
 	export const SELECT: MessageItem = {
 		title: localize("dialogResponses.select", "Select"),
 	};
+
 	export const HELP: MessageItem = {
 		title: localize("dialogResponses.help", "I need help"),
 	};
+
 	export const DONT_SHOW: MessageItem = {
 		title: localize("dialogResponses.dontShowAgain", "Don't Show Again"),
 	};
+
 	export const NO: MessageItem = {
 		title: localize("dialogResponses.No", "No"),
 	};
+
 	export const INSTALL_NOW: MessageItem = {
 		title: localize("dialogResponses.installNow", "Install Now"),
 	};
+
 	export const DONT_INSTALL: MessageItem = {
 		title: localize("dialogResponses.dontInstall", "Don't Install"),
 	};
+
 	export const PRIVACY_STATEMENT: MessageItem = {
 		title: localize("info.privacyStatement", "Privacy Statement"),
 	};
+
 	export const TUTORIALS: MessageItem = {
 		title: localize("dialogResponses.tutorials", "Tutorials on Adafruit"),
 	};
+
 	export const EXAMPLE_CODE: MessageItem = {
 		title: localize(
 			"dialogResponses.exampleCode",
 			"Example Code on GitHub",
 		),
 	};
+
 	export const MESSAGE_UNDERSTOOD: MessageItem = {
 		title: localize("dialogResponses.messageUnderstood", "Got It"),
 	};
+
 	export const INSTALL_PIP: MessageItem = {
 		title: localize(
 			"dialogResponses.installPip",
 			"Install from Pip's webpage",
 		),
 	};
+
 	export const INSTALL_PYTHON: MessageItem = {
 		title: localize(
 			"dialogResponses.installPython",
 			"Install from python.org",
 		),
 	};
+
 	export const YES: MessageItem = {
 		title: localize("dialogResponses.Yes", "Yes"),
 	};
+
 	export const READ_INSTALL_MD: MessageItem = {
 		title: localize(
 			"dialogResponses.readInstall",

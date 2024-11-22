@@ -14,6 +14,7 @@ export default class TelemetryAI {
 		TelemetryAI.enableTelemetry = vscode.workspace
 			.getConfiguration()
 			.get("telemetry.enableTelemetry");
+
 		if (TelemetryAI.enableTelemetry === undefined) {
 			TelemetryAI.enableTelemetry = true;
 		}
@@ -21,11 +22,13 @@ export default class TelemetryAI {
 
 	public getExtensionName(context: vscode.ExtensionContext): string {
 		const { extensionName } = getPackageInfo(context);
+
 		return extensionName;
 	}
 
 	public getExtensionVersionNumber(context: vscode.ExtensionContext): string {
 		const { extensionVersion } = getPackageInfo(context);
+
 		return extensionVersion;
 	}
 
@@ -55,9 +58,13 @@ export default class TelemetryAI {
 		eventName: string,
 	): void {
 		const numberOfNanosecondsInSecond: number = 1000000000;
+
 		const startTime: number = Number(process.hrtime.bigint());
+
 		functionToRun();
+
 		const latency: number = Number(process.hrtime.bigint()) - startTime;
+
 		const measurement = {
 			duration: latency / numberOfNanosecondsInSecond,
 		};
@@ -69,12 +76,14 @@ export default class TelemetryAI {
 	): TelemetryReporter {
 		const { extensionName, extensionVersion, instrumentationKey } =
 			getPackageInfo(context);
+
 		const reporter: TelemetryReporter = new TelemetryReporter(
 			extensionName,
 			extensionVersion,
 			instrumentationKey,
 		);
 		context.subscriptions.push(reporter);
+
 		return reporter;
 	}
 }

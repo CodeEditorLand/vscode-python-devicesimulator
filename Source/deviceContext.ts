@@ -48,11 +48,13 @@ export class DeviceContext implements vscode.Disposable {
 		return vscode.workspace.findFiles(CPX_CONFIG_FILE, null, 1).then(
 			(files) => {
 				let cpxConfigJson: any = {};
+
 				if (files && files.length > 0) {
 					const configFile = files[0];
 					cpxConfigJson = utils.tryParseJSON(
 						fs.readFileSync(configFile.fsPath, "utf8"),
 					);
+
 					if (cpxConfigJson) {
 						this._port = cpxConfigJson.port;
 						this._onDidChange.fire();
@@ -68,6 +70,7 @@ export class DeviceContext implements vscode.Disposable {
 			(reason) => {
 				this._port = null;
 				this._onDidChange.fire();
+
 				return this;
 			},
 		);
@@ -78,7 +81,9 @@ export class DeviceContext implements vscode.Disposable {
 			return;
 		}
 		const cpxConfigFile = path.join(CPXWorkspace.rootPath, CPX_CONFIG_FILE);
+
 		let cpxConfigJson: any = {};
+
 		if (utils.fileExistsSync(cpxConfigFile)) {
 			cpxConfigJson = utils.tryParseJSON(
 				fs.readFileSync(cpxConfigFile, "utf8"),
@@ -126,12 +131,14 @@ export class DeviceContext implements vscode.Disposable {
 			vscode.window.showInformationMessage(
 				CONSTANTS.INFO.CPX_JSON_ALREADY_GENERATED,
 			);
+
 			return;
 		} else {
 			if (!CPXWorkspace.rootPath) {
 				vscode.window.showInformationMessage(
 					CONSTANTS.INFO.PLEASE_OPEN_FOLDER,
 				);
+
 				return;
 			}
 		}
