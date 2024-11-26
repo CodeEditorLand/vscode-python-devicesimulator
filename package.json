@@ -209,11 +209,11 @@
 	"description": "__DESCRIPTION__",
 	"devDependencies": {
 		"@types/glob": "8.1.0",
-		"@types/node": "22.9.1",
+		"@types/node": "22.10.0",
 		"css-loader": "7.1.2",
 		"del": "8.0.0",
 		"event-stream": "4.0.1",
-		"less": "4.2.0",
+		"less": "4.2.1",
 		"less-loader": "12.2.0",
 		"npm-run-all": "4.1.5",
 		"style-loader": "4.0.0",
