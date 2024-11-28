@@ -48,25 +48,30 @@ export const CONSTANTS = {
 	TOOLBAR_INFO: `Explore what's on the board:`,
 	LED_TINT_FACTOR: 0.5,
 };
+
 export const AB_BUTTONS_KEYS = {
 	BTN_A: "BTN_A",
 	BTN_B: "BTN_B",
 	BTN_AB: "BTN_AB",
 };
+
 export const BUTTON_CLASSNAME = {
 	ACTIVE: "sim-button-group",
 	DEACTIVATED: "sim-button-group-deactivated",
 };
+
 export const BUTTON_STYLING_CLASSES = {
 	DEFAULT: "sim-button-outer",
 	KEYPRESSED: "sim-button-key-press",
 };
+
 export const CLUE_LEDS_COLORS = {
 	WHITE_LEDS_OFF: "#ffde00",
 	WHITE_LEDS_ON: "white",
 	RED_LED_OFF: "#808080",
 	RED_LED_ON: "red",
 };
+
 export enum DEVICE_LIST_KEY {
 	CPX = "CPX",
 	MICROBIT = "micro:bit",
@@ -138,6 +143,7 @@ export const GESTURES_MICROBIT = [
 	"6g",
 	"8g",
 ];
+
 export const GESTURES_CLUE = ["up", "down", "left", "right", "shake"];
 
 export enum WEBVIEW_ATTRIBUTES_KEY {
