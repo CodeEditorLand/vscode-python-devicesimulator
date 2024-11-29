@@ -8,6 +8,7 @@ import { DeviceSelectionService } from "./deviceSelectionService";
 
 export class TelemetryHandlerService {
 	private telemetryAI: TelemetryAI;
+
 	private deviceSelectionService: DeviceSelectionService;
 
 	constructor(
@@ -15,6 +16,7 @@ export class TelemetryHandlerService {
 		deviceSelectionService: DeviceSelectionService,
 	) {
 		this.telemetryAI = telemetryAI;
+
 		this.deviceSelectionService = deviceSelectionService;
 	}
 
@@ -459,6 +461,7 @@ export class TelemetryHandlerService {
 			case CONSTANTS.DEVICE_NAME.CPX:
 				deployTelemetryEvent =
 					TelemetryEventName.CPX_COMMAND_DEPLOY_DEVICE;
+
 				deployPerformanceTelemetryEvent =
 					TelemetryEventName.CPX_COMMAND_DEPLOY_DEVICE;
 
@@ -467,6 +470,7 @@ export class TelemetryHandlerService {
 			case CONSTANTS.DEVICE_NAME.MICROBIT:
 				deployTelemetryEvent =
 					TelemetryEventName.MICROBIT_COMMAND_DEPLOY_DEVICE;
+
 				deployPerformanceTelemetryEvent =
 					TelemetryEventName.MICROBIT_COMMAND_DEPLOY_DEVICE;
 
@@ -475,11 +479,13 @@ export class TelemetryHandlerService {
 			case CONSTANTS.DEVICE_NAME.CLUE:
 				deployTelemetryEvent =
 					TelemetryEventName.CLUE_COMMAND_DEPLOY_DEVICE;
+
 				deployPerformanceTelemetryEvent =
 					TelemetryEventName.CLUE_COMMAND_DEPLOY_DEVICE;
 
 				break;
 		}
+
 		return {
 			deployTelemetryEvent,
 			deployPerformanceTelemetryEvent,
@@ -507,6 +513,7 @@ export class TelemetryHandlerService {
 				telemetryErrorName =
 					TelemetryEventName.CLUE_ERROR_PYTHON_DEVICE_PROCESS;
 		}
+
 		this.telemetryAI.trackFeatureUsage(telemetryErrorName, {
 			error: `${data}`,
 		});
@@ -524,6 +531,7 @@ export class TelemetryHandlerService {
 			case CONSTANTS.DEVICE_NAME.CPX:
 				successCommandDeployDevice =
 					TelemetryEventName.CPX_SUCCESS_COMMAND_DEPLOY_DEVICE;
+
 				errorCommandDeployWithoutDevice =
 					TelemetryEventName.CPX_ERROR_DEPLOY_WITHOUT_DEVICE;
 
@@ -532,6 +540,7 @@ export class TelemetryHandlerService {
 			case CONSTANTS.DEVICE_NAME.MICROBIT:
 				successCommandDeployDevice =
 					TelemetryEventName.MICROBIT_SUCCESS_COMMAND_DEPLOY_DEVICE;
+
 				errorCommandDeployWithoutDevice =
 					TelemetryEventName.MICROBIT_ERROR_DEPLOY_WITHOUT_DEVICE;
 
@@ -540,6 +549,7 @@ export class TelemetryHandlerService {
 			case CONSTANTS.DEVICE_NAME.CLUE:
 				successCommandDeployDevice =
 					TelemetryEventName.CLUE_SUCCESS_COMMAND_DEPLOY_DEVICE;
+
 				errorCommandDeployWithoutDevice =
 					TelemetryEventName.CLUE_ERROR_DEPLOY_WITHOUT_DEVICE;
 
@@ -575,20 +585,25 @@ export class TelemetryHandlerService {
 
 									if (device === CONSTANTS.DEVICE_NAME.CPX) {
 										helpLink = CONSTANTS.LINKS.CPX_HELP;
+
 										helpTelemetryEvent =
 											TelemetryEventName.CPX_CLICK_DIALOG_HELP_DEPLOY_TO_DEVICE;
 									} else if (
 										device === CONSTANTS.DEVICE_NAME.CLUE
 									) {
 										helpLink = CONSTANTS.LINKS.CLUE_HELP;
+
 										helpTelemetryEvent =
 											TelemetryEventName.CLUE_CLICK_DIALOG_HELP_DEPLOY_TO_DEVICE;
 									}
+
 									open(helpLink);
+
 									this.telemetryAI.trackFeatureUsage(
 										helpTelemetryEvent,
 									);
 								};
+
 								utils.showPrivacyModal(
 									okAction,
 									CONSTANTS.INFO.THIRD_PARTY_WEBSITE_ADAFRUIT,
@@ -598,6 +613,7 @@ export class TelemetryHandlerService {
 				} else if (device === CONSTANTS.DEVICE_NAME.MICROBIT) {
 					vscode.window.showErrorMessage(CONSTANTS.ERROR.NO_DEVICE);
 				}
+
 				break;
 
 			case "low-python-version":
@@ -625,6 +641,7 @@ export class TelemetryHandlerService {
 			case CONSTANTS.DEVICE_NAME.CPX:
 				openSimulatorTelemetryEvent =
 					TelemetryEventName.CPX_COMMAND_OPEN_SIMULATOR;
+
 				openSimulatorPerformanceTelemetryEvent =
 					TelemetryEventName.CPX_PERFORMANCE_OPEN_SIMULATOR;
 
@@ -633,6 +650,7 @@ export class TelemetryHandlerService {
 			case CONSTANTS.DEVICE_NAME.MICROBIT:
 				openSimulatorTelemetryEvent =
 					TelemetryEventName.MICROBIT_COMMAND_OPEN_SIMULATOR;
+
 				openSimulatorPerformanceTelemetryEvent =
 					TelemetryEventName.MICROBIT_PERFORMANCE_OPEN_SIMULATOR;
 
@@ -641,11 +659,13 @@ export class TelemetryHandlerService {
 			case CONSTANTS.DEVICE_NAME.CLUE:
 				openSimulatorTelemetryEvent =
 					TelemetryEventName.CLUE_COMMAND_OPEN_SIMULATOR;
+
 				openSimulatorPerformanceTelemetryEvent =
 					TelemetryEventName.CLUE_PERFORMANCE_OPEN_SIMULATOR;
 
 				break;
 		}
+
 		return {
 			openSimulatorTelemetryEvent,
 			openSimulatorPerformanceTelemetryEvent,
@@ -661,6 +681,7 @@ export class TelemetryHandlerService {
 			case CONSTANTS.DEVICE_NAME.CPX:
 				newFileTelemetryEvent =
 					TelemetryEventName.CPX_COMMAND_OPEN_SIMULATOR;
+
 				newFilePerformanceTelemetryEvent =
 					TelemetryEventName.CPX_PERFORMANCE_OPEN_SIMULATOR;
 
@@ -669,6 +690,7 @@ export class TelemetryHandlerService {
 			case CONSTANTS.DEVICE_NAME.MICROBIT:
 				newFileTelemetryEvent =
 					TelemetryEventName.MICROBIT_COMMAND_OPEN_SIMULATOR;
+
 				newFilePerformanceTelemetryEvent =
 					TelemetryEventName.MICROBIT_PERFORMANCE_OPEN_SIMULATOR;
 
@@ -677,11 +699,13 @@ export class TelemetryHandlerService {
 			case CONSTANTS.DEVICE_NAME.CLUE:
 				newFileTelemetryEvent =
 					TelemetryEventName.CLUE_COMMAND_OPEN_SIMULATOR;
+
 				newFilePerformanceTelemetryEvent =
 					TelemetryEventName.CLUE_PERFORMANCE_OPEN_SIMULATOR;
 
 				break;
 		}
+
 		return {
 			newFileTelemetryEvent,
 			newFilePerformanceTelemetryEvent,

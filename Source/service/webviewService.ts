@@ -8,7 +8,9 @@ import { DeviceSelectionService } from "./deviceSelectionService";
 // Manages different type of webview
 export class WebviewService {
 	private tutorialPanel: vscode.WebviewPanel | undefined;
+
 	private context: vscode.ExtensionContext;
+
 	private deviceSelectionService: DeviceSelectionService;
 
 	constructor(
@@ -16,6 +18,7 @@ export class WebviewService {
 		deviceSelectionService: DeviceSelectionService,
 	) {
 		this.context = context;
+
 		this.deviceSelectionService = deviceSelectionService;
 	}
 
@@ -79,11 +82,13 @@ export class WebviewService {
 				retainContextWhenHidden: true,
 			},
 		);
+
 		this.tutorialPanel.webview.html = this.getWebviewContent(
 			WEBVIEW_TYPES.GETTING_STARTED,
 			false,
 			this.tutorialPanel,
 		);
+
 		this.tutorialPanel.onDidDispose(() => {
 			this.disposeTutorialPanel();
 		});
@@ -92,6 +97,7 @@ export class WebviewService {
 	private disposeTutorialPanel() {
 		this.tutorialPanel = undefined;
 	}
+
 	private getAttributeString(webviewType: string, hasDevice: boolean) {
 		if (hasDevice) {
 			return `${WEBVIEW_ATTRIBUTES_KEY.TYPE}=${webviewType} ${
@@ -113,5 +119,6 @@ function getNonce() {
 	for (let i = 0; i < 32; i++) {
 		text += possible.charAt(Math.floor(Math.random() * possible.length));
 	}
+
 	return text;
 }

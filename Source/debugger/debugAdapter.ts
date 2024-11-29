@@ -6,7 +6,9 @@ import { DEBUG_COMMANDS } from "../view/constants";
 
 export class DebugAdapter implements DebugAdapterTracker {
 	private readonly console: DebugConsole | undefined;
+
 	private readonly messagingService: MessagingService;
+
 	private debugCommunicationService: DebuggerCommunicationService;
 
 	constructor(
@@ -15,12 +17,16 @@ export class DebugAdapter implements DebugAdapterTracker {
 		debugCommunicationService: DebuggerCommunicationService,
 	) {
 		this.console = debugSession.configuration.console;
+
 		this.messagingService = messagingService;
+
 		this.debugCommunicationService = debugCommunicationService;
 	}
+
 	onWillStartSession() {
 		// To Implement
 	}
+
 	onWillReceiveMessage(message: any): void {
 		if (message.command) {
 			// Only send pertinent debug messages
@@ -40,6 +46,7 @@ export class DebugAdapter implements DebugAdapterTracker {
 					if (!message.arguments.restart) {
 						this.debugCommunicationService.handleStopEvent();
 					}
+
 					break;
 			}
 		}

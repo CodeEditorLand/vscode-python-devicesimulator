@@ -13,8 +13,11 @@ import { SerialPortControl } from "./serialPortControl";
 
 export interface ISerialPortDetail {
 	path: string;
+
 	manufacturer: string;
+
 	vendorId: string;
+
 	productId: string;
 }
 
@@ -32,26 +35,35 @@ export class SerialMonitor implements vscode.Disposable {
 		if (SerialMonitor._serialMonitor === null) {
 			SerialMonitor._serialMonitor = new SerialMonitor();
 		}
+
 		return SerialMonitor._serialMonitor;
 	}
 
 	private static _serialMonitor: SerialMonitor | null = null;
 
 	private _currentPort!: string;
+
 	private _currentBaudRate!: number;
+
 	private _outputChannel!: vscode.OutputChannel;
+
 	private _serialPortControl: SerialPortControl | null = null;
+
 	private _baudRateStatusBar!: vscode.StatusBarItem;
+
 	private _openPortStatusBar!: vscode.StatusBarItem;
+
 	private _portsStatusBar!: vscode.StatusBarItem;
 
 	private constructor() {
 		const deviceContext = DeviceContext.getInstance();
+
 		deviceContext.onDidChange(() => {
 			if (deviceContext.port) {
 				if (!this.initialized) {
 					this.initialize();
 				}
+
 				this.updatePortListStatus(null);
 			}
 		});
@@ -59,37 +71,51 @@ export class SerialMonitor implements vscode.Disposable {
 
 	public initialize() {
 		const defaultBaudRate: number = SerialMonitor.DEFAULT_BAUD_RATE;
+
 		this._outputChannel = vscode.window.createOutputChannel(
 			CONSTANTS.MISC.SERIAL_MONITOR_NAME,
 		);
+
 		this._currentBaudRate = defaultBaudRate;
+
 		this._portsStatusBar = vscode.window.createStatusBarItem(
 			vscode.StatusBarAlignment.Right,
 			STATUS_BAR_PRIORITY.PORT,
 		);
+
 		this._portsStatusBar.command =
 			"deviceSimulatorExpress.common.selectSerialPort";
+
 		this._portsStatusBar.tooltip = "Select Serial Port";
+
 		this._portsStatusBar.show();
 
 		this._openPortStatusBar = vscode.window.createStatusBarItem(
 			vscode.StatusBarAlignment.Right,
 			STATUS_BAR_PRIORITY.OPEN_PORT,
 		);
+
 		this._openPortStatusBar.command =
 			"deviceSimulatorExpress.common.openSerialMonitor";
+
 		this._openPortStatusBar.text = `$(plug)`;
+
 		this._openPortStatusBar.tooltip = "Open Serial Monitor";
+
 		this._openPortStatusBar.show();
 
 		this._baudRateStatusBar = vscode.window.createStatusBarItem(
 			vscode.StatusBarAlignment.Right,
 			STATUS_BAR_PRIORITY.BAUD_RATE,
 		);
+
 		this._baudRateStatusBar.command =
 			"deviceSimulatorExpress.common.changeBaudRate";
+
 		this._baudRateStatusBar.tooltip = "Baud Rate";
+
 		this._baudRateStatusBar.text = defaultBaudRate.toString();
+
 		this.updatePortListStatus(null);
 	}
 
@@ -116,6 +142,7 @@ export class SerialMonitor implements vscode.Disposable {
 						parseInt(port.vendorId, 16) === valueOfVid
 					);
 				}
+
 				return false;
 			});
 
@@ -161,6 +188,7 @@ export class SerialMonitor implements vscode.Disposable {
 			if (ans === DialogResponses.SELECT) {
 				await this.selectSerialPort(null, null);
 			}
+
 			if (!this._currentPort) {
 				return;
 			}
@@ -194,6 +222,7 @@ export class SerialMonitor implements vscode.Disposable {
 
 		try {
 			await this._serialPortControl.open();
+
 			this.updatePortStatus(true);
 		} catch (error) {
 			logToOutputChannel(
@@ -255,8 +284,11 @@ export class SerialMonitor implements vscode.Disposable {
 		}
 
 		const selectedRate: number = parseInt(chosen, 10);
+
 		await this._serialPortControl.changeBaudRate(selectedRate);
+
 		this._currentBaudRate = selectedRate;
+
 		this._baudRateStatusBar.text = chosen;
 	}
 
@@ -266,7 +298,9 @@ export class SerialMonitor implements vscode.Disposable {
 				// Port is not opened
 				return false;
 			}
+
 			const result = await this._serialPortControl.stop();
+
 			this.updatePortStatus(false);
 
 			return result;
@@ -285,14 +319,20 @@ export class SerialMonitor implements vscode.Disposable {
 		if (isOpened) {
 			this._openPortStatusBar.command =
 				"deviceSimulatorExpress.common.closeSerialMonitor";
+
 			this._openPortStatusBar.text = `$(x)`;
+
 			this._openPortStatusBar.tooltip = "Close Serial Monitor";
+
 			this._baudRateStatusBar.show();
 		} else {
 			this._openPortStatusBar.command =
 				"deviceSimulatorExpress.common.openSerialMonitor";
+
 			this._openPortStatusBar.text = `$(plug)`;
+
 			this._openPortStatusBar.tooltip = "Open Serial Monitor";
+
 			this._baudRateStatusBar.hide();
 		}
 	}
@@ -303,6 +343,7 @@ export class SerialMonitor implements vscode.Disposable {
 		if (port) {
 			deviceContext.port = port;
 		}
+
 		this._currentPort = deviceContext.port;
 
 		if (deviceContext.port) {

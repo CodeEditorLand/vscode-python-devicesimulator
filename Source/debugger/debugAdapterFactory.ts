@@ -11,7 +11,9 @@ import { DebugAdapter } from "./debugAdapter";
 
 export class DebugAdapterFactory implements DebugAdapterTrackerFactory {
 	private debugSession: DebugSession;
+
 	private messagingService: MessagingService;
+
 	private debugCommunicationService: DebuggerCommunicationService;
 
 	constructor(
@@ -20,9 +22,12 @@ export class DebugAdapterFactory implements DebugAdapterTrackerFactory {
 		debugCommunicationService: DebuggerCommunicationService,
 	) {
 		this.debugSession = debugSession;
+
 		this.messagingService = messagingService;
+
 		this.debugCommunicationService = debugCommunicationService;
 	}
+
 	public createDebugAdapterTracker(
 		session: DebugSession,
 	): ProviderResult<DebugAdapterTracker> {

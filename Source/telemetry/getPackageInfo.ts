@@ -4,7 +4,9 @@ import * as vscode from "vscode";
 
 export interface IPackageJson {
 	name?: string;
+
 	version?: string;
+
 	instrumentationKey: string;
 }
 
@@ -20,7 +22,9 @@ const getPackagePath = (context: vscode.ExtensionContext) => {
 
 export default function getPackageInfo(context: vscode.ExtensionContext): {
 	extensionName: string;
+
 	extensionVersion: string;
+
 	instrumentationKey: string;
 } {
 	let packageJson: IPackageJson;

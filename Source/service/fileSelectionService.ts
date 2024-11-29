@@ -7,7 +7,9 @@ import { MessagingService } from "./messagingService";
 
 export class FileSelectionService {
 	private currentFileAbsPath: string = "";
+
 	private currentTextDocument: vscode.TextDocument;
+
 	private messagingService: MessagingService;
 
 	constructor(messagingService: MessagingService) {
@@ -17,9 +19,11 @@ export class FileSelectionService {
 	public getCurrentFileAbsPath() {
 		return this.currentFileAbsPath;
 	}
+
 	public getCurrentTextDocument() {
 		return this.currentTextDocument;
 	}
+
 	public updateCurrentFileFromTextFile = async (
 		activeTextDocument: vscode.TextDocument | undefined,
 	) => {
@@ -31,6 +35,7 @@ export class FileSelectionService {
 			return;
 		}
 	};
+
 	public updateCurrentFileFromEditor = async (
 		activeTextDocument: vscode.TextEditor | undefined,
 	) => {
@@ -40,10 +45,12 @@ export class FileSelectionService {
 			activeTextDocument.document.languageId === "python"
 		) {
 			this.setPathAndSendMessage(activeTextDocument.document.fileName);
+
 			this.currentTextDocument = activeTextDocument.document;
 		} else if (this.currentFileAbsPath === "") {
 			this.setPathAndSendMessage(this.getActivePythonFile() || "");
 		}
+
 		if (
 			this.currentTextDocument &&
 			this.getActiveEditorFromPath(this.currentTextDocument.fileName) ===
@@ -55,6 +62,7 @@ export class FileSelectionService {
 			);
 		}
 	};
+
 	public findCurrentTextDocument() {
 		if (this.currentFileAbsPath) {
 			const foundDocument = this.getActiveEditorFromPath(
@@ -69,6 +77,7 @@ export class FileSelectionService {
 
 	public setPathAndSendMessage = (newFilePath: string) => {
 		this.currentFileAbsPath = newFilePath;
+
 		this.messagingService.sendMessageToWebview(
 			VSCODE_MESSAGES_TO_WEBVIEW.CURRENT_FILE,
 			{
@@ -76,6 +85,7 @@ export class FileSelectionService {
 			},
 		);
 	};
+
 	private getActiveEditorFromPath = (
 		filePath: string,
 	): vscode.TextDocument => {
@@ -86,6 +96,7 @@ export class FileSelectionService {
 
 		return activeEditor ? activeEditor.document : undefined;
 	};
+
 	private getActivePythonFile = () => {
 		const editors: vscode.TextEditor[] = vscode.window.visibleTextEditors;
 
@@ -96,6 +107,7 @@ export class FileSelectionService {
 		if (activeEditor) {
 			this.currentTextDocument = activeEditor.document;
 		}
+
 		return activeEditor ? activeEditor.document.fileName : "";
 	};
 }

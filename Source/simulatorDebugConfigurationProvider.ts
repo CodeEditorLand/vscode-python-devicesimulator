@@ -32,8 +32,11 @@ export class SimulatorDebugConfigurationProvider
 				activeTextEditor.document.languageId === "python"
 			) {
 				config.type = "deviceSimulatorExpress";
+
 				config.request = "launch";
+
 				config.name = "Device Simulator Express Debugger";
+
 				config.console = "integratedTerminal";
 			}
 		}
@@ -82,6 +85,7 @@ export class SimulatorDebugConfigurationProvider
 					return undefined; // Abort launch
 				});
 		}
+
 		return config;
 	}
 }

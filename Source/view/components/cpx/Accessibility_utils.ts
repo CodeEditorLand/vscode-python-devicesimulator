@@ -5,6 +5,7 @@
 namespace accessibility {
 	export function makeFocusable(elem: SVGElement): void {
 		elem.setAttribute("focusable", "true");
+
 		elem.setAttribute("tabindex", "0");
 	}
 

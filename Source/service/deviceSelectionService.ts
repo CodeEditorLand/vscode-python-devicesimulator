@@ -6,6 +6,7 @@ export class DeviceSelectionService {
 	public getCurrentActiveDevice(): string {
 		return this.currentActiveDevice;
 	}
+
 	public setCurrentActiveDevice(newActiveDevice: string) {
 		this.currentActiveDevice = newActiveDevice;
 	}

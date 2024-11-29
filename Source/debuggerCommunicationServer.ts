@@ -23,11 +23,17 @@ export const DEBUGGER_MESSAGES = {
 
 export class DebuggerCommunicationServer {
 	private port: number;
+
 	private serverHttp: http.Server;
+
 	private serverIo: socketio.Server;
+
 	private simulatorWebview: WebviewPanel | undefined;
+
 	private deviceSelectionService: DeviceSelectionService;
+
 	private isPendingResponse = false;
+
 	private pendingCallbacks: Function[] = [];
 
 	constructor(
@@ -36,12 +42,17 @@ export class DebuggerCommunicationServer {
 		deviceSelectionService: DeviceSelectionService,
 	) {
 		this.port = port;
+
 		this.serverHttp = new http.Server();
+
 		this.initHttpServer();
 
 		this.serverIo = socketio(this.serverHttp);
+
 		this.simulatorWebview = webviewPanel;
+
 		this.initEventsHandlers();
+
 		console.info(`Server running on port ${this.port}`);
 
 		this.deviceSelectionService = deviceSelectionService;
@@ -69,13 +80,17 @@ export class DebuggerCommunicationServer {
 				DEBUGGER_MESSAGES.EMITTER.INPUT_CHANGED,
 				newState,
 			);
+
 			this.isPendingResponse = true;
 		}
 	}
+
 	public disconnectFromPort() {
 		this.serverIo.close();
+
 		this.serverHttp.close();
 	}
+
 	private sendDisconnectEvent() {
 		this.serverIo.emit(DEBUGGER_MESSAGES.EMITTER.DISCONNECT, {});
 	}
@@ -92,15 +107,19 @@ export class DebuggerCommunicationServer {
 		this.serverIo.on("connection", (socket: any) => {
 			socket.on(DEBUGGER_MESSAGES.LISTENER.UPDATE_STATE, (data: any) => {
 				this.handleState(data);
+
 				this.serverIo.emit(
 					DEBUGGER_MESSAGES.EMITTER.RECEIVED_STATE,
 					{},
 				);
 			});
+
 			socket.on(DEBUGGER_MESSAGES.LISTENER.RECEIVED_STATE, () => {
 				if (this.pendingCallbacks.length > 0) {
 					const currentCall = this.pendingCallbacks.shift();
+
 					currentCall();
+
 					this.isPendingResponse = true;
 				} else {
 					this.isPendingResponse = false;

@@ -6,11 +6,13 @@ import { DeviceSelectionService } from "./deviceSelectionService";
 
 export class MessagingService {
 	private currentWebviewTarget: Webview | undefined;
+
 	private deviceSelectionService: DeviceSelectionService;
 
 	constructor(deviceSelectionService: DeviceSelectionService) {
 		this.deviceSelectionService = deviceSelectionService;
 	}
+
 	public setWebview(webview: Webview) {
 		this.currentWebviewTarget = webview;
 	}
@@ -26,11 +28,13 @@ export class MessagingService {
 			});
 		}
 	}
+
 	public sendStartMessage() {
 		this.currentWebviewTarget.postMessage({
 			command: VSCODE_MESSAGES_TO_WEBVIEW.RUN_DEVICE,
 		});
 	}
+
 	public sendPauseMessage() {
 		this.currentWebviewTarget.postMessage({
 			command: VSCODE_MESSAGES_TO_WEBVIEW.PAUSE_DEVICE,

@@ -19,8 +19,11 @@ export class DeviceContext implements vscode.Disposable {
 	private static _deviceContext: DeviceContext = new DeviceContext();
 
 	private _onDidChange = new vscode.EventEmitter<void>();
+
 	private _watcher: vscode.FileSystemWatcher;
+
 	private _vscodeWatcher: vscode.FileSystemWatcher;
+
 	private _port!: string;
 
 	private constructor() {
@@ -28,6 +31,7 @@ export class DeviceContext implements vscode.Disposable {
 			this._watcher = vscode.workspace.createFileSystemWatcher(
 				path.join(CPXWorkspace.rootPath, CPX_CONFIG_FILE),
 			);
+
 			this._vscodeWatcher = vscode.workspace.createFileSystemWatcher(
 				path.join(CPXWorkspace.rootPath, ".vscode"),
 				true,
@@ -37,7 +41,9 @@ export class DeviceContext implements vscode.Disposable {
 
 			// Reloads the config into the code if the cpx config file has changed
 			this._watcher.onDidCreate(() => this.loadContext());
+
 			this._watcher.onDidChange(() => this.loadContext());
+
 			this._watcher.onDidDelete(() => this.loadContext());
 
 			this._vscodeWatcher.onDidDelete(() => this.loadContext());
@@ -51,24 +57,29 @@ export class DeviceContext implements vscode.Disposable {
 
 				if (files && files.length > 0) {
 					const configFile = files[0];
+
 					cpxConfigJson = utils.tryParseJSON(
 						fs.readFileSync(configFile.fsPath, "utf8"),
 					);
 
 					if (cpxConfigJson) {
 						this._port = cpxConfigJson.port;
+
 						this._onDidChange.fire();
 					} else {
 						console.error(CONSTANTS.ERROR.CPX_FILE_ERROR);
 					}
 				} else {
 					this._port = null;
+
 					this._onDidChange.fire();
 				}
+
 				return this;
 			},
 			(reason) => {
 				this._port = null;
+
 				this._onDidChange.fire();
 
 				return this;
@@ -80,6 +91,7 @@ export class DeviceContext implements vscode.Disposable {
 		if (!CPXWorkspace.rootPath) {
 			return;
 		}
+
 		const cpxConfigFile = path.join(CPXWorkspace.rootPath, CPX_CONFIG_FILE);
 
 		let cpxConfigJson: any = {};
@@ -89,13 +101,16 @@ export class DeviceContext implements vscode.Disposable {
 				fs.readFileSync(cpxConfigFile, "utf8"),
 			);
 		}
+
 		if (!cpxConfigJson) {
 			// log and notify user error
 			return;
 		}
+
 		cpxConfigJson.port = this.port;
 
 		utils.mkdirRecursivelySync(path.dirname(cpxConfigFile));
+
 		fs.writeFileSync(
 			cpxConfigFile,
 			JSON.stringify(
@@ -104,6 +119,7 @@ export class DeviceContext implements vscode.Disposable {
 					if (value === null) {
 						return undefined;
 					}
+
 					return value;
 				},
 				4,
@@ -154,6 +170,7 @@ export class DeviceContext implements vscode.Disposable {
 
 	public set port(value: string) {
 		this._port = value;
+
 		this.saveContext();
 	}
 }

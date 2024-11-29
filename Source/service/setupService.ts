@@ -39,6 +39,7 @@ export class SetupService {
 		if (originalPythonExecutablePath === "") {
 			return;
 		}
+
 		let pythonExecutablePath = originalPythonExecutablePath;
 
 		const pythonExecutableName: string =
@@ -83,6 +84,7 @@ export class SetupService {
 						originalPythonExecutablePath,
 						pythonExecutableName,
 					);
+
 					this.telemetryAI.trackFeatureUsage(
 						TelemetryEventName.SETUP_INSTALL_VENV,
 					);
@@ -92,6 +94,7 @@ export class SetupService {
 					vscode.window.showInformationMessage(
 						CONSTANTS.INFO.UPDATED_TO_EXTENSION_VENV,
 					);
+
 					vscode.workspace
 						.getConfiguration()
 						.update(CONFIG.PYTHON_PATH, pythonExecutablePath);
@@ -101,6 +104,7 @@ export class SetupService {
 					TelemetryEventName.SETUP_HAS_VENV,
 				);
 			}
+
 			if (pythonExecutablePath === originalPythonExecutablePath) {
 				// going with original interpreter, either because
 				// already in venv or error in creating custom venv
@@ -122,6 +126,7 @@ export class SetupService {
 									this.telemetryAI.trackFeatureUsage(
 										TelemetryEventName.SETUP_ORIGINAL_INTERPRETER_DEP_INSTALL,
 									);
+
 									await this.installDependenciesWrapper(
 										context,
 										pythonExecutablePath,
@@ -199,6 +204,7 @@ export class SetupService {
 					systemPythonVar,
 					`-c "import sys; print(sys.executable)"`,
 				);
+
 				originalPythonExecutablePath = stdout.trim();
 			} catch (err) {
 				this.telemetryAI.trackFeatureUsage(
@@ -220,8 +226,10 @@ export class SetupService {
 									this.telemetryAI.trackFeatureUsage(
 										TelemetryEventName.SETUP_DOWNLOAD_PYTHON,
 									);
+
 									open(CONSTANTS.LINKS.DOWNLOAD_PYTHON);
 								};
+
 								showPrivacyModal(
 									okAction,
 									CONSTANTS.INFO.THIRD_PARTY_WEBSITE_PYTHON,
@@ -235,6 +243,7 @@ export class SetupService {
 					return this.getCurrentPythonExecutablePath(true);
 				}
 			}
+
 			if (
 				!(await this.validatePythonVersion(
 					originalPythonExecutablePath,
@@ -264,8 +273,10 @@ export class SetupService {
 										this.telemetryAI.trackFeatureUsage(
 											TelemetryEventName.SETUP_DOWNLOAD_PYTHON,
 										);
+
 										open(CONSTANTS.LINKS.DOWNLOAD_PYTHON);
 									};
+
 									showPrivacyModal(
 										okAction,
 										CONSTANTS.INFO
@@ -297,6 +308,7 @@ export class SetupService {
 				await vscode.window.showErrorMessage(
 					CONSTANTS.ERROR.BAD_PYTHON_PATH,
 				);
+
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.SETUP_INVALID_PYTHON_INTERPRETER_PATH,
 				);
@@ -312,6 +324,7 @@ export class SetupService {
 				this.telemetryAI.trackFeatureUsage(
 					TelemetryEventName.SETUP_INVALID_PYTHON_VER,
 				);
+
 				vscode.window
 					.showInformationMessage(
 						CONSTANTS.ERROR.INVALID_PYTHON_PATH,
@@ -323,8 +336,10 @@ export class SetupService {
 								this.telemetryAI.trackFeatureUsage(
 									TelemetryEventName.SETUP_DOWNLOAD_PYTHON,
 								);
+
 								open(CONSTANTS.LINKS.DOWNLOAD_PYTHON);
 							};
+
 							showPrivacyModal(
 								okAction,
 								CONSTANTS.INFO.THIRD_PARTY_WEBSITE_PYTHON,
@@ -355,6 +370,7 @@ export class SetupService {
 						const okAction = () => {
 							open(CONSTANTS.LINKS.DOWNLOAD_PIP);
 						};
+
 						showPrivacyModal(
 							okAction,
 							CONSTANTS.INFO.THIRD_PARTY_WEBSITE_PIP,
@@ -484,6 +500,7 @@ export class SetupService {
 			this.telemetryAI.trackFeatureUsage(
 				TelemetryEventName.SETUP_VENV_CREATION_ERR,
 			);
+
 			vscode.window
 				.showErrorMessage(
 					`Virtual environment for download could not be completed. Using original interpreter at: ${pythonExecutable}. If you're on Linux, try running "sudo apt-get install python3-venv".`,
@@ -555,7 +572,9 @@ export class SetupService {
 				pythonPath,
 				`"${requirementsPyInstallPath}"`,
 			);
+
 			console.log(`DSE ${stdout}`);
+
 			vscode.window.showInformationMessage(
 				CONSTANTS.INFO.SUCCESSFUL_INSTALL,
 			);
@@ -578,6 +597,7 @@ export class SetupService {
 		if (backupPythonPath !== "") {
 			errMessage = `${errMessage} Using original interpreter at: ${backupPythonPath}.`;
 		}
+
 		if (!(await this.installDependencies(context, pythonPath))) {
 			vscode.window
 				.showErrorMessage(
@@ -596,6 +616,7 @@ export class SetupService {
 
 			return backupPythonPath;
 		}
+
 		return pythonPath;
 	};
 }

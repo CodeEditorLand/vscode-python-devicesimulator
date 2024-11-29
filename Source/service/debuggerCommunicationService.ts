@@ -2,6 +2,7 @@ import { DebuggerCommunicationServer } from "../debuggerCommunicationServer";
 
 export class DebuggerCommunicationService {
 	private currentDebuggerServer?: DebuggerCommunicationServer;
+
 	private previousDebuggerServerToDisconnect?: DebuggerCommunicationServer;
 
 	public setCurrentDebuggerServer(debugServer: DebuggerCommunicationServer) {
@@ -12,9 +13,12 @@ export class DebuggerCommunicationService {
 		if (this.currentDebuggerServer) {
 			this.currentDebuggerServer.closeConnection();
 		}
+
 		this.previousDebuggerServerToDisconnect = this.currentDebuggerServer;
+
 		this.currentDebuggerServer = undefined;
 	}
+
 	public getCurrentDebuggerServer() {
 		return this.currentDebuggerServer;
 	}

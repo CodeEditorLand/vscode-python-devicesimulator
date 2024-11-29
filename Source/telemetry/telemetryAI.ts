@@ -6,11 +6,13 @@ import getPackageInfo from "./getPackageInfo";
 // tslint:disable-next-line:export-name
 export default class TelemetryAI {
 	private static telemetryReporter: TelemetryReporter;
+
 	private static enableTelemetry: boolean | undefined;
 
 	constructor(vscodeContext: vscode.ExtensionContext) {
 		TelemetryAI.telemetryReporter =
 			this.createTelemetryReporter(vscodeContext);
+
 		TelemetryAI.enableTelemetry = vscode.workspace
 			.getConfiguration()
 			.get("telemetry.enableTelemetry");
@@ -68,6 +70,7 @@ export default class TelemetryAI {
 		const measurement = {
 			duration: latency / numberOfNanosecondsInSecond,
 		};
+
 		this.sendTelemetryIfEnabled(eventName, {}, measurement);
 	}
 
@@ -82,6 +85,7 @@ export default class TelemetryAI {
 			extensionVersion,
 			instrumentationKey,
 		);
+
 		context.subscriptions.push(reporter);
 
 		return reporter;

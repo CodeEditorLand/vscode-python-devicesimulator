@@ -17,6 +17,7 @@ export class UsbDetector {
 		if (!UsbDetector._instance) {
 			UsbDetector._instance = new UsbDetector();
 		}
+
 		return UsbDetector._instance;
 	}
 
@@ -44,6 +45,7 @@ export class UsbDetector {
 		if (os.platform() === "linux" || !enableUSBDetection) {
 			return;
 		}
+
 		this._usbDetector = require("usb-native").detector;
 
 		if (!this._usbDetector) {
@@ -96,15 +98,18 @@ export class UsbDetector {
 			);
 
 			const boardIndexes: [] = JSON.parse(fileContent);
+
 			boardIndexes.forEach((boardIndex: any) => {
 				boardIndex.boards.forEach((board: any) => {
 					board.indexFile = boardIndex.index_file;
 				});
+
 				this._boardDescriptors = this._boardDescriptors.concat(
 					boardIndex.boards,
 				);
 			});
 		}
+
 		return this._boardDescriptors.find((obj: any) => {
 			return (
 				obj.vid === vendorId &&

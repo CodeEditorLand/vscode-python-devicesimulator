@@ -66,6 +66,7 @@ export const logToOutputChannel = (
 		if (show) {
 			outChannel.show(true);
 		}
+
 		outChannel.append(message);
 	}
 };
@@ -94,6 +95,7 @@ export function mkdirRecursivelySync(dirPath: string): void {
 	if (directoryExistsSync(dirPath)) {
 		return;
 	}
+
 	const dirname = path.dirname(dirPath);
 
 	if (path.normalize(dirname) === path.normalize(dirPath)) {
@@ -102,6 +104,7 @@ export function mkdirRecursivelySync(dirPath: string): void {
 		fs.mkdirSync(dirPath);
 	} else {
 		mkdirRecursivelySync(dirname);
+
 		fs.mkdirSync(dirPath);
 	}
 }
@@ -140,6 +143,7 @@ export function padStart(
 			if (targetLength > padString.length) {
 				padString += padString.repeat(targetLength / padString.length); // append to original to ensure we are longer than needed
 			}
+
 			return padString.slice(0, targetLength) + sourceString;
 		}
 	} else {
@@ -162,7 +166,9 @@ export function generateCPXConfig(): void {
 		CPXWorkspace.rootPath,
 		CPX_CONFIG_FILE,
 	);
+
 	mkdirRecursivelySync(path.dirname(cpxConfigFilePath));
+
 	fs.writeFileSync(cpxConfigFilePath, JSON.stringify(cpxJson, null, 4));
 }
 
@@ -173,6 +179,7 @@ export const addVisibleTextEditorCallback = (
 	const initialPythonEditors = filterForPythonFiles(
 		vscode.window.visibleTextEditors,
 	);
+
 	currentPanel.webview.postMessage({
 		command: "visible-editors",
 		state: { activePythonEditors: initialPythonEditors },
@@ -181,6 +188,7 @@ export const addVisibleTextEditorCallback = (
 	return vscode.window.onDidChangeVisibleTextEditors(
 		(textEditors: vscode.TextEditor[]) => {
 			const activePythonEditors = filterForPythonFiles(textEditors);
+
 			currentPanel.webview.postMessage({
 				command: "visible-editors",
 				state: { activePythonEditors },
@@ -220,6 +228,7 @@ export const getServerPortConfig = (): number => {
 			.getConfiguration()
 			.get(SERVER_INFO.SERVER_PORT_CONFIGURATION) as number;
 	}
+
 	return SERVER_INFO.DEFAULT_SERVER_PORT;
 };
 
