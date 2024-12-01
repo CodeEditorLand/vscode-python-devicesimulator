@@ -3,7 +3,7 @@
 ## Coding guidelines for TypeScript
 
 -   The following standards are inspired from
-    [`Coding guidelines for TypeScript`](HTTPS://github.com/Microsoft/TypeScript/wiki/Coding-guidelines)
+    [`Coding guidelines for TypeScript`](https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines)
     (which you should follow when something is not specified in this document,
     although any pre-existing practices in a file being edited trump either
     style guide).
@@ -71,4 +71,4 @@ Use single quotes for strings.
 ## Coding Standards for Python
 
 Please follow the
-[`Google Python Style Guide`](HTTPS://google.github.io/styleguide/pyguide.html).
+[`Google Python Style Guide`](https://google.github.io/styleguide/pyguide.html).
