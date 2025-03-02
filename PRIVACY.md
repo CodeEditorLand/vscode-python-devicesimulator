@@ -18,10 +18,10 @@ Your use of the software operates as your consent to these practices.
 
 The Microsoft Device Simulator Express Extension for Visual Studio Code collects
 usage data and sends it to Microsoft to help improve our products and services.
-Read our [`privacy statement`](https://privacy.microsoft.com/privacystatement) to
-learn more. This extension respects the `telemetry.enableTelemetry` setting
+Read our [`privacy statement`](https://privacy.microsoft.com/privacystatement)
+to learn more. This extension respects the `telemetry.enableTelemetry` setting
 which you can learn more about at
-HTTPS://code.visualstudio.com/docs/supporting/faq#_how-to-disable-telemetry-reporting.
+HTTPS://code.visualstudio.com/docs/supporting/faq#\_how-to-disable-telemetry-reporting.
 
 To disable telemetry, follow these steps:
 
