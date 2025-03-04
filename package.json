@@ -231,7 +231,7 @@
 	},
 	"devDependencies": {
 		"@types/glob": "8.1.0",
-		"@types/node": "22.13.4",
+		"@types/node": "22.13.9",
 		"css-loader": "7.1.2",
 		"del": "8.0.0",
 		"event-stream": "4.0.1",
