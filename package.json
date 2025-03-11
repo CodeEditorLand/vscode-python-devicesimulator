@@ -1,5 +1,5 @@
 {
-	"name": "__EXTENSIONNAME__s",
+	"name": "__EXTENSIONNAME__",
 	"displayName": "__DISPLAYNAME__",
 	"description": "__DESCRIPTION__",
 	"main": "./out/extension.js",
